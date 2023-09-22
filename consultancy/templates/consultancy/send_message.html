@@ -1,0 +1,14 @@
+<!-- send_message.html -->
+
+  <h1>Send Message</h1>
+  
+  <h2>Recipient: {{ recipient.username }}</h2>
+  
+  <form method="post" action="{% url 'send_message' recipient_id=recipient.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send</button>
+  </form>
+  
+  <a href="{% url 'consultant_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+

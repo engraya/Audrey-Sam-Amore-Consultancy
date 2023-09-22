@@ -1,0 +1,9 @@
+<h1>My Inbox</h1>
+<ul>
+  {% for message in messages %}
+    <li>
+      <strong>From: {{ message.sender }}</strong>
+      <p>{{ message.content }}</p>
+    </li>
+  {% endfor %}
+</ul>

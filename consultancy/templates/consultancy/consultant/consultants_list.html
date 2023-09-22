@@ -1,0 +1,30 @@
+
+  <h1>Consultants List</h1>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Expertise</th>
+        <th>Hourly Rate</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for consultant in consultants %}
+        <tr>
+          <td>{{ consultant.user.username }}</td>
+          <td>{{ consultant.expertise }}</td>
+          <td>${{ consultant.hourly_rate }}</td>
+          <td>
+            <a href="{% url 'consultant_detail' consultant.user.id %}" class="btn btn-info">View Profile</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="4">No consultants available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+

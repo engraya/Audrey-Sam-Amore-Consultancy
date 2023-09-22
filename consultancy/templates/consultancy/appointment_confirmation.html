@@ -1,0 +1,14 @@
+
+  <h1>Appointment Confirmation</h1>
+  
+  <div class="alert alert-success" role="alert">
+    Your appointment has been successfully scheduled with {{ consultant.user.username }}.
+  </div>
+  
+  <h2>Appointment Details</h2>
+  <p>Date and Time: {{ appointment.appointment_date }}</p>
+  <p>Consultant: {{ consultant.user.username }}</p>
+  <p>Notes: {{ appointment.notes }}</p>
+  
+  <a href="" class="btn btn-primary">Back to Dashboard</a>
+

@@ -1,0 +1,26 @@
+{% extends 'baseapp/prebase.html' %}
+
+
+{% block content %}
+
+<br>
+<br>
+
+
+
+<div class="container align-items-center justify-content-center d-flex mt-5">
+
+  <div class="jumbotron">
+    <h1 class="display-4" style="text-align:center;">Hello, Client</h1>
+    <p class="lead">Welcome to The System.</p>
+    <hr class="my-4">
+    <p>You can access various features after Login/SignUp.</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/clientsignup" role="button">Register Your Account</a>
+      <a class="btn btn-primary btn-lg" href="/clientlogin" role="button">Login</a>
+    </p>
+  </div>
+  
+</div>
+
+{% endblock content %}

@@ -1,0 +1,26 @@
+<h1>Profile</h1>
+<a href="{% url 'consultant_sevices' user.username %}"><button class="btn btn-info">Services</button></a>
+<hr>
+<p>Username : {{ profile.user.username }}</p>
+<p>User Type: {{ profile.userType }}</p>
+<img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+<p>Gender : {{ profile.gender }}</p>
+<p>Country : {{ profile.country.name }}</p>
+<p>Profession : {{ profile.profession }}</p>
+<p>Bio :{{ profile.biography }}</p>
+<p>Facebook : {{ profile.facebook }}</p>
+<p>Twitter : {{ profile.twitter }}</p>
+<p>Instagram : {{ profile.instagram }}</p>
+<p>Website : {{ profile.website }}</p>
+<hr>
+{% if profile.userType == 'consultant' %}
+    <h2>Services</h2>
+    <ul>
+        {% for service in request.user.consultancyservice_set.all %}
+        <li><a href="{% url 'service_detail' service.id %}">{{ service.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+

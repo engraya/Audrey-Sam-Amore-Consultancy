@@ -1,0 +1,13 @@
+
+  <h1>Respond to Client</h1>
+  
+  <h2>Client: {{ client.username }}</h2>
+  
+  <form method="post" action="{% url 'send_response' client_id=client.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send Response</button>
+  </form>
+  
+  <a href="{% url 'consultant_dashboard' %}" class="btn btn-secondary">Back to Dashboard</a>
+

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+<link rel="stylesheet" href="{% static 'styles/chat_app.css' %}">
+<link rel='stylesheet' href="{% static 'styles/reset.css' %}"">
+</head><body>
+<div id="frame">
+	<div id="sidepanel">
+		<!-- <div id="search">
+			<label for=""><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+			  </svg></label>
+			<input type="text" placeholder="Search contacts..." />
+		</div> -->
+		<div id="contacts">
+			{% block contacts %}
+			{% endblock%}
+		</div>
+	</div>
+	<div class="content">
+		<div class="messages">
+			{% if not messages %}
+			<h6 class="alert alert-warning text-center">{% trans 'Select a chat to start messaging' %}</h6>
+			{% endif %}
+			{% block message %}
+			{% endblock %}
+		</div>
+	</div>
+</div>
+</div>
+</body></html>
+{% endblock %}

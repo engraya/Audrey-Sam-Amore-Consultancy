@@ -1,0 +1,59 @@
+{% extends 'baseapp/prebase.html' %}
+
+{% load static %}
+
+
+{% block content %}
+
+<div class="d-lg-flex half">
+  <div class="contents order-2 order-md-1">
+
+    <div class="container my-4">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-8">
+          <h3>Register as <strong>Consultant</strong></h3>
+          <form method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+          
+                  <label for="first_name">First Name</label>
+                  <!-- <input type="text" class="form-control" placeholder="Enter your First Name" id="first_name"> -->
+                  {{userForm.first_name}}
+   
+                  <label for="last_name">Last Name</label>
+                  <!-- <input type="text" class="form-control" placeholder="Enter your Last Name" id="last_name"> -->
+                  {{userForm.last_name}}
+  
+                  <label for="username">Username</label>
+              <!-- <input type="text" class="form-control" placeholder="Enter your Username" id="username"> -->
+                  {{userForm.username}}
+                  <label for="email">Email</label>
+              <!-- <input type="email" class="form-control" placeholder="Enter your Email" id="email"> -->
+                  {{userForm.email}}
+         
+                  <label for="profilePicture">Profile Picture</label>
+              <!-- <input type="email" class="form-control" placeholder="Enter your Email" id="email"> -->
+                  {{consultantForm.profilePicture}}
+         
+           
+                  <label for="password">Password</label>
+              <!-- <input type="password" class="form-control" placeholder="Enter Your Password" id="password1"> -->
+                  {{userForm.password}}
+      
+                  <div class="d-flex mb-5 align-items-center">
+                  <label class="control control--checkbox mb-0"><span class="caption">Already have an account?  <a href="consultantlogin">Sign In</a>  </span>
+                  </label> 
+                  </div>
+
+            <input type="submit" value="Register" class="btn btn-block btn-primary">
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+  
+{% endblock content %}
+  

@@ -1,0 +1,48 @@
+{% extends 'baseapp/admin_base.html' %}
+{% block content %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<div class="container">
+    <div class="panel-heading">
+      <h6 class="panel-title">Message</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Reciever</th>
+          <th>Sender</th>
+          <th>Message Content</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      {% for message in messages %}
+      <tr>
+        <td>{{message.consultantName}}</td>
+        <td>{{message.clientName}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.timestamp}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock content %}

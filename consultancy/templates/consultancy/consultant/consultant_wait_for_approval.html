@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Consultant Wait for Approval</title>
+
+
+  <style media="screen">
+    .jumbotron {
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+
+    .jumbotron h1 {
+      text-align: center;
+    }
+
+    .alert {
+      margin: 0px;
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include "baseapp/header.html" %}
+  <br>
+  <br>
+
+  <div class="jumbotron mt-5 pt-lg-5" style="margin-top: 0px;
+    margin-bottom: 0px;">
+    <h1 class="display-4">Welcome, {{request.user.first_name|upper}}</h1>
+    <h5 class="lead align-content-center justify-content-center d-flex">Profile Status: {{request.user.get_group_name}}</h5>
+    <hr>
+    <div class="container align-content-center justify-content-center d-flex">
+      <p class="lead">Your Account is not approved till now <br><br>Our Team is checking your profile <br><br> Soon your Account will be confirmed !!!</p>
+      <hr class="my-4">
+  
+
+    </div>
+    <p class="lead align-content-center justify-content-center d-flex">Check Later</p>
+    <p class="lead align-content-center justify-content-center d-flex">
+ 
+      <a class="btn btn-primary btn-lg" href="/logout" role="button">Logout</a>
+    </p>
+
+  </div>
+
+</body>
+
+
+</html>
+{% include "baseapp/footer.html" %}
