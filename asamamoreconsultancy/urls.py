@@ -18,6 +18,7 @@ urlpatterns = [
             path('consultancy/', include('consultancy.urls')),
 
     ] + i18n_patterns(
+    path('consultancy/', include('consultancy.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
     path('dating/', include('dating_app.urls')), 
     path('', views.home, name='home'),  

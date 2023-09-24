@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Audrey Sam Amore Consultancy</title>
+  <title>Audrey Sam Amore Consult</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -49,16 +49,15 @@
 
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
-          <h1 class="logo"><a href="{% url 'home' %}">Audrey Sam Amore Consultancy</a></h1>
+          <a href="{% url 'home' %}" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
           <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        
 
           <nav id="navbar" class="navbar">
-    
+                
             <ul>
-              <li><a class="nav-link scrollto" href="{% url 'user_app:signin' %}">Dating</a></li>
-              <li><a class="nav-link scrollto" href="{% url 'consultancy:home' %}">Consultancy</a></li>
-     
+              <li><a class="nav-link scrollto" href="{% url 'user_app:adminclick' %}">Admin</a></li>
+              <li><a class="nav-link scrollto" href="{% url 'user_app:clientclick' %}">Client</a></li>
             </ul>
 
      

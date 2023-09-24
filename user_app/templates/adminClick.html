@@ -1,0 +1,31 @@
+{% extends "auth_base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+<br>
+<div class="limiter">
+ 
+	<div class="container-login100">
+
+		<div>
+      <div class="align-item-center justify-content-center d-flex">
+        <h1 style="text-align:center;">Administrator</h1>
+      </div>
+      <hr class="my-4">
+      <p class="text-dark">You can access various features after Register/Login.</p>
+      <div class="container-login100-form-btn">
+        <a class="login100-form-btn" href="/admin_signup"><button type="submit" class="login100-form-btn">
+          Register
+        </button></a>
+      </div>
+      <div class="container-login100-form-btn">
+        <a class="login100-form-btn" href="/admin_sign_in"><button type="submit" class="login100-form-btn">
+          Login
+        </button></a>
+      </div>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

@@ -6,7 +6,7 @@
 
 <link rel="stylesheet" href="{% static 'styles/profile_info.css' %}">
 
-<div class="container text-center">
+<div class="container text-center pt-5 mt-5">
 	{% if error %}
 	<p class="alert alert-danger"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
         <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -19,18 +19,25 @@
 		{% csrf_token %}
             <p class="text-center mb-4">{% trans 'STEP' %} 2/3</p>
             <div class="mb-3">
+				{% if user.profile.state %}
+				<input type="text" name="state" id="id_state" value="{{ user.profile.state }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="state" id="id_state" placeholder="{% trans 'Your country and state' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
 				{% if user.profile.city %}
 				<input type="text" name="city" id="id_city" value="{{ user.profile.city }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="city" id="id_city" placeholder="{% trans 'Your country and city' %}" autocomplete="off">
+                <input type="text" name="city" id="id_city" placeholder="{% trans 'Your city' %}" autocomplete="off">
 				{% endif %}
             </div>
             <div class="input-group mb-3">
 				<div class="input-group-prepend">
 				  <label class="input-group-text" for="id_sex">{% trans "I'm a" %}</label>
 				</div>
-				<select class="custom-select" name="sex" id="id_sex">
-					{% if user.profile.sex == "M" %}
+				<select class="custom-select" name="gender" id="id_gender">
+					{% if user.profile.gender == "M" %}
 					<option value="M" selected="selected">{% trans 'Male' %}</option>
 					<option value="F">{% trans 'Female' %}</option>
 					{% else %}
@@ -59,5 +66,5 @@
         </div>
     </form>
 </div>
-<!-- {{ step_two_form|crispy }} -->
+
 {% endblock %}

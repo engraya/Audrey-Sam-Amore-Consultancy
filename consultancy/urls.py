@@ -68,7 +68,7 @@ urlpatterns = [
     path('adminsignup', views.admin_signup_view),
     path('consultantsignup', views.consultant_signup_view,name='consultantsignup'),
     path('clientsignup', views.client_signup_view),
-    path('adminlogin', LoginView.as_view(template_name='baseapp/adminlogin.html')),
+    path('adminlogin', LoginView.as_view(template_name='consultancy/admin/adminlogin.html')),
     path('consultantlogin', LoginView.as_view(template_name='baseapp/consultantlogin.html')),
     path('clientlogin', LoginView.as_view(template_name='baseapp/clientlogin.html')),
 

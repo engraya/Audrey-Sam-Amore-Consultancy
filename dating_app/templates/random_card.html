@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'styles/random_card.css' %}">
-<div class="container text-center">
+<div class="container text-center pt-5 mt-5">
 	{% if random_card %}
 		{% for user in random_card %}
 				<div class="card text-center">

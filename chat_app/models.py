@@ -18,42 +18,38 @@ class Message(models.Model):
         ordering = ('-date',)
 
         
-    # функция получает все сообщения между "двумя" пользователями (требуется ваш pk и pk другого пользователя)
+  
     def get_all_messages(id_1, id_2):
         messages = []
-        # получить сообщения между двумя пользователями, отсортировывает их по дате (обратной) и добавляет их в список
-        message1 = Message.objects.filter(sender_id=id_1, recipient_id=id_2).order_by('-date') # получать сообщения от отправителя к получателю
+      
+        message1 = Message.objects.filter(sender_id=id_1, recipient_id=id_2).order_by('-date') 
         for x in range(len(message1)):
             messages.append(message1[x])
-			
-		# получать сообщения от получателя к отправителю
+
         message2 = Message.objects.filter(sender_id=id_2, recipient_id=id_1).order_by('-date')
         for x in range(len(message2)):
             messages.append(message2[x])
 
-        # поскольку функция вызывается при просмотре чата, мы вернем все сообщения как прочитанные
         for x in range(len(messages)):
             messages[x].is_read = True
-        # sort the messages by date
+    
         messages.sort(key=lambda x: x.date, reverse=False)
         return messages
 
-    # функция получает все сообщения между "любыми" двумя пользователями (требуется ваш pk)
+   
     def get_message_list(u):
-        # получать все сообщения
-        m = []  # сохраняет все сообщения, отсортированные по принципу "последнее - первое"
-        j = []  # сохраняет все имена пользователей из сообщений выше после удаления дубликатов
-        k = []  # сохраняет последнее сообщение из отсортированных выше имен пользователей
+
+        m = []  
+        j = []  
+        k = []  
         for message in Message.objects.all():
-            for_you = message.recipient == u  # сообщения, полученные пользователем
-            from_you = message.sender == u  # сообщения, отправленные пользователем
+            for_you = message.recipient == u  
+            from_you = message.sender == u  
             if for_you or from_you:
                 m.append(message)
-                m.sort(key=lambda x: x.sender.username)  # сортировать сообщения по отправителям
-                m.sort(key=lambda x: x.date, reverse=True)  # сортировать сообщения по дате
+                m.sort(key=lambda x: x.sender.username) 
+                m.sort(key=lambda x: x.date, reverse=True)  
 
-        """ удалить дубликаты имен пользователей и получить одно сообщение (последнее сообщение)
-		на имя пользователя (другого пользователя) (между вами и другим пользователем)"""
         for i in m:
             if i.sender.username not in j or i.recipient.username not in j:
                 j.append(i.sender.username)

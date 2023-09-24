@@ -1,0 +1,79 @@
+{% extends "auth_base.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+
+<div class="limiter pt-5">
+	<div class="container-login100">
+		<div class="wrap-login100">
+			<div class="login100-pic js-tilt" data-tilt>
+				<img src="{% static 'images/img-01.png' %}" alt="IMG">
+			</div>
+
+			<form class="login100-form validate-form" method="POST">
+				{% csrf_token %}
+				<span class="login100-form-title">
+					Admin Register
+				</span>
+
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" id="first_name" name="first_name" placeholder="First Name">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" id="last_name" name="last_name" placeholder="Last Name">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" id="username" name="username" placeholder="Username">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
+        <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<input class="input100" type="text" id="email" name="email" placeholder="Email">
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-envelope" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Password is required">
+					<input class="input100" id="password1" type="password" name="password" placeholder="Password">
+			
+					<span class="focus-input100"></span>
+					<span class="symbol-input100 float-md-start">
+						<i class="fa fa-lock" aria-hidden="true"></i>
+					</span>
+				</div>
+				
+				<div class="container-login100-form-btn">
+					<button type="submit" class="login100-form-btn">
+						Register
+					</button>
+				</div>
+
+				<div class="text-center p-t-136">
+					<a class="txt2" href="/admin_sign_in">
+						Already Have an Account? Login
+						<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+  
+{% endblock content %}
+  

@@ -12,14 +12,13 @@ import random
 def dating(request):
 	profile = Profile.objects.get(pk=request.user.pk)
 	if profile.about:
-		"""Поиск пользователей"""
 		query = request.GET.get("q", default = "")
-		sex = request.GET.get('sex', default = "ALL")
-		if sex == 'ALL':
-			sex = ['M', 'F']
+		gender = request.GET.get('gender', default = "ALL")
+		if gender == 'ALL':
+			gender = ['M', 'F']
 		
 		profiles_list = Profile.objects.filter(
-				Q(first_name__icontains=query) | Q(last_name__icontains=query), sex__in=sex
+				Q(first_name__icontains=query) | Q(last_name__icontains=query), gender__in=gender
 			).exclude(id=request.user.id)
 
 		context = get_pogination(request, profiles_list, 10)
@@ -51,7 +50,7 @@ def favorite_add(request, user_id):
 def partner_account(request, user_id):
 	profile = Profile.objects.get(pk=request.user.pk)
 	if profile.about:
-		"""Показ деталей профилья других пользователей"""
+		
 		partner_account = get_object_or_404(User, pk=user_id)
 		return render(request, 'partner_account.html', {'partner_account':partner_account, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 	return redirect('user_app:sign_up_step_three')
@@ -66,7 +65,6 @@ def home(request):
 
 
 def get_pogination(request, profiles_list, objects_num):
-	"""Пагинация"""
 	paginator = Paginator(profiles_list, objects_num)
 	try:
 		page = int(request.GET.get('page', '1'))
@@ -88,10 +86,14 @@ def get_pogination(request, profiles_list, objects_num):
 
 def random_card(request):
 	profile = Profile.objects.get(pk=request.user.pk)
-	card_list = list(Profile.objects.filter(sex__in=str(profile.seeking)
+	card_list = list(Profile.objects.filter(gender__in=str(profile.seeking)
 			).exclude(id=request.user.id))
 	if card_list:
 		random_card = random.sample(card_list, 1)
 	else:
 		random_card = None
 	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
+
+
+def adminPage(request):
+	return render(request, 'adminPage.html')

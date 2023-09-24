@@ -39,7 +39,7 @@ def home_view(request):
 def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'baseapp/adminclick.html')
+    return render(request,'consultancy/admin/adminclick.html')
 
 
 #for showing signup/login button for doctor(by sumit)
@@ -70,7 +70,7 @@ def admin_signup_view(request):
             my_admin_group[0].user_set.add(user)
             messages.success(request, 'Registration as Admin Successful, you can now login to your account.......')
             return HttpResponseRedirect('adminlogin')
-    return render(request,'baseapp/adminsignup.html', context)
+    return render(request,'consultancy/admin/adminsignup.html', context)
 
 
 
