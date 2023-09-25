@@ -194,14 +194,10 @@ def admin_dashboard_view(request):
 def admin_consultant_view(request):
     return render(request,'baseapp/admin_consultant.html')
 
-
-
-
 def admin_view_consultant_view(request):
     consultants = models.Consultant.objects.all().filter(status=True)
     context = {'consultants':consultants}
     return render(request,'baseapp/admin_view_consultant.html', context)
-
 
 
 
@@ -211,7 +207,6 @@ def delete_consultant_from_hospital_view(request,pk):
     user.delete()
     consultant.delete()
     return redirect('admin-view-consultant')
-
 
 
 

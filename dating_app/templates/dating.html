@@ -2,46 +2,102 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
-{% include 'search_bar.html' %}
+<style>
+  body{
+    background:#DCDCDC;
+    margin-top:20px;
+}
+.card-box {
+    padding: 20px;
+    border-radius: 3px;
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+.social-links li a {
+    border-radius: 50%;
+    color: rgba(121, 121, 121, .8);
+    display: inline-block;
+    height: 30px;
+    line-height: 27px;
+    border: 2px solid rgba(121, 121, 121, .5);
+    text-align: center;
+    width: 30px
+}
+
+.social-links li a:hover {
+    color: #797979;
+    border: 2px solid #797979
+}
+.thumb-lg {
+    height: 88px;
+    width: 88px;
+}
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+.text-pink {
+    color: #ff679b!important;
+}
+.btn-rounded {
+    border-radius: 2em;
+}
+.text-muted {
+    color: #98a6ad!important;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+}
+</style>
+
 <div class="album py-5">
-    <div class="container">
+    <div class="container align-items-center">
+      {% include 'search_bar.html' %}
+      <hr>
       <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
 		{% if cards %}
 		{% for card in cards %}
-        <div class="col">
-          <div class="card" style="max-width: 250px; min-width:150px; border: none; box-shadow: 0px 0px 8px 0px rgba(214, 214, 214, 0.469);">
-			<a href="{% url 'dating_app:partner_account' card.id %}" id="a-card">
-			<img src="{{ card.profile_pic.url }}" class="bd-placeholder-img card-img-top" style="max-width: 250px; max-height: 250px; min-width: 150px; min-height: 120px; object-fit: cover; object-position: center;" alt="...">
-			</a>
-            <div class="card-body">
-			  <h5>{{ card.first_name }} {{ card.last_name }}, {{ card.age }}</h5>
-			  <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-				<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-			  </svg> {{ card.city }}</p>
-              <p class="card-text"><i>{{ card.about|truncatechars:80 }}</i></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex ms-auto">
-                    {% if card.id in saved_to_favorite %}
-                    <a href="{% url 'dating_app:favorite_add' card.id %}" class="btn btn-outline-dark justify-content-end" style="background-color: #000; color: #fff;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                    </svg></a>
-                    {% else %}
-                    <a href="{% url 'dating_app:favorite_add' card.id %}" class="btn btn-outline-dark justify-content-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-heart" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                      <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                    </svg></a>
-                    {% endif %}
+                    <!-- end col -->
+          <div class="col-lg-4">
+            <div class="text-center card-box" style="border-radius:20px; shadow:2px">
+                <div class="member-card pt-2 pb-2">
+                    <div class="thumb-lg member-thumb mx-auto"><a href="{% url 'dating_app:partner_account' card.id %}"><img src="{{ card.profile_pic.url }}" class="rounded-circle img-thumbnail" alt="profile-image"></a></div>
+                    <div class="">
+                        <h4>{{ card.first_name }} {{ card.last_name }}</h4>
+                        <p class="text-muted">@User Profession</p>
+                        <p class="text-muted"> <span><i class="fas fa-location"></i>{{ card.city }}, {{ card.state }}</span></p>
+                        <span><a href="#" class="text-pink">{{ card.age }}</a></span>
+                        <p class="card-text"><i>{{ card.about|truncatechars:80 }}</i></p>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="justify-content-center d-flex alignt-content-center">
+                            {% if card.id in saved_to_favorite %}
+                            <a href="{% url 'dating_app:favorite_add' card.id %}"><span><i class="fas fa-heart fa-bg-success fa-1x"></i></span></a>
+                            {% else %}
+                            <a href="{% url 'dating_app:favorite_add' card.id %}"><span><i class="fas fa-heart fa-1x"></i></span></a>
+                            {% endif %}
+                        </div>
+                      </div>
+                    <a href="{% url 'dating_app:partner_account' card.id %}"><button type="button" class="btn btn-success mt-3 btn-rounded waves-effect w-md waves-light">View</button></a>
+                    <div class="mt-4">
+  
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-      </div>
+        </div>
+
 	  {% endfor %}
 		{% endif %}
     </div>
   </div>
 </div>
+<hr>
 <ul class="pagination justify-content-center flex-wrap mt-2 mb-4">
     {% if cards.has_previous %}
         <li class="page-item"><a class="page-link" href="?q={{ request.GET.q }}&{% if sex %}sex={{ request.GET.sex }}{% else %}sex=ALL{% endif %}&page={{ cards.previous_page_number }}" style="color: #8538f7;">&laquo;</a></li>
@@ -66,4 +122,8 @@
         <li class="disabled page-item"><span class="page-link" style="color: green; border: none;">&raquo;</span></li>
     {% endif %}
 </ul>
+
+
+
+
 {% endblock %}

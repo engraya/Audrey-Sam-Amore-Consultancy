@@ -4,9 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from .forms import UserUpdateForm, ProfileUpdateForm, SignUpStepOneForm, SignUpStepTwoForm, SignUpStepThreeForm, AdminRegistrationForm, AdminLoginForm, ClientLoginForm
+from .forms import UserUpdateForm, ProfileUpdateForm, SignUpStepOneForm, SignUpStepTwoForm, SignUpStepThreeForm, AdminRegistrationForm, AdminLoginForm, ClientLoginForm, AppointmentForm
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, Consultant, Client
 from dating_app.models import Favorite
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
@@ -180,9 +180,9 @@ def user_account(request):
 				try:
 					u_form.save()
 					p_form.save()
-					return redirect('user_app:user_account') # Перенаправление на страницу профиля пользователя
+					return redirect('user_app:user_account') 
 				except ValueError:
-					return render(request, 'user_app/user_account.html', {'error':'Files is too large, requirement is less than 2.5 MB'})
+					return render(request, 'user_account.html', {'error':'Files is too large, requirement is less than 2.5 MB'})
 
 		else:
 			u_form = UserUpdateForm(instance=request.user)
@@ -285,3 +285,84 @@ def sign_up_step_three(request):
 		return render(request, 'sign_up_step_three.html', context)
 	return redirect('user_app:sign_up_step_two')
 
+
+
+
+
+
+#---------------------------------------------------------------------------------
+#------------------------ ADMIN RELATED VIEWS START ------------------------------
+#---------------------------------------------------------------------------------
+
+
+
+
+def admin_client_view(request):
+    return render(request,'consultancy/admin/admin_client.html')
+
+
+def admin_view_client_view(request):
+    clients = Client.objects.all().filter(status=True)
+    context = {'clients':clients}
+    return render(request,'consultancy/admin_view_client.html', context)
+
+
+def delete_client_view(request,pk):
+    client= Client.objects.get(id=pk)
+    user=models.User.objects.get(id=client.user_id)
+    user.delete()
+    client.delete()
+    return redirect('admin-view-client')
+
+
+
+#---------------------------------------------------------------------------------
+#------------------------ CLIENT RELATED VIEWS START ------------------------------
+#---------------------------------------------------------------------------------
+
+def client_dashboard_view(request):
+    client = Client.objects.get(user_id=request.user.id)
+    appointments = Appointment.objects.all().filter(clientID=request.user.id)
+    consultant = Consultant.objects.get(user_id=client.assignedConsultantID)
+    context = {'client': client,'consultantName': consultant.get_name, 'consultantEmail' : consultant.email, 'serviceRequestDate' : client.siteRegisterDate, 'appointments':appointments}
+    return render(request,'consultancy/client_dashboard.html',context)
+
+
+
+def client_appointment_view(request):
+    client = Client.objects.get(user_id=request.user.id) 
+    context = {'client':client}
+    return render(request,'consultancy/client_appointment.html', context)
+
+
+
+def client_book_appointment_view(request):
+    appointmentForm=forms.AppointmentForm()
+    client = Client.objects.get(user_id=request.user.id) 
+    context = {'appointmentForm':appointmentForm,'client': client}
+    if request.method=='POST':
+        appointmentForm = AppointmentForm(request.POST)
+        if appointmentForm.is_valid():
+            appointment=appointmentForm.save(commit=False)
+            appointment.consultantID=request.POST.get('consultantID')
+            appointment.clientID=request.user.id 
+            appointment.category=request.POST.get('category')
+            appointment.description=request.POST.get('description')
+            appointment.notes=request.POST.get('notes')
+            appointment.consultantName = User.objects.get(id=request.POST.get('consultantID')).first_name
+            appointment.clientName=request.user.first_name 
+            appointment.status=False
+            appointment.save()
+        return HttpResponseRedirect('client-view-appointment')
+    return render(request,'consultancy/client_book_appointment.html',context)
+
+
+
+
+
+
+def client_view_appointment_view(request):
+    client = Client.objects.get(user_id=request.user.id) 
+    appointments = Appointment.objects.all().filter(clientID=request.user.id)
+    context = {'appointments':appointments,'client':client}
+    return render(request,'consultancy/client_view_appointment.html', context)

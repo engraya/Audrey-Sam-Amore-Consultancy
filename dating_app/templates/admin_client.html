@@ -1,4 +1,4 @@
-{% extends 'consultancy/admin/admin_base.html' %}
+{% extends "consultancy/admin/admin_base.html" %}
 {% load static %}
 {% block content %}
 <head>
@@ -24,7 +24,7 @@
     }
 
     .bg-c-blue {
-      background: linear-gradient(45deg, #4099ff, #73b4ff);
+      background: linear-gradient(45deg, #89c49c, #30bbbb);
     }
 
     .bg-c-green {
@@ -36,7 +36,7 @@
     }
 
     .bg-c-pink {
-      background: linear-gradient(45deg, #FF5370, #ff869a);
+      background: linear-gradient(45deg, #1acea7, #4797f3);
     }
 
 
@@ -69,53 +69,16 @@
 </head>
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container mt-5">
+<div class="container mt-5 align-content-center">
   <div class="row">
-    <div class="col-md-4 col-xl-3">
+    <div class="col-md-12 col-xl-12">
       <div class="card bg-c-blue order-card">
         <div class="card-block">
-          <a href="/admin-view-client">
-            <h6 class="m-b-20">Client Record</h6>
+          <a href="/dating/admin-view-client">
+            <h4 class="m-b-20 text-center text-light">Client Records</h4>
           </a>
           <br>
-          <h2 class="text-right"><i class="fas fa-user-injured f-left"></i></h2>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-          <a href="/admin-add-client">
-            <h6 class="m-b-20">Admit Client</h6>
-          </a>
-          <br>
-          <h2 class="text-right"><i class="fas fa-user-plus f-left"></i></h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-      <div class="card bg-c-pink order-card">
-        <div class="card-block">
-          <a href="/admin-discharge-client">
-            <h6 class="m-b-20">Discharge Client</h6>
-          </a>
-          <br>
-          <h2 class="text-right"><i class="fas fa-eject f-left"></i></h2>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 col-xl-3">
-      <div class="card bg-c-pink order-card">
-        <div class="card-block">
-          <a href="/admin-press-client">
-            <h6 class="m-b-20">Presscription</h6>
-          </a>
-          <br>
-          <h2 class="text-right"><i class="fas fa-eject f-left"></i></h2>
+          <h2 class="text-center"><i class="fas fa-user-injured f-center fa-4x"></i></h2>
         </div>
       </div>
     </div>

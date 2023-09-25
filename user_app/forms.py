@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import Profile
+from .models import Profile, Consultant, Client, Appointment
 
 
 class AdminRegistrationForm(forms.ModelForm):
@@ -78,3 +78,13 @@ class SignUpStepThreeForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['profile_pic', 'about']
+
+
+
+
+class AppointmentForm(forms.ModelForm):
+    consultantID=forms.ModelChoiceField(queryset=Consultant.objects.all().filter(status=True),empty_label="Consultant", to_field_name="user_id")
+    clientID=forms.ModelChoiceField(queryset=Client.objects.all().filter(status=True),empty_label="Client", to_field_name="user_id")
+    class Meta:
+        model = Appointment
+        fields = ['requestsnotes','category']

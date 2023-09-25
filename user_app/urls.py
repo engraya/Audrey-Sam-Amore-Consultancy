@@ -27,4 +27,10 @@ urlpatterns = [
 	path('signup/step_three/', views.sign_up_step_three, name='sign_up_step_three'),
 
 	path('user_account/', views.user_account, name='user_account'),
+    
+
+
+
+	path('admin-client', views.admin_client_view,name='admin-client'),
+
 ]
