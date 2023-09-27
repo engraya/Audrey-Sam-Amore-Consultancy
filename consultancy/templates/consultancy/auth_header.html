@@ -25,6 +25,8 @@
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
   <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap' %}" rel="stylesheet">
+  <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap' %}" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
 
@@ -56,9 +58,58 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css"
     rel="stylesheet"
     />
-
-
-
+    <style>
+      body{
+        margin-top:20px;
+        background:#FAFAFA;
+    }
+    .order-card {
+        color: #fff;
+    }
+    
+    .bg-c-blue {
+        background: linear-gradient(45deg,#4099ff,#73b4ff);
+    }
+    
+    .bg-c-green {
+        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
+    }
+    
+    .bg-c-yellow {
+        background: linear-gradient(45deg,#FFB64D,#ffcb80);
+    }
+    
+    .bg-c-pink {
+        background: linear-gradient(45deg,#FF5370,#ff869a);
+    }
+    
+    
+    .card {
+        border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+        border: none;
+        margin-bottom: 30px;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .card .card-block {
+        padding: 25px;
+    }
+    
+    .order-card i {
+        font-size: 26px;
+    }
+    
+    .f-left {
+        float: left;
+    }
+    
+    .f-right {
+        float: right;
+    }
+    </style>
 </head>
 
 <body>
@@ -72,23 +123,27 @@
           <a href="{% url 'dating_app:dating' %}" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
           <!-- Uncomment below if you prefer to use an image logo -->
 
-
+          <a class="nav-link scrollto text-white" href="/dating/client-dashboard">Dashboard</a>
+          <a class="nav-link scrollto text-white" href="/dating/client-appointment">Appointments</a>
+          <a class="nav-link scrollto text-white" href="/dating/message_list">Message List</a>
+          <a class="nav-link scrollto text-white" href="/dating/appointment_list">Appointment List</a>
+          <a class="nav-link scrollto text-white" href="/dating/send_message">Send Message</a>
           <!-- Right elements -->
     <ul class="navbar-nav flex-row">
-        <li class="nav-item me-3 me-lg-1 mx-3">
+        <li class="nav-item me-3 me-lg-1 mx-4">
         </li>
         <li class="nav-item me-3 me-lg-1">
           <a class="nav-link  text-white " href="{% url 'dating_app:random_card' %}">
             <span><i class="fas fa-plus-circle fa-2x fa-bg-light"></i></span>
           </a>
         </li>
-        <li class="nav-item me-3 me-lg-1 mx-3">
+        <li class="nav-item me-3 me-lg-1 mx-4">
             <a class="nav-link  text-white " href="#">
               <span><i class="fas fa-heart fa-2x fa-bg-light"></i></span>
             </a>
           </li>
         
-      <li class="nav-item me-3 me-lg-1 mx-3">
+      <li class="nav-item me-3 me-lg-1 mx-4">
         <a class="nav-link  text-white " href="#">
           <span><i class="fas fa-users fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
@@ -96,22 +151,29 @@
       </li>
 
               
-      <li class="nav-item me-3 me-lg-1 mx-3">
+      <li class="nav-item me-3 me-lg-1 mx-5">
         <a class="nav-link  text-white " href="{% url 'chat_app:message_list' %}">
           <span><i class="fas fa-comments fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
         </a>
       </li>
 
-      <li class="nav-item me-3 me-lg-1 mx-3">
+      <li class="nav-item me-3 me-lg-1 mx-4">
         <a class="nav-link  text-white " href="#">
           <span>   <i class="fas fa-bell fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
         </a>
       </li>
 
+      <li class="nav-item me-3 me-lg-1 mx-4">
+        <a class="nav-link  text-white " href="#">
+          <span>   <i class="fas fa-book fa-2x"></i></span>
+          <span class="badge rounded-pill badge-notification bg-danger">2</span>
+        </a>
+      </li>
+
  
-        <li class="nav-item dropdown me-3 me-lg-1 mx-3">
+        <li class="nav-item dropdown me-3 me-lg-1 mx-4">
           <a
             class="nav-link dropdown-toggle hidden-arrow  text-white "
             href="#"
@@ -122,7 +184,7 @@
           >
           </a>
                 <!-- Avatar -->
-        <li class="nav-item me-3 me-lg-1">
+        <li class="nav-item me-3 me-lg-1 mx-4">
             <div class="dropdown">
                 <a
                     class="dropdown-toggle d-flex align-items-center  text-white "
@@ -135,7 +197,7 @@
                     <img
                     src="{{ user.profile.profile_pic.url }}"
                     class="rounded-circle"
-                    height="45"
+                    height="55"
                     alt="Black and White Portrait of a Man"
                     loading="lazy"
                     />
@@ -189,3 +251,6 @@
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"
 ></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

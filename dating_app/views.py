@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from user_app.models import Profile
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
-from .models import Favorite, Appointment, Client
+from .models import Favorite, Appointment, Client, Message
+from .forms import MessageForm, AppointmentForm
 import random
 
 
@@ -167,3 +168,75 @@ def delete_client_view(request,pk):
     user.delete()
     client.delete()
     return redirect('admin-view-client')
+
+#-----------------CLIENT VIEW STARTS HERE----------------------------------------------------------------#####
+
+def client_dashboard_view(request):
+    appointmentcount = Appointment.objects.all().filter(status=True).count()
+    pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
+
+    context = {
+    'appointmentcount':appointmentcount,
+    'pendingappointmentcount':pendingappointmentcount,
+    }
+    return render(request,'client_dashboard.html',context)
+
+
+def client_appointment_view(request):
+    return render(request,'client_appointment.html')
+
+
+
+def client_view_appointment_view(request):
+    appointments = Appointment.objects.all().filter(status=True)
+    context = {'appointments':appointments}
+    return render(request,'client_view_appointment.html', context)
+
+
+#-----------------MESSAGES START----------------------------------------------------------------#####
+
+
+def send_message(request, recipient_id):
+	if request.method == 'POST':
+		form = MessageForm(request.POST)
+		if form.is_valid():
+			message = form.save(commit=False)
+			message.sender = request.user
+			message.recipient_id = recipient_id
+			message.save()
+			return redirect('client-dashboard')
+		else:
+			form = MessageForm()
+	context = {'form' : form}
+	return render(request, 'send_message.html', context)
+
+
+
+
+def schedule_appointment(request, admin_id):
+	if request.method == 'POST':
+		form = AppointmentForm(request.POST)
+		if form.is_valid():
+			appointment = form.save(commit=False)
+			appointment.client = request.user
+			appointment.admin_id = admin_id
+			appointment.save()
+			return redirect('client-dashboard')
+		else:
+			form = AppointmentForm()
+	context = {'form' : form}
+	return render(request, 'schedule_appointment', context)
+
+
+
+
+def message_list(request):
+	messages = Message.objects.filter(recipient=request.user)
+	context = {'messages' : messages}
+	return render(request, 'message.html', context)
+
+
+def appointment_list(request):
+	appointments = Appointment.objects.filter(client=request.user)
+	context = {'appointments' : appointments}
+	return render(request, 'appointment_list.html', context)

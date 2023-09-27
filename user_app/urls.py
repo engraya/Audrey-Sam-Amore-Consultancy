@@ -30,7 +30,4 @@ urlpatterns = [
     
 
 
-
-	path('admin-client', views.admin_client_view,name='admin-client'),
-
 ]

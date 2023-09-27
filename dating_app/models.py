@@ -11,28 +11,6 @@ class Favorite(models.Model):
 	
 
 
-APPOINTMENT_REQUEST_CATEGORY=[('Dating','Dating'),
-('Relationships','Relationships'),
-('Breakups','Breakups'),
-('Divorce','Divorce'),
-('Marriage','Marriage'),
-('Family','Family'),
-('Business','Business'),
-]
-class Appointment(models.Model):
-    clientID=models.PositiveIntegerField(null=False)
-    consultantID=models.PositiveIntegerField(null=False)
-    clientName=models.CharField(max_length=40,null=True)
-    consultantName=models.CharField(max_length=40,null=True)
-    category = models.CharField(max_length=100, choices=APPOINTMENT_REQUEST_CATEGORY, null=True)
-    appointmentDate=models.DateTimeField(auto_now=True)
-    status=models.BooleanField(default=False)
-    requestsnotes = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return self.category
-    
-
 
 class Client(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE, related_name='client')
@@ -48,4 +26,33 @@ class Client(models.Model):
         return self.user.id
     def __str__(self):
         return self.user.first_name
+
+
+APPOINTMENT_REQUEST_CATEGORY=[('Dating','Dating'),
+('Relationships','Relationships'),
+('Breakups','Breakups'),
+('Divorce','Divorce'),
+('Marriage','Marriage'),
+('Family','Family'),
+('Business','Business'),
+]
+class Appointment(models.Model):
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointment_client", null=True)
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointment_admin", null=True)
+    clientName=models.CharField(max_length=40,null=True)
+    adminName=models.CharField(max_length=40,null=True)
+    category = models.CharField(max_length=100, choices=APPOINTMENT_REQUEST_CATEGORY, null=True)
+    appointmentDateTime=models.DateTimeField(auto_now=True)
+    status=models.BooleanField(default=False)
+    description = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.category
     
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
