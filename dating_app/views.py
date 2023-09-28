@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from user_app.models import Profile
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
@@ -100,25 +100,28 @@ def adminPage(request):
 	return render(request, 'adminPage.html')
 
 
-def admin_dashboard_view(request):
-    clients = User.objects.all().order_by('-id')
-    clientcount = User.objects.all().count()
-    appointmentcount = Appointment.objects.all().filter(status=True).count()
-    pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
 
-    context = {
-    'clients':clients,
-    'clientcount':clientcount,
-    'appointmentcount':appointmentcount,
-    'pendingappointmentcount':pendingappointmentcount,
-    }
-    return render(request,'adminPage.html',context)
+def admin_dashboard_view(request):
+	clients = Client.objects.all().order_by('-id')
+	clientcount = Client.objects.all().count()
+	appointmentcount = Appointment.objects.all().filter(status=True).count()
+	pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
+	messagescount = Message.objects.all().filter(status=True).count()
+	pendingmessagescount = Message.objects.all().filter(status=False).count()
+	context = {
+		'clients':clients,
+		'clientcount':clientcount,
+		'messagescount':messagescount,
+		'pendingmessagescount':pendingmessagescount,
+		'apointmentcount':appointmentcount,
+		'pendingappointmentcount':pendingappointmentcount
+	}
+	return render(request, 'adminPage.html', context)
 
 #-----------------APPOINTMENT START----------------------------------------------------------------#####
 
 def admin_appointment_view(request):
     return render(request,'admin_appointment.html')
-
 
 
 def admin_view_appointment_view(request):
@@ -135,13 +138,11 @@ def admin_approve_appointment_view(request):
 
 
 
-
 def approve_appointment_view(request,pk):
     appointment = Appointment.objects.get(id=pk)
     appointment.status=True
     appointment.save()
     return redirect('admin-approve-appointment')
-
 
 
 
@@ -171,20 +172,50 @@ def delete_client_view(request,pk):
 
 #-----------------CLIENT VIEW STARTS HERE----------------------------------------------------------------#####
 
-def client_dashboard_view(request):
-    appointmentcount = Appointment.objects.all().filter(status=True).count()
-    pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
 
-    context = {
-    'appointmentcount':appointmentcount,
-    'pendingappointmentcount':pendingappointmentcount,
-    }
-    return render(request,'client_dashboard.html',context)
+def client_dashboard_view(request):
+	appointmentcount = Appointment.objects.all().filter(status=True).count()
+	pendingappointmentcount = Appointment.objects.all().filter(status=False)
+	messagescount = Message.objects.all().filter(status=True).count()
+	pendingmessagescount = Message.objects.all().filter(status=False).count()
+
+	context = {
+		'appointmentcount':appointmentcount,
+		'pendingappointmentcount':pendingappointmentcount,
+		'messagescount':messagescount,
+		'pendingmesssagescount':pendingmessagescount
+	}
+	return render(request, 'client_dashboard.html', context)
 
 
 def client_appointment_view(request):
     return render(request,'client_appointment.html')
 
+
+def client_book_appointment(request):
+	appointmentForm = AppointmentForm()
+	if request.method == 'POST':
+		appointmentForm = AppointmentForm(request.POST)
+		if appointmentForm.is_valid():
+			admin_group = Group.objects.get(name="ADMIN")
+			appointment = appointmentForm.save(commit=False)
+			appointment.admin = User.objects.filter(groups=admin_group).first()
+			appointment.clientID = request.user.id
+			appointment.clientName = request.user.first_name
+			appointment.category = request.POST.get('category')
+			appointment.description = request.POST.get('description')
+			appointment.client = request.user
+			appointment.appointmentDateTime = request.POST.get('appointmentDateTime')
+			appointment.status = False
+			appointment.save()
+			return redirect('cient-view-appointment')
+	context = {'form' : appointmentForm}
+	return render(request, 'client_book_appointment.html', context)
+		
+
+
+
+		
 
 
 def client_view_appointment_view(request):

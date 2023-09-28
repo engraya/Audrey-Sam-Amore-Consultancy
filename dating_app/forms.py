@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Appointment, Message
+from .models import Appointment, Message, Client
 
 
 
@@ -15,4 +15,4 @@ class MessageForm(forms.ModelForm):
 class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
-        fields = ['description', 'category']
+        fields = ['description', 'category', 'appointmentDateTime']

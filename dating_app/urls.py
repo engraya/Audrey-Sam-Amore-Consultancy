@@ -25,6 +25,7 @@ urlpatterns = [
 
     path('client-dashboard', views.client_dashboard_view, name="client-dashboard"),
     path('client-appointment', views.client_appointment_view,name='client-appointment'),
+    path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),
     path('client-view-appointment', views.client_view_appointment_view,name='client-view-appointment'),
 
 

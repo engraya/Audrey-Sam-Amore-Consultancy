@@ -39,10 +39,10 @@ APPOINTMENT_REQUEST_CATEGORY=[('Dating','Dating'),
 class Appointment(models.Model):
     client = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointment_client", null=True)
     admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name="appointment_admin", null=True)
+    clientID = models.PositiveIntegerField(null=True)
     clientName=models.CharField(max_length=40,null=True)
-    adminName=models.CharField(max_length=40,null=True)
     category = models.CharField(max_length=100, choices=APPOINTMENT_REQUEST_CATEGORY, null=True)
-    appointmentDateTime=models.DateTimeField(auto_now=True)
+    appointmentDateTime=models.DateTimeField()
     status=models.BooleanField(default=False)
     description = models.TextField(null=True, blank=True)
 
