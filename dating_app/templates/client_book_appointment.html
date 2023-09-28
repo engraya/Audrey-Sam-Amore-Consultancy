@@ -46,30 +46,29 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <br><br>
-<!------ add appointment page by patient(sumit)  ---------->
-<form method="POST">
-  {% csrf_token %}
-  <div class="container register-form">
-    <div class="form">
-      <div class="note">
-        <p>Book Appointment Details</p>
-      </div>
-      <div class="form-content">
-        <div class="row">
-          <div class="col-md-12">
-            <label for="category">Appointment Category</label><br>
-            <input type="text" name="category" id="category"><br>
-            <label for="appointment_date">Date and Time:</label><br>
-            <input type="datetime-local" name="date_time" id="appointment_date" required><br>
-            <label for="appointment_description">Appointment Description</label><br>
-            <textarea name="description" id="appointment_description" rows="4" cols="50"></textarea><br>
-          </div>
+<div class="container pt-5 mt-5">
+    <div class="container register-form">
+      <div class="form">
+        <div class="note">
+          <p>Book Appointment Details</p>
         </div>
-        <button type="submit" class="btnSubmit">Book</button>
+        <div class="form-content">
+          <form action="">
+            <div class="mb-3 mt-3">
+              <label for="email" class="form-label">Appointment Category</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            </div>
+            <div class="mb-3">
+              <label for="pwd" class="form-label">Description</label>
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</form>
+</div>
+
 
 
 
