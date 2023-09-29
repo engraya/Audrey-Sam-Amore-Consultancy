@@ -19,23 +19,21 @@
 
 <div class="container  align-items-center justify-content-center pt-5 mt-5">
     <div class="panel-heading panel-success bg-success">
-      <h6 class="panel-title panel-success text-white">Appointments</h6>
+      <h6 class="panel-title panel-success text-white">Messages</h6>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Client Name</th>
-          <th>Consultancy Category</th>
-          <th>Description</th>
+          <th>Sender</th>
+          <th>Content</th>
           <th>Date</th>
         </tr>
       </thead>
-      {% for appointment in appointments %}
+      {% for message in messages %}
       <tr>
-        <td>{{appointment.client}}</td>
-        <td>{{appointment.category}}</td>
-        <td>{{appointment.description}}</td>
-        <td>{{appointment.appointmentDate}}</td>
+        <td>{{message.sender}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.timestamp}}</td>
       </tr>
       {% endfor %}
     </table>

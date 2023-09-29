@@ -42,7 +42,7 @@ class Appointment(models.Model):
     clientID = models.PositiveIntegerField(null=True)
     clientName=models.CharField(max_length=40,null=True)
     category = models.CharField(max_length=100, choices=APPOINTMENT_REQUEST_CATEGORY, null=True)
-    appointmentDateTime=models.DateTimeField()
+    appointmentDateTime=models.DateTimeField(auto_now=True)
     status=models.BooleanField(default=False)
     description = models.TextField(null=True, blank=True)
 
@@ -53,6 +53,9 @@ class Appointment(models.Model):
 
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
+    senderID = models.PositiveIntegerField(null=True)
+    senderName = models.CharField(max_length=50, null=True)
     recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+    status = models.BooleanField(default=False)

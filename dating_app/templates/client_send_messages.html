@@ -50,22 +50,22 @@
     <div class="container register-form">
       <div class="form">
         <div class="note">
-          <p>Book Appointment Details</p>
+          <p>Compose Message</p>
         </div>
         <div class="form-content">
           <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3 mt-3">
-              <label for="category" class="form-label">Appointment Category</label>
-              <!-- <input type="text" class="form-control" id="category" placeholder="Choose Appointment Category" name="category"> -->
-              {{form.category}}
+              <label for="recipient" class="form-label">Recipient</label>
+              <!-- <input type="text" class="form-control" id="recipient" placeholder="Choose Recipient" name="recipient"> -->
+              {{form.recipient}}
             </div>
             <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <!-- <textarea class="form-control" rows="5" id="description" name="description"></textarea> -->
-              {{form.description}}
+              <label for="content" class="form-label">Message Content</label>
+              <!-- <textarea class="form-control" rows="5" id="content" name="content"></textarea> -->
+              {{form.content}}
             </div>
-            <button type="submit" class="btn btn-success">Book Appointment</button>
+            <button type="submit" class="btn btn-success">Send Message</button>
           </form>
         </div>
       </div>

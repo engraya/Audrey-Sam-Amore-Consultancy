@@ -123,27 +123,39 @@
           <a href="{% url 'dating_app:dating' %}" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
           <!-- Uncomment below if you prefer to use an image logo -->
 
-          <a class="nav-link scrollto text-white" href="/dating/client-dashboard">Dashboard</a>
-          <a class="nav-link scrollto text-white" href="/dating/client-appointment">Appointments</a>
-          <a class="nav-link scrollto text-white" href="/dating/message_list">Message List</a>
-          <a class="nav-link scrollto text-white" href="/dating/appointment_list">Appointment List</a>
-          <a class="nav-link scrollto text-white" href="/dating/send_message">Send Message</a>
+          <a class="nav-link  text-white " href="/dating/client-dashboard">
+            <span><i class="fas fa-home fa-2x fa-bg-light"></i></span>
+          </a>
           <!-- Right elements -->
-    <ul class="navbar-nav flex-row">
-        <li class="nav-item me-3 me-lg-1 mx-4">
+       <ul class="navbar-nav flex-row">
+        <li class="nav-item me-3 me-lg-1 mx-2">
         </li>
         <li class="nav-item me-3 me-lg-1">
           <a class="nav-link  text-white " href="{% url 'dating_app:random_card' %}">
             <span><i class="fas fa-plus-circle fa-2x fa-bg-light"></i></span>
           </a>
         </li>
-        <li class="nav-item me-3 me-lg-1 mx-4">
-            <a class="nav-link  text-white " href="#">
-              <span><i class="fas fa-heart fa-2x fa-bg-light"></i></span>
+        <li class="nav-item me-3 me-lg-1 mx-2">
+          <a class="nav-link  text-white " href="/dating/client-appointment">
+            <span>   <i class="fas fa-book fa-2x"></i></span>
+            <span class="badge rounded-pill badge-notification bg-danger">2</span>
+          </a>
+        </li>
+        <li class="nav-item me-3 me-lg-1 mx-2">
+            <a class="nav-link  text-white " href="/dating/client-messages">
+              <span><i class="fas fa-envelope fa-2x fa-bg-light"></i></span>
             </a>
-          </li>
+        </li>
+
+        </li>
+        <li class="nav-item me-3 me-lg-1 mx-2">
+          <a class="nav-link  text-white " href="#">
+            <span><i class="fas fa-heart fa-2x fa-bg-light"></i></span>
+          </a>
+      </li>
+          
         
-      <li class="nav-item me-3 me-lg-1 mx-4">
+      <li class="nav-item me-3 me-lg-1 mx-2">
         <a class="nav-link  text-white " href="#">
           <span><i class="fas fa-users fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
@@ -151,29 +163,21 @@
       </li>
 
               
-      <li class="nav-item me-3 me-lg-1 mx-5">
+      <li class="nav-item me-3 me-lg-1 mx-2">
         <a class="nav-link  text-white " href="{% url 'chat_app:message_list' %}">
           <span><i class="fas fa-comments fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
         </a>
       </li>
 
-      <li class="nav-item me-3 me-lg-1 mx-4">
+      <li class="nav-item me-3 me-lg-1 mx-2">
         <a class="nav-link  text-white " href="#">
           <span>   <i class="fas fa-bell fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
         </a>
       </li>
 
-      <li class="nav-item me-3 me-lg-1 mx-4">
-        <a class="nav-link  text-white " href="#">
-          <span>   <i class="fas fa-book fa-2x"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">2</span>
-        </a>
-      </li>
-
- 
-        <li class="nav-item dropdown me-3 me-lg-1 mx-4">
+        <li class="nav-item dropdown me-3 me-lg-1 mx-2">
           <a
             class="nav-link dropdown-toggle hidden-arrow  text-white "
             href="#"

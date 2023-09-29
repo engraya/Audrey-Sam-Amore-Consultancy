@@ -96,6 +96,9 @@ def random_card(request):
 	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 
 
+#-----------------ADMIN VIEWS STARTS----------------------------------------------------------------#####
+
+
 def adminPage(request):
 	return render(request, 'adminPage.html')
 
@@ -118,6 +121,10 @@ def admin_dashboard_view(request):
 	}
 	return render(request, 'adminPage.html', context)
 
+
+
+
+
 #-----------------APPOINTMENT START----------------------------------------------------------------#####
 
 def admin_appointment_view(request):
@@ -137,20 +144,73 @@ def admin_approve_appointment_view(request):
     return render(request,'admin_approve_appointment.html', context)
 
 
-
-def approve_appointment_view(request,pk):
-    appointment = Appointment.objects.get(id=pk)
-    appointment.status=True
-    appointment.save()
-    return redirect('admin-approve-appointment')
-
+def approve_appointment(request, pk):
+	appointment = Appointment.objects.get(id=pk)
+	appointment.status=True
+	appointment.save()
+	return redirect('admin-approve-appointment')
 
 
-def reject_appointment_view(request,pk):
-    appointment = Appointment.objects.get(id=pk)
-    appointment.delete()
-    return redirect('admin-approve-appointment')
+def reject_appointment(request, pk):
+	appointment = Appointment.objects.get(id=pk)
+	appointment.delete()
+	return redirect('admin-approve-appointment')
 
+
+#-----------------MESSAGES START----------------------------------------------------------------#####
+
+def admin_messages_view(request):
+    return render(request,'admin_messages.html')
+
+
+def admin_view_messages_view(request):
+    messages = Message.objects.all().filter(status=True)
+    context = {'messages':messages}
+    return render(request,'admin_view_messages.html', context)
+
+
+
+def admin_read_messages_view(request):
+    messages = Message.objects.all().filter(status=False)
+    context = {'messages':messages}
+    return render(request,'admin_read_messages.html', context)
+
+
+def read_messages(request, pk):
+	message = Message.objects.get(id=pk)
+	message.status=True
+	message.save()
+	return redirect('admin-read-messages')
+
+
+def reject_messages(request, pk):
+	message = Message.objects.get(id=pk)
+	message.delete()
+	return redirect('admin-read-messages')
+
+
+def admin_send_messages_view(request):
+	messageForm = MessageForm()
+	if request.method == 'POST':
+		client_group = Group.objects.get(name="CLIENT")
+		messageForm = MessageForm(request.POST)
+		if messageForm.is_valid():
+			message = messageForm.save(commit=False)
+			message.recipient = User.objects.filter(groups=client_group)
+			message.senderID = request.user.id
+			message.senderName = request.user.first_name
+			message.content = request.POST.get('content')
+			message.sender = request.user
+			message.status = False
+			message.save()
+			return redirect('dating_app:admin-messages')
+	context = {'form' : messageForm}
+	return render(request, 'admin_send_messages.html', context)
+
+
+
+
+#-----------------MESSAGES END----------------------------------------------------------------#####
 
 
 def admin_client_view(request):
@@ -195,9 +255,9 @@ def client_appointment_view(request):
 def client_book_appointment(request):
 	appointmentForm = AppointmentForm()
 	if request.method == 'POST':
+		admin_group = Group.objects.get(name="ADMIN")
 		appointmentForm = AppointmentForm(request.POST)
 		if appointmentForm.is_valid():
-			admin_group = Group.objects.get(name="ADMIN")
 			appointment = appointmentForm.save(commit=False)
 			appointment.admin = User.objects.filter(groups=admin_group).first()
 			appointment.clientID = request.user.id
@@ -205,16 +265,11 @@ def client_book_appointment(request):
 			appointment.category = request.POST.get('category')
 			appointment.description = request.POST.get('description')
 			appointment.client = request.user
-			appointment.appointmentDateTime = request.POST.get('appointmentDateTime')
 			appointment.status = False
 			appointment.save()
-			return redirect('cient-view-appointment')
+			return redirect('dating_app:client-view-appointment')
 	context = {'form' : appointmentForm}
 	return render(request, 'client_book_appointment.html', context)
-		
-
-
-
 		
 
 
@@ -225,6 +280,43 @@ def client_view_appointment_view(request):
 
 
 #-----------------MESSAGES START----------------------------------------------------------------#####
+
+def client_messages_view(request):
+    return render(request,'client_messages.html')
+
+
+def client_view_messages_view(request):
+    messages = Message.objects.all().filter(status=True)
+    context = {'messages':messages}
+    return render(request,'client_view_messages.html', context)
+
+
+
+def client_read_messages_view(request):
+    messages = Message.objects.all().filter(status=False)
+    context = {'messages':messages}
+    return render(request,'client_read_messages.html', context)
+
+
+
+def client_send_messages(request):
+	messageForm = MessageForm()
+	if request.method == 'POST':
+		messageForm = MessageForm(request.POST)
+		if messageForm.is_valid():
+			admin_group = Group.objects.get(name="ADMIN")
+			message = messageForm.save(commit=False)
+			message.recipient = User.objects.filter(groups=admin_group)
+			message.senderID = request.user.id
+			message.senderName = request.user.first_name
+			message.content = request.POST.get('content')
+			message.sender = request.user
+			message.status = False
+			message.save()
+			return redirect('dating_app:client-messages')
+	context = {'form' : messageForm}
+	return render(request, 'client_send_messages.html', context)
+
 
 
 def send_message(request, recipient_id):

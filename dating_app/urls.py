@@ -15,8 +15,16 @@ urlpatterns = [
     path('admin-appointment', views.admin_appointment_view,name='admin-appointment'),
     path('admin-view-appointment', views.admin_view_appointment_view,name='admin-view-appointment'),
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
-    path('approve-appointment/<int:pk>', views.approve_appointment_view,name='approve-appointment'),
-    path('reject-appointment/<int:pk>', views.reject_appointment_view,name='reject-appointment'),
+    path('approve-appointment/<int:pk>', views.approve_appointment,name='approve-appointment'),
+    path('reject-appointment/<int:pk>', views.reject_appointment,name='reject-appointment'),
+
+    path('admin-messages', views.admin_messages_view,name='admin-messages'),
+    path('admin-view-messages', views.admin_view_messages_view,name='admin-view-messages'),
+    path('admin-send-messages', views.admin_send_messages_view,name='admin-send-messages'),
+    path('admin-read-messages', views.admin_read_messages_view,name='admin-read-messages'),
+    path('approve-messages/<int:pk>', views.read_messages,name='read-messages'),
+    path('reject-messages/<int:pk>', views.reject_messages,name='reject-messages'),
+
 
     
     path('admin-client/', views.admin_client_view,name='admin-client'),
@@ -27,6 +35,11 @@ urlpatterns = [
     path('client-appointment', views.client_appointment_view,name='client-appointment'),
     path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),
     path('client-view-appointment', views.client_view_appointment_view,name='client-view-appointment'),
+
+    path('client-messages', views.client_messages_view,name='client-messages'),
+    path('client-send-messages', views.client_send_messages,name='client-send-messages'),
+    path('client-view-messages', views.client_view_messages_view,name='client-view-messages'),
+    path('client-read-messages', views.client_read_messages_view,name='client-read-messages'),
 
 
     path('send_message/<int:recipient_id>/', views.send_message, name='send_message'),

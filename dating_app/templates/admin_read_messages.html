@@ -23,25 +23,23 @@
 <div class="container pt-5 mt-5">
   <div class="panel panel-success">
     <div class="panel-heading panel-success">
-      <h6 class="panel-title bg-success">Appointment Approvals Required</h6>
+      <h6 class="panel-title bg-success">Inbox</h6>
     </div>
     <table class="table table-hover table-primary" id="dev-table">
       <thead>
         <tr>
-          <th>Client Name</th>
-          <th>Category</th>
-          <th>Description</th>
-          <th>Date</th>
+          <th>Sender</th>
+          <th>Content</th>
+          <th>Timestamps</th>
           <th>Approve</th>
           <th>Reject</th>
         </tr>
       </thead>
-      {% for appointment in appointments %}
+      {% for message in messages %}
       <tr>
-        <td>{{appointment.client}}</td>
-        <td>{{appointment.category}}</td>
-        <td>{{appointment.description}}</td>
-        <td>{{appointment.appointmentDateTime}}</td>
+        <td>{{appointment.sender}}</td>
+        <td>{{appointment.content}}</td>
+        <td>{{appointment.timestamps}}</td>
         <td><a class="btn btn-primary btn-xs" href="dating_app:approve-appointment appointment.id"><span class="glyphicon glyphicon-ok"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="dating_app:reject-appointment appointment.id"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
