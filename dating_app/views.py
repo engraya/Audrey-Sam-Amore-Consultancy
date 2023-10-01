@@ -132,7 +132,7 @@ def admin_appointment_view(request):
 
 
 def admin_view_appointment_view(request):
-    appointments = Appointment.objects.all().filter(status=True)
+    appointments = Appointment.objects.all()
     context = {'appointments':appointments}
     return render(request,'admin_view_appointment.html', context)
 
@@ -164,14 +164,14 @@ def admin_messages_view(request):
 
 
 def admin_view_messages_view(request):
-    messages = Message.objects.all().filter(status=True)
+    messages = Message.objects.all()
     context = {'messages':messages}
     return render(request,'admin_view_messages.html', context)
 
 
 
 def admin_read_messages_view(request):
-    messages = Message.objects.all().filter(status=False)
+    messages = Message.objects.all()
     context = {'messages':messages}
     return render(request,'admin_read_messages.html', context)
 
@@ -234,6 +234,8 @@ def delete_client_view(request,pk):
 
 
 def client_dashboard_view(request):
+	appointments = Appointment.objects.all().filter(clientID=request.user.id)
+	messages = Message.objects.all().filter(senderID=request.user.id)
 	appointmentcount = Appointment.objects.all().filter(status=True).count()
 	pendingappointmentcount = Appointment.objects.all().filter(status=False)
 	messagescount = Message.objects.all().filter(status=True).count()
@@ -243,7 +245,9 @@ def client_dashboard_view(request):
 		'appointmentcount':appointmentcount,
 		'pendingappointmentcount':pendingappointmentcount,
 		'messagescount':messagescount,
-		'pendingmesssagescount':pendingmessagescount
+		'pendingmesssagescount':pendingmessagescount,
+		'appointments' : appointments,
+		'messages' : messages
 	}
 	return render(request, 'client_dashboard.html', context)
 
@@ -273,22 +277,28 @@ def client_book_appointment(request):
 		
 
 
+def client_cancel_appointment_view(request, pk):
+	appointment = Appointment.objects.get(id=pk)
+	appointment.delete()
+	return redirect('client-view-appointments')
+
 def client_view_appointment_view(request):
-    appointments = Appointment.objects.all().filter(status=True)
-    context = {'appointments':appointments}
-    return render(request,'client_view_appointment.html', context)
+	appointments = Appointment.objects.all().filter(clientID=request.user.id)
+	context = {'appointments' : appointments}
+	return render(request, 'client_view_appointment.html', context)
+	
 
 
 #-----------------MESSAGES START----------------------------------------------------------------#####
 
 def client_messages_view(request):
-    return render(request,'client_messages.html')
+	return render(request, 'client_messages.html')
 
 
 def client_view_messages_view(request):
-    messages = Message.objects.all().filter(status=True)
-    context = {'messages':messages}
-    return render(request,'client_view_messages.html', context)
+	messages = Message.objects.all().filter(senderID=request.user.id)
+	context = {'messages' : messages}
+	return render(request, 'client_view_messages.html', context)
 
 
 
@@ -304,9 +314,8 @@ def client_send_messages(request):
 	if request.method == 'POST':
 		messageForm = MessageForm(request.POST)
 		if messageForm.is_valid():
-			admin_group = Group.objects.get(name="ADMIN")
+			# admin_group = Group.objects.get(name="ADMIN")
 			message = messageForm.save(commit=False)
-			message.recipient = User.objects.filter(groups=admin_group)
 			message.senderID = request.user.id
 			message.senderName = request.user.first_name
 			message.content = request.POST.get('content')
@@ -349,8 +358,6 @@ def schedule_appointment(request, admin_id):
 			form = AppointmentForm()
 	context = {'form' : form}
 	return render(request, 'schedule_appointment', context)
-
-
 
 
 def message_list(request):

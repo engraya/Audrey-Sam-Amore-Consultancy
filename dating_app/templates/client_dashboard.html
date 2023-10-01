@@ -3,36 +3,28 @@
 {% block content %}
 {%include 'client_dashboard_cards.html'%}
 
-
 <div class="container align-content-center container-fluid justify-content-center mt-5 pt-5">
   <h4 class="text-center">Your Recent Appointments</h4>
-  <hr>
   <table class="table">
     <thead>
       <tr>
         <th>Date and Time</th>
-        <th>Consultant</th>
         <th>Service Category</th>
-        <th>Notes</th>
+        <th>Description</th>
         <th>Status</th>
-        <th>Action</th>
       </tr>
     </thead>
     <tbody>
       {% for appointment in appointments %}
         <tr>
-          <td>{{ appointment.appointmentDate }}</td>
-          <td>{{ appointment.consultantName }}</td>
+          <td>{{ appointment.appointmentDateTime }}</td>
           <td>{{ appointment.category }}</td>
-          <td>{{ appointment.notes }}</td>
+          <td>{{ appointment.description }}</td>
           {% if appointment.status %}
           <td> <span class="label label-primary">Confirmed</span></td>
           {% else %}
-          <td> <span class="btn btn-success">Pending</span></td>
+          <td> <span class="btn btn-sm btn-success">Pending</span></td>
           {% endif %}
-          <td>
-            <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn-danger">Cancel</a>
-          </td>
         </tr>
       {% empty %}
         <tr>
@@ -43,6 +35,38 @@
   </table>
 </div>
 
+<hr>
+
+
+<div class="container align-content-center container-fluid justify-content-center">
+  <h4 class="text-center">Your Recent Messages</h4>
+  <table class="table table-hover" id="dev-table">
+    <thead>
+      <tr>
+        <th>Sender</th>
+        <th>Content</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    {% for message in messages %}
+    <tr>
+      <td>{{message.sender}}</td>
+      <td>{{message.content}}</td>
+      <td>{{message.timestamp}}</td>
+      {% if message.status %}
+      <td> <span class="label label-primary">Read</span></td>
+      {% else %}
+      <td> <span class="btn btn-sm btn-success">Pending</span></td>
+      {% endif %}
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">No Messages yet</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 
   
 

@@ -55,7 +55,6 @@ class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
     senderID = models.PositiveIntegerField(null=True)
     senderName = models.CharField(max_length=50, null=True)
-    recipient = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     status = models.BooleanField(default=False)

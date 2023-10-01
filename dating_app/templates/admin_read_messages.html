@@ -31,15 +31,15 @@
           <th>Sender</th>
           <th>Content</th>
           <th>Timestamps</th>
-          <th>Approve</th>
-          <th>Reject</th>
+          <th>Mark as Read</th>
+          <th>Cancel</th>
         </tr>
       </thead>
       {% for message in messages %}
       <tr>
-        <td>{{appointment.sender}}</td>
-        <td>{{appointment.content}}</td>
-        <td>{{appointment.timestamps}}</td>
+        <td>{{message.sender}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.timestamp}}</td>
         <td><a class="btn btn-primary btn-xs" href="dating_app:approve-appointment appointment.id"><span class="glyphicon glyphicon-ok"></span></a></td>
         <td><a class="btn btn-danger btn-xs" href="dating_app:reject-appointment appointment.id"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>

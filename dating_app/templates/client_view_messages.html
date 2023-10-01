@@ -18,7 +18,7 @@
 </head>
 
 <div class="container  align-items-center justify-content-center pt-5 mt-5">
-    <div class="panel-heading panel-success bg-success">
+    <div class="panel-heading panel-success bg-success pt-3 mt-3">
       <h6 class="panel-title panel-success text-white">Messages</h6>
     </div>
     <table class="table table-hover" id="dev-table">
@@ -27,6 +27,8 @@
           <th>Sender</th>
           <th>Content</th>
           <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       {% for message in messages %}
@@ -34,9 +36,24 @@
         <td>{{message.sender}}</td>
         <td>{{message.content}}</td>
         <td>{{message.timestamp}}</td>
+        {% if message.status %}
+        <td> <span class="label label-primary">Read</span></td>
+        {% else %}
+        <td> <span class="label label-success">Pending</span></td>
+        {% endif %}
+        <td>
+          <a href="" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No Messages yet</td>
       </tr>
       {% endfor %}
     </table>
   </div>
-</div>
 {% endblock content %}
+
+
+
+
