@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link rel="icon" type="image/png" class="rounded-circle" href="{% static 'images/icons/asa.png' %}"/>
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -113,7 +113,7 @@
               <li><a class="nav-link scrollto " href="/dating/admin-messages"><i class="bx bx-envelope"></i>Messages</a></li>
               {% if user.is_authenticated %}
               <li><a class="nav-link scrollto" href="#">{{request.user.first_name}}(ADMIN)</a></li>
-              <img class="mx-3 mb-3" height="60px" width="60px" src="{% static 'images/adminpropic.png' %}"/>
+              <!-- <img class="mx-3 mb-3" height="60px" width="60px" src="{% static 'images/adminpropic.png' %}"/> -->
 
               <form action="{% url 'user_app:logout_user' %}" method="POST">
                 {% csrf_token %}

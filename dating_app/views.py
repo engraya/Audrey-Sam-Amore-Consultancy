@@ -105,24 +105,27 @@ def adminPage(request):
 
 
 def admin_dashboard_view(request):
-	clients = Client.objects.all().order_by('-id')
-	clientcount = Client.objects.all().count()
+	clients = Client.objects.all().count()
 	appointmentcount = Appointment.objects.all().filter(status=True).count()
 	pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
 	messagescount = Message.objects.all().filter(status=True).count()
 	pendingmessagescount = Message.objects.all().filter(status=False).count()
+	userscount = User.objects.all().count
+
+	clientsGroup = Group.objects.get(name="CLIENT")
+	clientUsers = clientsGroup.user_set.all()
+	clientsUsersCount = clientUsers.count()
+
 	context = {
 		'clients':clients,
-		'clientcount':clientcount,
 		'messagescount':messagescount,
 		'pendingmessagescount':pendingmessagescount,
-		'apointmentcount':appointmentcount,
-		'pendingappointmentcount':pendingappointmentcount
+		'appointmentcount':appointmentcount,
+		'pendingappointmentcount':pendingappointmentcount,
+		'userscount' : userscount,
+		'clientUsersCount' : clientsUsersCount
 	}
 	return render(request, 'adminPage.html', context)
-
-
-
 
 
 #-----------------APPOINTMENT START----------------------------------------------------------------#####
@@ -135,7 +138,6 @@ def admin_view_appointment_view(request):
     appointments = Appointment.objects.all()
     context = {'appointments':appointments}
     return render(request,'admin_view_appointment.html', context)
-
 
 
 def admin_approve_appointment_view(request):
@@ -208,8 +210,6 @@ def admin_send_messages_view(request):
 	return render(request, 'admin_send_messages.html', context)
 
 
-
-
 #-----------------MESSAGES END----------------------------------------------------------------#####
 
 
@@ -217,11 +217,12 @@ def admin_client_view(request):
     return render(request,'admin_client.html')
 
 
-def admin_view_client_view(request):
-    clients = Client.objects.all().filter(status=True)
-    context = {'clients':clients}
-    return render(request,'admin_view_client.html', context)
 
+def admin_view_client_view(request):
+	clientGroup = Group.objects.get(name="CLIENT")
+	clientUsers = clientGroup.user_set.all()
+	context = {'clients' : clientUsers}
+	return render(request, 'admin_view_client.html', context)
 
 def delete_client_view(request,pk):
     client= Client.objects.get(id=pk)

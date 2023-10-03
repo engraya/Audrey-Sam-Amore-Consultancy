@@ -4,6 +4,7 @@
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <style media="screen">
     a:link {
@@ -23,13 +24,13 @@
 <div class="container pt-5 mt-5">
   <div class="panel panel-success">
     <div class="panel-heading panel-success">
-      <h6 class="panel-title bg-success">Appointment Approvals Required</h6>
+      <h4 class="panel-title text-center align-items-center justify-content-center">Appointment Approvals Required</h4>
     </div>
     <table class="table table-hover table-primary" id="dev-table">
       <thead>
         <tr>
           <th>Client Name</th>
-          <th>Category</th>
+          <th>Request Category</th>
           <th>Description</th>
           <th>Date</th>
           <th>Approve</th>
@@ -42,8 +43,8 @@
         <td>{{appointment.category}}</td>
         <td>{{appointment.description}}</td>
         <td>{{appointment.appointmentDateTime}}</td>
-        <td><a class="btn btn-primary btn-xs" href="dating_app:approve-appointment appointment.id"><i class="fas fa-plus fa-success"></i></a></td>
-        <td><a class="btn btn-danger btn-xs" href="dating_app:reject-appointment appointment.id"><i class="fas fa-users"></i></a></td>
+        <td><a class="btn btn-success btn-xs" href=""><i class="fa fa-check-square"></i></a></td>
+        <td><a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash"></i></a></td>
       </tr>
       {% endfor %}
     </table>

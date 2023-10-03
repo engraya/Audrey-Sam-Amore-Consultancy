@@ -15,7 +15,7 @@ class Favorite(models.Model):
 class Client(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE, related_name='client')
     email = models.EmailField(max_length=200, null=True, blank=True)
-    status=models.BooleanField(default=False)
+    status=models.BooleanField(default=True)
     assignedConsultantID = models.PositiveIntegerField(null=False)
 
     @property
