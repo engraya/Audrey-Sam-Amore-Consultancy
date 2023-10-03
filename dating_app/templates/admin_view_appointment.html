@@ -27,7 +27,8 @@
           <th>Client Name</th>
           <th>Consultancy Category</th>
           <th>Description</th>
-          <th>Date</th>
+          <th>Request Date</th>
+          <th>Status</th>
         </tr>
       </thead>
       {% for appointment in appointments %}
@@ -36,6 +37,11 @@
         <td>{{appointment.category}}</td>
         <td>{{appointment.description}}</td>
         <td>{{appointment.appointmentDateTime}}</td>
+        {% if appointment.status %}
+        <td> <span class="label label-success">Approved</span></td>
+        {% else %}
+        <td> <span class="label label-warning">Pending</span></td>
+        {% endif %}
       </tr>
       {% endfor %}
     </table>

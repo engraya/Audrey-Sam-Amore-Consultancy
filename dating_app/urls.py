@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin-view-messages', views.admin_view_messages_view,name='admin-view-messages'),
     path('admin-send-messages', views.admin_send_messages_view,name='admin-send-messages'),
     path('admin-read-messages', views.admin_read_messages_view,name='admin-read-messages'),
+    path('admin-outbox', views.admin_outbox, name='admin-outbox'),
     path('approve-messages/<int:pk>', views.read_messages,name='read-messages'),
     path('reject-messages/<int:pk>', views.reject_messages,name='reject-messages'),
 

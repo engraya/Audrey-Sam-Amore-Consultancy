@@ -166,9 +166,10 @@ def admin_messages_view(request):
 
 
 def admin_view_messages_view(request):
-    messages = Message.objects.all()
-    context = {'messages':messages}
-    return render(request,'admin_view_messages.html', context)
+	sender = User.objects.filter(groups__name="CLIENT").exists()
+	messages = Message.objects.filter(sender=sender)
+	context = {'messages' : messages}
+	return render(request, 'admin_view_messages.html', context)
 
 
 
@@ -176,6 +177,12 @@ def admin_read_messages_view(request):
     messages = Message.objects.all()
     context = {'messages':messages}
     return render(request,'admin_read_messages.html', context)
+
+
+def admin_outbox(request):
+	messages = Message.objects.filter(sender=request.user)
+	context = {'messages' : messages}
+	return render(request, 'admin_outbox.html', context)
 
 
 def read_messages(request, pk):
@@ -194,18 +201,16 @@ def reject_messages(request, pk):
 def admin_send_messages_view(request):
 	messageForm = MessageForm()
 	if request.method == 'POST':
-		client_group = Group.objects.get(name="CLIENT")
 		messageForm = MessageForm(request.POST)
 		if messageForm.is_valid():
 			message = messageForm.save(commit=False)
-			message.recipient = User.objects.filter(groups=client_group)
 			message.senderID = request.user.id
 			message.senderName = request.user.first_name
 			message.content = request.POST.get('content')
 			message.sender = request.user
 			message.status = False
 			message.save()
-			return redirect('dating_app:admin-messages')
+			return redirect('dating_app:admin-outbox')
 	context = {'form' : messageForm}
 	return render(request, 'admin_send_messages.html', context)
 
@@ -315,7 +320,6 @@ def client_send_messages(request):
 	if request.method == 'POST':
 		messageForm = MessageForm(request.POST)
 		if messageForm.is_valid():
-			# admin_group = Group.objects.get(name="ADMIN")
 			message = messageForm.save(commit=False)
 			message.senderID = request.user.id
 			message.senderName = request.user.first_name
