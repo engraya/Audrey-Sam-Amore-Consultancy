@@ -140,6 +140,12 @@ def admin_view_appointment_view(request):
     return render(request,'admin_view_appointment.html', context)
 
 
+def admin_appointment_history_view(request):
+	appointments = Appointment.objects.all()
+	context = {'appointments' : appointments}
+	return render(request, 'admin_appointment_history.html', context)
+
+
 def admin_approve_appointment_view(request):
     appointments = Appointment.objects.all().filter(status=False)
     context = {'appointments':appointments}
@@ -150,13 +156,13 @@ def approve_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.status=True
 	appointment.save()
-	return redirect('admin-approve-appointment')
+	return redirect('dating_app:admin-approve-appointment')
 
 
 def reject_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
-	return redirect('admin-approve-appointment')
+	return redirect('dating_app:admin-approve-appointment')
 
 
 #-----------------MESSAGES START----------------------------------------------------------------#####
@@ -166,15 +172,14 @@ def admin_messages_view(request):
 
 
 def admin_view_messages_view(request):
-	sender = User.objects.filter(groups__name="CLIENT").exists()
-	messages = Message.objects.filter(sender=sender)
+	messages = Message.objects.filter(sender__groups__name='CLIENT')
 	context = {'messages' : messages}
 	return render(request, 'admin_view_messages.html', context)
 
 
 
 def admin_read_messages_view(request):
-    messages = Message.objects.all()
+    messages = Message.objects.filter(sender__groups__name='CLIENT')
     context = {'messages':messages}
     return render(request,'admin_read_messages.html', context)
 
@@ -189,13 +194,13 @@ def read_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.status=True
 	message.save()
-	return redirect('admin-read-messages')
+	return redirect('dating_app:admin-read-messages')
 
 
 def reject_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.delete()
-	return redirect('admin-read-messages')
+	return redirect('dating_app:admin-read-messages')
 
 
 def admin_send_messages_view(request):
@@ -213,6 +218,9 @@ def admin_send_messages_view(request):
 			return redirect('dating_app:admin-outbox')
 	context = {'form' : messageForm}
 	return render(request, 'admin_send_messages.html', context)
+
+def admin_reply_messages_view(request):
+	return render(request, 'admin_reply_messages.html')
 
 
 #-----------------MESSAGES END----------------------------------------------------------------#####

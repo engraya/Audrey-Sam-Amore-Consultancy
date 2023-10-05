@@ -43,8 +43,14 @@
         <td> <span class="label label-warning">Pending</span></td>
         {% endif %}
       </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No Available Appointments yet..</td>
+      </tr>
       {% endfor %}
     </table>
+    <a class="btn btn-sm btn-danger my-2" href="/dating/admin-appointment">&larr;Back to Appointments</a>
   </div>
+
 </div>
 {% endblock content %}

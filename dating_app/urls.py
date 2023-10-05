@@ -17,6 +17,7 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment,name='reject-appointment'),
+    path('admin-appointment-history', views.admin_appointment_history_view, name='admin-appointment-history'),
 
     path('admin-messages', views.admin_messages_view,name='admin-messages'),
     path('admin-view-messages', views.admin_view_messages_view,name='admin-view-messages'),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('admin-outbox', views.admin_outbox, name='admin-outbox'),
     path('approve-messages/<int:pk>', views.read_messages,name='read-messages'),
     path('reject-messages/<int:pk>', views.reject_messages,name='reject-messages'),
+    path('admin-reply-messages', views.admin_reply_messages_view, name='admin-reply-messages'),
 
 
     

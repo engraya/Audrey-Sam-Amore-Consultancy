@@ -43,12 +43,17 @@
         <td>{{appointment.category}}</td>
         <td>{{appointment.description}}</td>
         <td>{{appointment.appointmentDateTime}}</td>
-        <td><a class="btn btn-success btn-xs" href=""><i class="fa fa-check-square"></i></a></td>
-        <td><a class="btn btn-danger btn-xs" href=""><i class="fa fa-trash"></i></a></td>
+        <td><a class="btn btn-success btn-xs" href="/dating/approve-appointment/{{appointment.id}}"><i class="fa fa-check-square"></i></a></td>
+        <td><a class="btn btn-danger btn-xs" href="/dating/reject-appointment/{{appointment.id}}"><i class="fa fa-trash"></i></a></td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No Available Appointments yet..</td>
       </tr>
       {% endfor %}
     </table>
   </div>
+  <a class="btn btn-sm btn-danger my-2" href="/dating/admin-appointment">&larr;Back to Appointments</a>
 
 
 </div>

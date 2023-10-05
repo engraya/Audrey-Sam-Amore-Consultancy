@@ -18,6 +18,7 @@
 </head>
 
 <div class="container  align-items-center justify-content-center pt-5 mt-5">
+  <a class="btn btn-sm btn-danger my-2" href="/dating/admin-messages">&larr;Back to Messages</a>
     <div class="panel-heading panel-success bg-success">
       <h6 class="panel-title panel-success text-white">Outbox</h6>
     </div>
@@ -40,6 +41,10 @@
         {% else %}
         <td> <span class="label label-warning">Pending</span></td>
         {% endif %}
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="6">No Sent Messages available</td>
       </tr>
       {% endfor %}
     </table>
