@@ -146,6 +146,9 @@
     .market-update-left {
       padding: 0px;
     }
+    .order-card {
+      background-color: #1f8997;
+    }
   </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -154,22 +157,21 @@
 </head>
 <body>
 
-
 <div class="container pt-5 mt-5">
   <div class="container">
     <div class="row">
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-blue order-card">
+        <div class="col-md-3 col-xl-3">
+            <div class="card order-card">
                 <div class="card-block">
-                    <h5 class="m-b-20 text-white">Consultant Name</h5>
-                    <h2 class="text-right text-white"><i class="fa fa-user-plus text-white f-left"></i><span>486</span></h2>
+                    <h5 class="m-b-20 text-white">Total Appointments</h5>
+                    <h2 class="text-right text-white"><i class="fas fa-book text-white f-left"></i><span>486</span></h2>
                     <p class="m-b-0 text-white">{{consultantName}}<span class="f-right">351</span></p>
                 </div>
             </div>
         </div>
         
-        <div class="col-md-4 col-xl-3">
-            <div class="card bg-c-pink order-card">
+        <div class="col-md-3 col-xl-3">
+            <div class="card order-card">
                 <div class="card-block">
                     <h5 class="m-b-20 text-white">Total Messages</h5>
                     <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span>486</span></h2>
@@ -178,28 +180,17 @@
             </div>
         </div>
 
-        <div class="col-md-4 col-xl-3">
-          <div class="card bg-c-yellow order-card">
+        <div class="col-md-3 col-xl-3">
+          <div class="card order-card">
               <div class="card-block">
-                  <h5 class="m-b-20 text-white">Appiontment Request Date</h5>
-                  <h2 class="text-right text-white"><i class="fa fa-refresh f-left text-white"></i><span>486</span></h2>
-                  <p class="m-b-0 text-white">Consultation Requests<span class="f-right">351</span></p>
-              </div>
-          </div>
-      </div>
-    
-        <a href="https://api.whatsapp.com/send?phone={{doctorMobile}}">
-        <div class="col-md-4 col-xl-3">
-          <div class="card bg-c-green order-card">
-              <div class="card-block">
-                  <h5 class="m-b-20 text-white">Video Chat With Consultant</h5>
+                  <h5 class="m-b-20 text-white"> <a href="https://api.whatsapp.com/send?phone={{doctorMobile}}" target="_blank" class="text-white">Video Chat With Consultant</a></h5>
                   <h2 class="text-right text-white"><i class="fa fa-whatsapp f-left text-white"></i><span>486</span></h2>
-                  <p class="m-b-0 text-white">Active Clients<span class="f-right">351</span></p>
+                  <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right">351</span></p>
               </div>
           </div>
       </div>
-    </a>
-    
+
+
 	</div>
 
 </div>

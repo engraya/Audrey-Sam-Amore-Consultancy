@@ -10,18 +10,12 @@
     .note {
       text-align: center;
       height: 80px;
-      background: -webkit-linear-gradient(left, #36b4ae, #5c7075);
+     background-color: #1f8997;
       color: #fff;
       font-weight: bold;
       line-height: 80px;
     }
-
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
-
+ 
     .form-control {
       border-radius: 1.5rem;
     }
@@ -46,17 +40,18 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <br><br>
-<div class="container pt-5 mt-5">
+<div class="container pt-1">
+  <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
     <div class="container register-form">
       <div class="form">
         <div class="note">
-          <p>Book Appointment Details</p>
+          <h3>Book Appointment</h3>
         </div>
         <div class="form-content">
           <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3 mt-3">
-              <label for="category" class="form-label">Consultancy Category</label>
+              <label for="category text-center" class="form-label text-center">Consultancy Category</label>
               <!-- <input type="text" class="form-control" id="category" placeholder="Choose Appointment Category" name="category"> -->
               {{form.category}}
             </div>

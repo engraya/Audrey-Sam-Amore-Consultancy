@@ -40,9 +40,6 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-
-
-
     <!-- Font Awesome -->
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -60,27 +57,10 @@
     />
     <style>
       body{
-        margin-top:20px;
-        background:#FAFAFA;
+        background:#fff;
     }
     .order-card {
         color: #fff;
-    }
-    
-    .bg-c-blue {
-        background: linear-gradient(45deg,#4099ff,#73b4ff);
-    }
-    
-    .bg-c-green {
-        background: linear-gradient(45deg,#2ed8b6,#59e0c5);
-    }
-    
-    .bg-c-yellow {
-        background: linear-gradient(45deg,#FFB64D,#ffcb80);
-    }
-    
-    .bg-c-pink {
-        background: linear-gradient(45deg,#FF5370,#ff869a);
     }
     
     
@@ -130,11 +110,6 @@
        <ul class="navbar-nav flex-row">
         <li class="nav-item me-3 me-lg-1 mx-2">
         </li>
-        <li class="nav-item me-3 me-lg-1">
-          <a class="nav-link  text-white " href="{% url 'dating_app:random_card' %}">
-            <span><i class="fas fa-plus-circle fa-2x fa-bg-light"></i></span>
-          </a>
-        </li>
         <li class="nav-item me-3 me-lg-1 mx-2">
           <a class="nav-link  text-white " href="/dating/client-appointment">
             <span>   <i class="fas fa-book fa-2x"></i></span>
@@ -144,19 +119,21 @@
         <li class="nav-item me-3 me-lg-1 mx-2">
             <a class="nav-link  text-white " href="/dating/client-messages">
               <span><i class="fas fa-envelope fa-2x fa-bg-light"></i></span>
+              <span class="badge rounded-pill badge-notification bg-danger">2</span>
             </a>
         </li>
 
         </li>
         <li class="nav-item me-3 me-lg-1 mx-2">
-          <a class="nav-link  text-white " href="#">
+          <a class="nav-link  text-white " href="{% url 'dating_app:random_card' %}">
             <span><i class="fas fa-heart fa-2x fa-bg-light"></i></span>
+            <span class="badge rounded-pill badge-notification bg-danger">2</span>
           </a>
       </li>
           
         
       <li class="nav-item me-3 me-lg-1 mx-2">
-        <a class="nav-link  text-white " href="#">
+        <a class="nav-link  text-white " href="{% url 'dating_app:dating' %}">
           <span><i class="fas fa-users fa-2x"></i></span>
           <span class="badge rounded-pill badge-notification bg-danger">2</span>
         </a>
@@ -170,12 +147,6 @@
         </a>
       </li>
 
-      <li class="nav-item me-3 me-lg-1 mx-2">
-        <a class="nav-link  text-white " href="#">
-          <span>   <i class="fas fa-bell fa-2x"></i></span>
-          <span class="badge rounded-pill badge-notification bg-danger">2</span>
-        </a>
-      </li>
 
         <li class="nav-item dropdown me-3 me-lg-1 mx-2">
           <a
@@ -232,7 +203,7 @@
                 </div>
             </li>
   
-    </div>
+          </div>
  
         </li>
       </ul>

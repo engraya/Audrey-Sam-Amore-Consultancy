@@ -14,18 +14,15 @@
       text-align: center;
     }
 
-    .row {
-      margin: 100px;
-    }
   </style>
 </head>
 
-<div class="container pt-5 mt-5">
-  <div class="panel panel-success">
-    <div class="panel-heading panel-success">
-      <h6 class="panel-title bg-success">Inbox</h6>
+<div class="container pt-3 mt-3">
+  <div class="panel pt-5 mt-5">
+    <div class="panel-heading" style="background-color: #1f8997;">
+      <h3 class="text-center text-white">Inbox</h3>
     </div>
-    <table class="table table-hover table-primary" id="dev-table">
+    <table class="table table-hover">
       <thead>
         <tr>
           <th>Sender</th>
@@ -45,6 +42,7 @@
       </tr>
       {% endfor %}
     </table>
+    <a class="btn btn-sm btn-danger my-2" href="/dating/client-messages">&larr;Back to Messages</a>
   </div>
 
 

@@ -7,9 +7,6 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
   <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
 
     h6 {
       text-align: center;
@@ -25,13 +22,13 @@
     }
   </style>
 </head>
-
 <div class="container pt-5 mt-5">
+
   <div class="panel panel-primary mt-5">
-    <div class="panel-heading">
+    <div class="panel-heading" style="background-color: #1f8997;">
       <h4 class="panel-title">Your Appointments</h4>
     </div>
-    <table class="table table-hover" id="dev-table">
+    <table class="table table-hover table-bordered">
       <thead>
         <tr>
 
@@ -62,6 +59,7 @@
       </tr>
       {% endfor %}
     </table>
+    <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
   </div>
 </div>
 

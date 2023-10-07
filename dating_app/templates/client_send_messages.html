@@ -3,24 +3,15 @@
 {% block content %}
 <head>
   <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
-
     .note {
       text-align: center;
       height: 80px;
-      background: -webkit-linear-gradient(left, #36b4ae, #5c7075);
+      background-color: #1f8997;
       color: #fff;
       font-weight: bold;
-      line-height: 80px;
     }
 
-    .form-content {
-      padding: 5%;
-      border: 1px solid #ced4da;
-      margin-bottom: 2%;
-    }
+
 
     .form-control {
       border-radius: 1.5rem;
@@ -46,18 +37,19 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <br><br>
-<div class="container pt-5 mt-5">
+<div class="container">
+  <a class="btn btn-sm btn-danger my-2" href="/dating/client-messages">&larr;Back to Messages</a>
     <div class="container register-form">
       <div class="form">
         <div class="note">
-          <p>Compose Message</p>
+          <h3>Compose Message</h3>
         </div>
         <div class="form-content">
           <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3 mt-3">
-            <div class="mb-3">
-              <label for="content" class="form-label">Message Content</label>
+            <div class="mb-3 text-center">
+              <label for="content" class="form-label text-center">Message Content</label>
               <!-- <textarea class="form-control" rows="5" id="content" name="content"></textarea> -->
               {{form.content}}
             </div>
