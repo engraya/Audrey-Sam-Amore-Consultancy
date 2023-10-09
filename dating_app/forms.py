@@ -19,6 +19,20 @@ class MessageForm(forms.ModelForm):
         fields = ['recipient','content', 'status']
 
 
+class ClientMessageForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['content'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter Message Cotent'})
+        self.fields['recipient'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Enter Message Cotent'})
+
+    recipient = forms.ModelChoiceField(
+        queryset=User.objects.filter(groups__name='ADMIN'),
+        widget=forms.Select)
+    class Meta:
+        model = Message
+        fields = ['recipient','content', 'status']
+
+
 
 class AppointmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

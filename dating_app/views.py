@@ -5,7 +5,7 @@ from user_app.models import Profile
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from .models import Favorite, Appointment, Client, Message
-from .forms import MessageForm, AppointmentForm
+from .forms import MessageForm, AppointmentForm, ClientMessageForm
 import random
 
 
@@ -285,7 +285,7 @@ def client_book_appointment(request):
 			appointment.client = request.user
 			appointment.status = False
 			appointment.save()
-			return redirect('dating_app:client-view-appointment')
+			return redirect('dating_app:client-appointment-history')
 	context = {'form' : appointmentForm}
 	return render(request, 'client_book_appointment.html', context)
 		
@@ -294,13 +294,19 @@ def client_book_appointment(request):
 def client_cancel_appointment_view(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
-	return redirect('client-view-appointments')
+	return redirect('dating_app:client-appointment-history')
 
 def client_view_appointment_view(request):
 	appointments = Appointment.objects.all().filter(clientID=request.user.id)
 	context = {'appointments' : appointments}
 	return render(request, 'client_view_appointment.html', context)
-	
+
+
+
+def client_appointment_history(request):
+	appointments = Appointment.objects.filter(status=False)
+	context = {'appointments' : appointments}
+	return render(request, 'client_appointment_history.html', context)	
 
 
 #-----------------MESSAGES START----------------------------------------------------------------#####
@@ -322,11 +328,10 @@ def client_read_messages_view(request):
     return render(request,'client_read_messages.html', context)
 
 
-
 def client_send_messages(request):
-	messageForm = MessageForm()
+	messageForm = ClientMessageForm()
 	if request.method == 'POST':
-		messageForm = MessageForm(request.POST)
+		messageForm = ClientMessageForm(request.POST)
 		if messageForm.is_valid():
 			message = messageForm.save(commit=False)
 			message.senderID = request.user.id
@@ -335,9 +340,21 @@ def client_send_messages(request):
 			message.sender = request.user
 			message.status = False
 			message.save()
-			return redirect('dating_app:client-messages')
+			return redirect('dating_app:client-outbox')
 	context = {'form' : messageForm}
 	return render(request, 'client_send_messages.html', context)
+
+def client_messages_outbox(request):
+	messages = Message.objects.filter(sender=request.user)
+	context = {'messages' : messages}
+	return render(request, 'client_outbox.html', context)
+
+
+def client_delete_messages(request, pk):
+	message = Message.objects.get(id=pk)
+	message.delete()
+	return redirect('dating_app:client-outbox')
+
 
 
 

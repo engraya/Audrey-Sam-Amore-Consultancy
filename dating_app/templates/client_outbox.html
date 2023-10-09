@@ -20,27 +20,31 @@
 <div class="container  align-items-center justify-content-center pt-5 mt-5">
   <a class="btn btn-sm btn-danger my-2" href="/dating/client-messages">&larr;Back to Messages</a>
     <div class="panel-heading pt-3 mt-3" style="background-color: #1f8997;">
-      <h6 class="panel-title text-white" style="background-color: #1f8997;">Messages</h6>
+      <h3 class="text-white text-center" style="background-color: #1f8997;">Outbox</h3>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
-          <th>Sender</th>
+          <th>Recipient</th>
           <th>Content</th>
           <th>Date</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       {% for message in messages %}
       <tr>
-        <td>{{message.sender}}</td>
+        <td>{{message.recipient}}</td>
         <td>{{message.content}}</td>
         <td>{{message.timestamp}}</td>
         {% if message.status %}
         <td> <span class="label label-primary">Read</span></td>
         {% else %}
-        <td> <span class="label label-success">Pending</span></td>
+        <td> <span class="btn btn-sm btn-success">Sent</span></td>
         {% endif %}
+        <td>
+          <a href="/dating/delete-message/{{message.id}}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
       </tr>
       {% empty %}
       <tr>

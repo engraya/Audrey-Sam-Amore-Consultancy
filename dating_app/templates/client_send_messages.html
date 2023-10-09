@@ -42,14 +42,18 @@
     <div class="container register-form">
       <div class="form">
         <div class="note">
-          <h3>Compose Message</h3>
+          <p>Compose Message to a Client</p>
         </div>
         <div class="form-content">
           <form action="" method="POST">
             {% csrf_token %}
             <div class="mb-3 mt-3">
-            <div class="mb-3 text-center">
-              <label for="content" class="form-label text-center">Message Content</label>
+              <label for="recipient" class="form-label">Recipient</label>
+              <!-- <input type="text" class="form-control" id="recipient" placeholder="Choose Recipient" name="recipient"> -->
+              {{form.recipient}}
+            </div>
+            <div class="mb-3">
+              <label for="content" class="form-label">Message Content</label>
               <!-- <textarea class="form-control" rows="5" id="content" name="content"></textarea> -->
               {{form.content}}
             </div>
@@ -59,6 +63,7 @@
       </div>
     </div>
 </div>
+
 
 
 

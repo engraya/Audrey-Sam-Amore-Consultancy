@@ -26,7 +26,7 @@
 
   <div class="panel panel-primary mt-5">
     <div class="panel-heading" style="background-color: #1f8997;">
-      <h3 class="text-center">Your Appointments</h3>
+      <h3 class="text-center">Your Recent Appointments</h3>
     </div>
     <table class="table table-hover table-bordered">
       <thead>
@@ -36,6 +36,7 @@
           <th>Description</th>
           <th>Date</th>
           <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       {% for appointment in appointments %}
@@ -46,8 +47,11 @@
         {% if appointment.status %}
         <td> <span class="btn bt-sm btn-success">Confirmed</span></td>
         {% else %}
-        <td> <span class="btn btn-sm btn-primary">Pending</span></td>
+        <td> <span class="btn btn-sm btn-success">Sent</span></td>
         {% endif %}
+        <td>
+          <a href="/dating/cancel-appointment/{{appointment.id}}" class="btn btn-sm btn-danger">Cancel</a>
+        </td>
       </tr>
       {% empty %}
       <tr>

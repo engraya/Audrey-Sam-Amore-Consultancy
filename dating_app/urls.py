@@ -38,13 +38,15 @@ urlpatterns = [
     path('client-appointment', views.client_appointment_view,name='client-appointment'),
     path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),
     path('client-view-appointment', views.client_view_appointment_view,name='client-view-appointment'),
+    path('client-appointment-history', views.client_appointment_history, name='client-appointment-history'),
 
 
     path('client-messages', views.client_messages_view,name='client-messages'),
     path('client-send-messages', views.client_send_messages,name='client-send-messages'),
     path('client-view-messages', views.client_view_messages_view,name='client-view-messages'),
     path('client-read-messages', views.client_read_messages_view,name='client-read-messages'),
-    path('cancel-appointment', views.client_cancel_appointment_view, name="cancel-appointment"),
+    path('client-outbox', views.client_messages_outbox, name="client-outbox"),
+    path('delete-message/<int:pk>', views.client_delete_messages, name="delete-message"),
 
 
     path('send_message/<int:recipient_id>/', views.send_message, name='send_message'),
