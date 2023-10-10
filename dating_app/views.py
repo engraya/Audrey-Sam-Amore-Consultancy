@@ -118,6 +118,7 @@ def admin_dashboard_view(request):
 	messagescount = Message.objects.all().filter(status=True).count()
 	pendingmessagescount = Message.objects.all().filter(status=False).count()
 	userscount = User.objects.all().count
+
 	clientsGroup = Group.objects.get(name="CLIENT")
 	clientUsers = clientsGroup.user_set.all()
 	clientsUsersCount = clientUsers.count()
@@ -134,7 +135,7 @@ def admin_dashboard_view(request):
 	return render(request, 'admin_dashboard.html', context)
 
 
-
+	
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_client_view(request):
@@ -376,7 +377,7 @@ def client_messages_view(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_view_messages_view(request):
-	messages = Message.objects.all().filter(senderID=request.user.id)
+	messages = Message.objects.all().filter(sender__groups__name='ADMIN')
 	context = {'messages' : messages}
 	return render(request, 'client_view_messages.html', context)
 
@@ -385,7 +386,7 @@ def client_view_messages_view(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_read_messages_view(request):
-    messages = Message.objects.all().filter(status=False)
+    messages = Message.objects.all().filter(sender__groups__name='ADMIN')
     context = {'messages':messages}
     return render(request,'client_read_messages.html', context)
 
@@ -415,6 +416,17 @@ def client_messages_outbox(request):
 	messages = Message.objects.filter(sender=request.user)
 	context = {'messages' : messages}
 	return render(request, 'client_outbox.html', context)
+
+
+
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
+def client_read_messages(request, pk):
+	message = Message.objects.get(id=pk)
+	message.status = True
+	message.save()
+	return redirect('dating_app:client-read-messages')
+
 
 
 @login_required(login_url='client_login')

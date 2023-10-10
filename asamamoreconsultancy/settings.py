@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'dating_app',
     'user_app',
     'crispy_forms',
-    'consultancy',
     'widget_tweaks'
 ]
 

@@ -14,13 +14,16 @@
     h6 {
       text-align: center;
     }
+    .container{
+      margin-top: 100px;
+    }
   </style>
 </head>
 
-<div class="container  align-items-center justify-content-center pt-5 mt-5">
+<div class="container  align-items-center justify-content-center" style="background-color: #149eca;">
   <a class="btn btn-sm btn-danger my-2" href="/dating/client-messages">&larr;Back to Messages</a>
-    <div class="panel-heading pt-3 mt-3" style="background-color: #1f8997;">
-      <h3 class="text-white text-center" style="background-color: #1f8997;">Outbox</h3>
+    <div class="panel-heading">
+      <h3 class="text-white text-center">Outbox</h3>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
@@ -38,7 +41,7 @@
         <td>{{message.content}}</td>
         <td>{{message.timestamp}}</td>
         {% if message.status %}
-        <td> <span class="label label-primary">Read</span></td>
+        <td> <span class="btn btn-sm btn-success">Read</span></td>
         {% else %}
         <td> <span class="btn btn-sm btn-success">Sent</span></td>
         {% endif %}
@@ -48,7 +51,7 @@
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4" class="text-center">No Messages yet</td>
+        <td colspan="6" class="text-center">No Messages yet</td>
       </tr>
       {% endfor %}
     </table>

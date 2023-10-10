@@ -13,13 +13,15 @@
     h6 {
       text-align: center;
     }
-
+    .container{
+      margin-top: 110px;
+    }
   </style>
 </head>
 
-<div class="container pt-3 mt-3">
+<div class="container" style="background-color: #149eca;">
   <div class="panel pt-5 mt-5">
-    <div class="panel-heading" style="background-color: #1f8997;">
+    <div class="panel-heading">
       <h3 class="text-center text-white">Inbox</h3>
     </div>
     <table class="table table-hover">
@@ -28,17 +30,17 @@
           <th>Sender</th>
           <th>Content</th>
           <th>Timestamps</th>
-          <th>Approve</th>
-          <th>Reject</th>
+          <th>Read</th>
+          <th>Reply</th>
         </tr>
       </thead>
       {% for message in messages %}
       <tr>
-        <td>{{appointment.sender}}</td>
-        <td>{{appointment.content}}</td>
-        <td>{{appointment.timestamps}}</td>
-        <td><a class="btn btn-primary btn-xs" href="dating_app:approve-appointment appointment.id"><span class="glyphicon glyphicon-ok"></span></a></td>
-        <td><a class="btn btn-danger btn-xs" href="dating_app:reject-appointment appointment.id"><span class="glyphicon glyphicon-trash"></span></a></td>
+        <td>{{message.sender}}</td>
+        <td>{{message.content}}</td>
+        <td>{{message.timestamp}}</td>
+        <td><a class="btn btn-success btn-xs" href="/dating/read-messages/{{message.id}}"><span class="glyphicon glyphicon-ok"></span></a></td>
+        <td><a class="btn btn-primary btn-xs" href="/dating/client-send-messages"><span class="glyphicon glyphicon-trash"></span></a></td>
       </tr>
       {% endfor %}
     </table>

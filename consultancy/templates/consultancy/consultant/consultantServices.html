@@ -1,8 +1,0 @@
-
-    <h1>Services Offered by {{ services.0.consultant.username }}</h1>
-    <ul>
-        {% for service in services %}
-            <li><a href="{% url 'service_detail' service.id %}">{{ service.title }}</a></li>
-        {% endfor %}
-    </ul>
-

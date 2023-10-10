@@ -45,6 +45,7 @@ urlpatterns = [
     path('client-view-messages', views.client_view_messages_view,name='client-view-messages'),
     path('client-read-messages', views.client_read_messages_view,name='client-read-messages'),
     path('client-outbox', views.client_messages_outbox, name="client-outbox"),
+    path('read-messages/<int:pk>', views.client_read_messages, name='read-messages'),
     path('delete-message/<int:pk>', views.client_delete_messages, name="delete-message"),
 
 
