@@ -13,7 +13,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
-    profile_pic = models.ImageField(default='ava.jpg', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
+    profile_pic = models.ImageField(default='avatar.svg', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
     profileCover = models.ImageField(default='banner.jpg', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
     age = models.PositiveIntegerField(null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GenderOptions.choices, blank=True, null=True) 

@@ -1,4 +1,4 @@
-{% extends "consultancy/admin/admin_base.html" %}
+{% extends "admin_base.html" %}
 {% block content %}
 
 <head>
@@ -17,9 +17,9 @@
   </style>
 </head>
 
-<div class="container  align-items-center justify-content-center pt-5 mt-5">
-    <div class="panel-heading panel-success bg-success">
-      <h6 class="panel-title panel-success text-white">Appointments</h6>
+<div class="container  align-items-center justify-content-center pt-4 mt-4" style="background-color: #149eca;">
+    <div class="panel-heading" style="background-color: #149eca;">
+      <h4 class="text-white text-center">Available Appointments</h4>
     </div>
     <table class="table table-hover" id="dev-table">
       <thead>
@@ -38,9 +38,9 @@
         <td>{{appointment.description}}</td>
         <td>{{appointment.appointmentDateTime}}</td>
         {% if appointment.status %}
-        <td> <span class="label label-success">Approved</span></td>
+        <td> <span class="btn btn-sm btn-success">Approved</span></td>
         {% else %}
-        <td> <span class="label label-warning">Pending</span></td>
+        <td> <span class="btn btn-sm btn-warning">Pending</span></td>
         {% endif %}
       </tr>
       {% empty %}

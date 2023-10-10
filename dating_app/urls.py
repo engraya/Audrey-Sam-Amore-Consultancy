@@ -1,6 +1,5 @@
 from django.urls import path, include
 from . import views
-from django.conf.urls.i18n import i18n_patterns
 
 app_name = 'dating_app'
 
@@ -47,12 +46,6 @@ urlpatterns = [
     path('client-read-messages', views.client_read_messages_view,name='client-read-messages'),
     path('client-outbox', views.client_messages_outbox, name="client-outbox"),
     path('delete-message/<int:pk>', views.client_delete_messages, name="delete-message"),
-
-
-    path('send_message/<int:recipient_id>/', views.send_message, name='send_message'),
-    path('schedule_appointment/<int:admin_id>/', views.schedule_appointment, name='schedule_appointment'),
-    path('message_list/', views.message_list, name='message_list'),
-    path('appointment_list/', views.appointment_list, name='appointment_list'),
 
 
 

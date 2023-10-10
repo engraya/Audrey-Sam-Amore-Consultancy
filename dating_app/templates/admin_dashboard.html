@@ -1,4 +1,4 @@
-{% extends "consultancy/admin/admin_base.html" %}
+{% extends "admin_base.html" %}
 {% load static %}
 {% block content %}
 
@@ -30,7 +30,7 @@
         <div class="col-md-4 col-xl-3">
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
-                    <h6 class="m-b-20 text-white">Total Appointments</h6>
+                    <h6 class="m-b-20 text-white">Total Requests</h6>
                     <h2 class="text-right text-white"><i class="fa fa-refresh f-left text-white"></i><span>{{appointmentcount}}</span></h2>
                     <p class="m-b-0 text-white">Consultation Requests<span class="f-right">{{pendingappointmentcount}}</span></p>
                 </div>

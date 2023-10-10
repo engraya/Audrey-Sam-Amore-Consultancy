@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 from user_app.models import Profile
 from django.db.models import Q
@@ -96,14 +96,21 @@ def random_card(request):
 	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 
 
+def is_admin(user):
+    return user.groups.filter(name='ADMIN').exists()
+def is_client(user):
+    return user.groups.filter(name='CLIENT').exists()
+
+
 #-----------------ADMIN VIEWS STARTS----------------------------------------------------------------#####
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def adminPage(request):
 	return render(request, 'adminPage.html')
 
-
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_dashboard_view(request):
 	clients = Client.objects.all().count()
 	appointmentcount = Appointment.objects.all().filter(status=True).count()
@@ -111,7 +118,6 @@ def admin_dashboard_view(request):
 	messagescount = Message.objects.all().filter(status=True).count()
 	pendingmessagescount = Message.objects.all().filter(status=False).count()
 	userscount = User.objects.all().count
-
 	clientsGroup = Group.objects.get(name="CLIENT")
 	clientUsers = clientsGroup.user_set.all()
 	clientsUsersCount = clientUsers.count()
@@ -125,33 +131,71 @@ def admin_dashboard_view(request):
 		'userscount' : userscount,
 		'clientUsersCount' : clientsUsersCount
 	}
-	return render(request, 'adminPage.html', context)
+	return render(request, 'admin_dashboard.html', context)
 
 
-#-----------------APPOINTMENT START----------------------------------------------------------------#####
 
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_client_view(request):
+    return render(request,'admin_client.html')
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def admin_view_client_view(request):
+	clientGroup = Group.objects.get(name="CLIENT")
+	clientUsers = clientGroup.user_set.all()
+	context = {'clients' : clientUsers}
+	return render(request, 'admin_view_client.html', context)
+
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def delete_client_view(request,pk):
+    client= Client.objects.get(id=pk)
+    user = User.objects.get(id=client.user_id)
+    user.delete()
+    client.delete()
+    return redirect('admin-view-client')
+
+#-----------------ADMIN APPOINTMENT STARTS HERE----------------------------------------------------------------#####
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_appointment_view(request):
     return render(request,'admin_appointment.html')
 
 
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_view_appointment_view(request):
     appointments = Appointment.objects.all()
     context = {'appointments':appointments}
     return render(request,'admin_view_appointment.html', context)
 
 
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_appointment_history_view(request):
 	appointments = Appointment.objects.all()
 	context = {'appointments' : appointments}
 	return render(request, 'admin_appointment_history.html', context)
 
 
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_approve_appointment_view(request):
     appointments = Appointment.objects.all().filter(status=False)
     context = {'appointments':appointments}
     return render(request,'admin_approve_appointment.html', context)
 
 
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def approve_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.status=True
@@ -159,50 +203,63 @@ def approve_appointment(request, pk):
 	return redirect('dating_app:admin-approve-appointment')
 
 
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def reject_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
 	return redirect('dating_app:admin-approve-appointment')
 
+#-----------------ADMIN APPOINTMENTS ENDS HERE----------------------------------------------------------------#####
 
-#-----------------MESSAGES START----------------------------------------------------------------#####
 
+
+#-----------------AMIN MESSAGES STARTS HERE----------------------------------------------------------------#####
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_messages_view(request):
     return render(request,'admin_messages.html')
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_view_messages_view(request):
 	messages = Message.objects.filter(sender__groups__name='CLIENT')
 	context = {'messages' : messages}
 	return render(request, 'admin_view_messages.html', context)
 
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_read_messages_view(request):
     messages = Message.objects.filter(sender__groups__name='CLIENT')
     context = {'messages':messages}
     return render(request,'admin_read_messages.html', context)
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_outbox(request):
 	messages = Message.objects.filter(sender=request.user)
 	context = {'messages' : messages}
 	return render(request, 'admin_outbox.html', context)
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def read_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.status=True
 	message.save()
 	return redirect('dating_app:admin-read-messages')
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def reject_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.delete()
 	return redirect('dating_app:admin-read-messages')
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_send_messages_view(request):
 	messageForm = MessageForm()
 	if request.method == 'POST':
@@ -219,34 +276,22 @@ def admin_send_messages_view(request):
 	context = {'form' : messageForm}
 	return render(request, 'admin_send_messages.html', context)
 
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def admin_reply_messages_view(request):
 	return render(request, 'admin_reply_messages.html')
 
 
-#-----------------MESSAGES END----------------------------------------------------------------#####
-
-
-def admin_client_view(request):
-    return render(request,'admin_client.html')
+#-----------------ADMIN MESSAGES ENDS HERE----------------------------------------------------------------#####
 
 
 
-def admin_view_client_view(request):
-	clientGroup = Group.objects.get(name="CLIENT")
-	clientUsers = clientGroup.user_set.all()
-	context = {'clients' : clientUsers}
-	return render(request, 'admin_view_client.html', context)
-
-def delete_client_view(request,pk):
-    client= Client.objects.get(id=pk)
-    user=models.User.objects.get(id=client.user_id)
-    user.delete()
-    client.delete()
-    return redirect('admin-view-client')
 
 #-----------------CLIENT VIEW STARTS HERE----------------------------------------------------------------#####
 
-
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_dashboard_view(request):
 	appointments = Appointment.objects.all().filter(clientID=request.user.id)
 	messages = Message.objects.all().filter(senderID=request.user.id)
@@ -266,10 +311,14 @@ def client_dashboard_view(request):
 	return render(request, 'client_dashboard.html', context)
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_appointment_view(request):
     return render(request,'client_appointment.html')
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_book_appointment(request):
 	appointmentForm = AppointmentForm()
 	if request.method == 'POST':
@@ -291,11 +340,16 @@ def client_book_appointment(request):
 		
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_cancel_appointment_view(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
 	return redirect('dating_app:client-appointment-history')
 
+
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_view_appointment_view(request):
 	appointments = Appointment.objects.all().filter(clientID=request.user.id)
 	context = {'appointments' : appointments}
@@ -303,18 +357,24 @@ def client_view_appointment_view(request):
 
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_appointment_history(request):
 	appointments = Appointment.objects.filter(status=False)
 	context = {'appointments' : appointments}
 	return render(request, 'client_appointment_history.html', context)	
 
 
-#-----------------MESSAGES START----------------------------------------------------------------#####
+#-----------------CLIENT MESSAGES STARTS HERE----------------------------------------------------------------#####
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_messages_view(request):
 	return render(request, 'client_messages.html')
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_view_messages_view(request):
 	messages = Message.objects.all().filter(senderID=request.user.id)
 	context = {'messages' : messages}
@@ -322,12 +382,16 @@ def client_view_messages_view(request):
 
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_read_messages_view(request):
     messages = Message.objects.all().filter(status=False)
     context = {'messages':messages}
     return render(request,'client_read_messages.html', context)
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_send_messages(request):
 	messageForm = ClientMessageForm()
 	if request.method == 'POST':
@@ -344,59 +408,20 @@ def client_send_messages(request):
 	context = {'form' : messageForm}
 	return render(request, 'client_send_messages.html', context)
 
+
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_messages_outbox(request):
 	messages = Message.objects.filter(sender=request.user)
 	context = {'messages' : messages}
 	return render(request, 'client_outbox.html', context)
 
 
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
 def client_delete_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.delete()
 	return redirect('dating_app:client-outbox')
 
 
-
-
-def send_message(request, recipient_id):
-	if request.method == 'POST':
-		form = MessageForm(request.POST)
-		if form.is_valid():
-			message = form.save(commit=False)
-			message.sender = request.user
-			message.recipient_id = recipient_id
-			message.save()
-			return redirect('client-dashboard')
-		else:
-			form = MessageForm()
-	context = {'form' : form}
-	return render(request, 'send_message.html', context)
-
-
-
-
-def schedule_appointment(request, admin_id):
-	if request.method == 'POST':
-		form = AppointmentForm(request.POST)
-		if form.is_valid():
-			appointment = form.save(commit=False)
-			appointment.client = request.user
-			appointment.admin_id = admin_id
-			appointment.save()
-			return redirect('client-dashboard')
-		else:
-			form = AppointmentForm()
-	context = {'form' : form}
-	return render(request, 'schedule_appointment', context)
-
-
-def message_list(request):
-	messages = Message.objects.filter(recipient=request.user)
-	context = {'messages' : messages}
-	return render(request, 'message.html', context)
-
-
-def appointment_list(request):
-	appointments = Appointment.objects.filter(client=request.user)
-	context = {'appointments' : appointments}
-	return render(request, 'appointment_list.html', context)
