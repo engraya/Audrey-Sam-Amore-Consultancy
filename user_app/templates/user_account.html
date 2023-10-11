@@ -113,7 +113,6 @@
     </div>
   </div>
   </div>
-
   </div>
   <div class="col-lg-8">
   <form class="card" novalidate>
@@ -157,7 +156,7 @@
         </div>
       </div>
       <div class="col">
-        <label for="firstName" class="form-label">{% trans 'Gender' %}</label>
+        <label for="gender" class="form-label">{% trans 'Gender' %}</label>
         {% if user.profile.gender == "M" %}
         <select name="gender" class="form-control" id="id_gender">
         <option value="M" selected="selected">{% trans 'Male' %}</option>
@@ -193,7 +192,7 @@
     </div>
   </div>
   <div class="card-footer text-right">
-    <button type="submit" class="btn btn-primary">Update Profile</button>
+    <button type="submit" class="btn btn-success">Update Profile</button>
   </div>
   </form>
   </div>

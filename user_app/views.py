@@ -13,8 +13,6 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 
-
-
 def corePage(request):
 	return render(request, 'corePage.html')
 
