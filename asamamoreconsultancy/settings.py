@@ -27,7 +27,8 @@ INSTALLED_APPS = [
     'dating_app',
     'user_app',
     'crispy_forms',
-    'widget_tweaks'
+    'widget_tweaks',
+    'django_countries'
 ]
 
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'

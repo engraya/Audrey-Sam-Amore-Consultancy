@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 from .validators import validate_file_size
+from django_countries.fields import CountryField
 
 def user_directory_path(instance, filename):
     return 'user_images/{0}/{1}'.format(instance.user.username, filename)
@@ -65,6 +66,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GenderOptions.choices, blank=True, null=True) 
     seeking = models.CharField(max_length=1, choices=GenderOptions.choices, blank=True, null=True) 
     about = models.TextField(null=True, blank=True)
+    country = CountryField(blank_label="(Select Country)", null=True, blank=True)
     state = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     online_status = models.BooleanField(null=True, blank=True, default=False)
