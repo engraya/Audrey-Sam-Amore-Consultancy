@@ -19,6 +19,13 @@
 		{% csrf_token %}
             <p class="text-center mb-4">{% trans 'STEP' %} 2/3</p>
             <div class="mb-3">
+				{% if user.profile.country %}
+				<input type="text" name="country" id="id_country" value="{{ user.profile.country }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="country" id="id_country" placeholder="{% trans 'Enter Your country' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
 				{% if user.profile.state %}
 				<input type="text" name="state" id="id_state" value="{{ user.profile.state }}" autocomplete="off">
 				{% else %}
@@ -30,6 +37,41 @@
 				<input type="text" name="city" id="id_city" value="{{ user.profile.city }}" autocomplete="off">
 				{% else %}
                 <input type="text" name="city" id="id_city" placeholder="{% trans 'Your city' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
+				{% if user.profile.kidsStatus %}
+				<input type="text" name="kidsStatus" id="id_kidsStatus" value="{{ user.profile.kidsStatus }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="kidsStatus" id="id_kidsStatus" placeholder="{% trans 'Enter Your Kid's Status' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
+				{% if user.profile.partnerPreference %}
+				<input type="text" name="partnerPreference" id="id_partnerPreference" value="{{ user.profile.partnerPreference }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="partnerPreference" id="id_partnerPreference" placeholder="{% trans 'Enter Your Partner Preference' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
+				{% if user.profile.complexion %}
+				<input type="text" name="complexion" id="id_complexion" value="{{ user.profile.complexion }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="complexion" id="id_complexion" placeholder="{% trans 'Enter Your Compexion' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
+				{% if user.profile.seekingRelationship %}
+				<input type="text" name="seekingRelationship" id="id_seekingRelationship" value="{{ user.profile.seekingRelationship }}" autocomplete="off">
+				{% else %}
+                <input type="text" name="seekingRelationship" id="id_seekingRelationship" placeholder="{% trans 'Enter Your Seeking Realtionship Type' %}" autocomplete="off">
+				{% endif %}
+            </div>
+			<div class="mb-3">
+				{% if user.profile.hobbyList %}
+				<textarea class="form-control" name="hobbyList" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_hobbyList" value="{{ user.profile.hobbyList }}" placeholder="{% trans 'Enter Your List of hobbies' %}" "></textarea>
+				{% else %}
+				<textarea class="form-control" name="hobbyList" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_hobbyList" placeholder="{% trans 'Enter Your List of hobbies' %}" "></textarea>
 				{% endif %}
             </div>
             <div class="input-group mb-3">

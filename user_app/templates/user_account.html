@@ -119,40 +119,52 @@
   <div class="card-body">
     <h3 class="card-title">Edit Profile</h3>
     <div class="row">
-      <div class="col-sm-6 col-md-6">
+      <div class="col-sm-4 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">First Name</label>
           <input type="text" placeholder="First name" class="form-control" value="{{ user.profile.first_name }}">
         </div>
       </div>
-      <div class="col-sm-6 col-md-6">
+      <div class="col-sm-4 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Last Name</label>
           <input type="text" placeholder="Last Name" class="form-control"  value="{{ user.profile.last_name }}">
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-sm-4 col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">User Name</label>
+          <input type="text" placeholder="User Name" class="form-control"  value="{{ user.username }}">
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="form-group mb-4">
+          <label class="form-label">Date of Birth</label>
+          <input type="text" placeholder="DOB" class="form-control" value="{{ user.dateOfBirth }}">
+        </div>
+      </div>
+      <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Age</label>
           <input type="number" placeholder="Age" class="form-control" value="{{ user.profile.age }}" id="id_age" min="18" max="99" pattern="[0-9]{3}"  autocomplete="off">
         </div>
       </div>
-      <div class="col-sm-6 col-md-3">
-        <div class="form-group mb-4">
-          <label class="form-label">Username</label>
-          <input type="text" placeholder="Username" class="form-control" value="{{ user.username }}">
-        </div>
-      </div>
-      <div class="col-md-12">
+      <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Country</label>
-          <input type="text" placeholder="Home Address" class="form-control" value="{{ user.profile.state }}" placeholder="Your Country">
+          <input type="text" placeholder="Enter your Country" class="form-control" value="{{ user.profile.country }}" >
+        </div>
+      </div>
+            <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">State</label>
+          <input type="text" placeholder="Enter your State" class="form-control" value="{{ user.profile.state }}">
         </div>
       </div>
       <div class="col-sm-6 col-md-4">
         <div class="form-group mb-4">
-          <label class="form-label">City & State</label>
-          <input type="text" placeholder="City" class="form-control" value="{{ user.profile.city }}" placeholder="Your State">
+          <label class="form-label">City</label>
+          <input type="text" placeholder="Enter your City" class="form-control" value="{{ user.profile.city }}">
         </div>
       </div>
       <div class="col">
@@ -182,6 +194,43 @@
         <option value="F" selected="selected">{% trans 'Female' %}</option>
         </select>
         {% endif %}
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Relationship Status</label>
+          <input type="text" placeholder="Enter Relationship Status" class="form-control" value="{{ user.profile.relationshipStatus  }}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Kids Status</label>
+          <input type="text" placeholder="Enter Kid's Status" class="form-control" value="{{ user.profile.kidsStatus  }}">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Partner Preference</label>
+          <input type="text" placeholder="Choose Partner Preference" class="form-control" value="{{ user.profile.partnerPreference  }}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Complexion</label>
+          <input type="text" placeholder="Enter Complexion" class="form-control" value="{{ user.profile.complexion  }}">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Seeking Relationship Type</label>
+          <input type="text" placeholder="Enter Seeking Relationship Type" class="form-control" value="{{ user.profile.seekingRelationship  }}">
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group mb-4">
+          <label class="form-label">Hobby List</label>
+          <textarea type="textarea" class="form-control" rows="5" name="hobbyList" id="idhobbyList">{{ user.profile.hobbyList }}</textarea>
+        </div>
       </div>
       <div class="col-md-12">
         <div class="form-group mb-0">

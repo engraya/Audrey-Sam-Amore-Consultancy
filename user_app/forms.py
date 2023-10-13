@@ -62,7 +62,7 @@ class UserUpdateForm(forms.ModelForm):
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['profile_pic', 'first_name', 'last_name', 'profileCover', 'age', 'gender', 'seeking', 'about', 'state', 'city', 'online_status']
+        fields = ['profile_pic', 'first_name', 'last_name', 'profileCover', 'age', 'gender', 'seeking', 'about', 'state', 'city', 'online_status', 'dateOfBirth', 'relationshipStatus', 'kidsStatus', 'hobbyList', 'partnerPreference', 'complexion', 'seekingRelationship', 'country']
 
 class SignUpStepOneForm(forms.ModelForm):
     class Meta:

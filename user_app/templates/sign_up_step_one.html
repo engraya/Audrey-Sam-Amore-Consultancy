@@ -39,6 +39,20 @@
                 <input type="number" name="age" placeholder="{% trans 'Enter your Age' %}" id="id_age" max="99" pattern="[0-9]{3}"  autocomplete="off">
                 {% endif %}
             </div>
+            <div class="mb-3">
+                {% if user.profile.dateOfBirth %}
+                <input type="date" name="dateOfBirth" value="{{ user.profile.dateOfBirth }}" id="id_dateOfBirth"  autocomplete="off">
+                {% else %}
+                <input type="date" name="dateOfBirth" placeholder="{% trans 'Enter your Date of Birth' %}" id="id_dateOfBirth"  autocomplete="off">
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {% if user.profile.relationshipStatus %}
+                <input type="text" name="relationshipStatus" value="{{ user.profile.relationshipStatus }}" id="id_relationshipStatus"  autocomplete="off">
+                {% else %}
+                <input type="text" name="relationshipStatus" placeholder="{% trans 'Enter your Relationship Status' %}" id="id_relationshipStatus" autocomplete="off">
+                {% endif %}
+            </div>
         <div class=" align-content-center d-flex justify-content-center">
             <button class="btn btn-success" type="submit">{% trans 'Submit' %}</button>
         </div>
