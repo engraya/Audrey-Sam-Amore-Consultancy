@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-{%include 'client_dashboard_cards.html'%}
-<hr>
+<br>
+<div>{%include 'client_dashboard_cards.html'%}</div>
+
 <div class="container align-content-center container-fluid justify-content-center">
   <h4 class="text-center">Your Recent Appointments</h4>
   <table class="table table-bordered table-hover table-striped">
@@ -21,7 +22,7 @@
           <td>{{ appointment.category }}</td>
           <td>{{ appointment.description }}</td>
           {% if appointment.status %}
-          <td> <span class="label label-primary">Confirmed</span></td>
+          <td> <span class="btn btn-sm btn-primary">Confirmed</span></td>
           {% else %}
           <td> <span class="btn btn-sm btn-success">Pending</span></td>
           {% endif %}

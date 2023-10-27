@@ -54,15 +54,36 @@ class ClientLoginForm(AuthenticationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class' : 'form-control'})
     class Meta:
         model = User
         fields = ['username']
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['last_name'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['age'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['seeking'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['about'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['state'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['city'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['dateOfBirth'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['relationshipStatus'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['kidsStatus'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['hobbyList'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['partnerPreference'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['complexion'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['seekingRelationship'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['country'].widget.attrs.update({'class' : 'form-control'})
+
     class Meta:
         model = Profile
-        fields = ['profile_pic', 'first_name', 'last_name', 'profileCover', 'age', 'gender', 'seeking', 'about', 'state', 'city', 'online_status', 'dateOfBirth', 'relationshipStatus', 'kidsStatus', 'hobbyList', 'partnerPreference', 'complexion', 'seekingRelationship', 'country']
+        fields = ['profile_pic', 'first_name', 'last_name', 'age', 'gender', 'seeking', 'about', 'state', 'city', 'dateOfBirth', 'relationshipStatus', 'kidsStatus', 'hobbyList', 'partnerPreference', 'complexion', 'seekingRelationship', 'country']
 
 class SignUpStepOneForm(forms.ModelForm):
     class Meta:

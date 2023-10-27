@@ -23,26 +23,26 @@ def dating(request):
 			).exclude(id=request.user.id)
 
 		context = get_pogination(request, profiles_list, 10)
-		if profiles_list:
-			context.update({'query': f'We found {len(profiles_list)} people with name "{query}"'})
-			context.update({'saved_to_favorite': Favorite.objects.values_list('saved', flat=True)})
-			context.update({'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
-		else:
-			context.update({'query': f'There are no people with name "{query}"'})
+		# if profiles_list:
+		# 	context.update({'query': f'We found {len(profiles_list)} people with name "{query}"'})
+		# 	context.update({'saved_to_favorite': Favorite.objects.values_list('saved', flat=True)})
+		# 	context.update({'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
+		# else:
+		# 	context.update({'query': f'There are no people with name "{query}"'})
 		return render(request, 'dating.html', context)
 	return redirect('user_app:sign_up_step_three')
 
 
-def favorite_add(request, user_id):
-	saved = User.objects.get(id=user_id)
-	favorites = Favorite.objects.filter(user=request.user, saved=saved)
+# def favorite_add(request, user_id):
+# 	saved = User.objects.get(id=user_id)
+# 	favorites = Favorite.objects.filter(user=request.user, saved=saved)
 
-	if not favorites.exists():
-		Favorite.objects.create(user=request.user, saved=saved)
-	else:
-		favorite = favorites.first()
-		favorite.delete()
-	return HttpResponseRedirect(request.META['HTTP_REFERER'])
+# 	if not favorites.exists():
+# 		Favorite.objects.create(user=request.user, saved=saved)
+# 	else:
+# 		favorite = favorites.first()
+# 		favorite.delete()
+# 	return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 
@@ -85,15 +85,15 @@ def get_pogination(request, profiles_list, objects_num):
 	return context
 
 
-def random_card(request):
-	profile = Profile.objects.get(pk=request.user.pk)
-	card_list = list(Profile.objects.filter(gender__in=str(profile.seeking)
-			).exclude(id=request.user.id))
-	if card_list:
-		random_card = random.sample(card_list, 1)
-	else:
-		random_card = None
-	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
+# def random_card(request):
+# 	profile = Profile.objects.get(pk=request.user.pk)
+# 	card_list = list(Profile.objects.filter(gender__in=str(profile.seeking)
+# 			).exclude(id=request.user.id))
+# 	if card_list:
+# 		random_card = random.sample(card_list, 1)
+# 	else:
+# 		random_card = None
+# 	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 
 
 def is_admin(user):
@@ -107,8 +107,7 @@ def is_client(user):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def adminPage(request):
-	return render(request, 'adminPage.html')
-
+	return render(request, 'admin_dashboard.html')
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_dashboard_view(request):

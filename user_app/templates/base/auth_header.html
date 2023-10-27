@@ -123,13 +123,7 @@
             </a>
         </li>
 
-        </li>
-        <li class="nav-item me-3 me-lg-1 mx-2">
-          <a class="nav-link  text-white " href="{% url 'dating_app:random_card' %}">
-            <span><i class="fas fa-heart fa-2x fa-bg-light"></i></span>
-            <span class="badge rounded-pill badge-notification bg-danger">2</span>
-          </a>
-      </li>
+
           
         
       <li class="nav-item me-3 me-lg-1 mx-2">
@@ -163,31 +157,26 @@
             <div class="dropdown">
                 <a
                     class="dropdown-toggle d-flex align-items-center  text-white "
-                    href="#"
+                    href="{% url 'user_app:user_account' %}"
                     id="navbarDropdownMenuAvatar"
                     role="button"
                     data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                >
+                    aria-expanded="false">
                     <img
                     src="{{ user.profile.profile_pic.url }}"
                     class="rounded-circle"
                     height="55"
                     alt="Black and White Portrait of a Man"
-                    loading="lazy"
-                    />
+                    loading="lazy"/>
                 </a>
                 <ul
                     class="dropdown-menu dropdown-menu-end"
                     aria-labelledby="navbarDropdownMenuAvatar"
                 >
                     <li>
-                    <li><a class="dropdown-item disabled" style="color: rgb(82, 189, 11);" href="#"><b>{{ user.username }}</b></a></li>
+                    <li><a class="dropdown-item disabled" style="color: rgb(82, 189, 11);" href="{% url 'user_app:user_account' %}"><b>{{ user.username }}</b></a></li>
                     <li><hr class="dropdown-divider"></li>
                     <a class="dropdown-item" href="{% url 'user_app:user_account' %}">My Profile</a>
-                    </li>
-                    <li>
-                    <a class="dropdown-item" href="" ata-bs-toggle="modal" data-bs-target="#matches">Favourites</a>
                     </li>
                     <li>
                     <a class="dropdown-item" href="#">Settings</a>
@@ -202,7 +191,6 @@
                 </ul>
                 </div>
             </li>
-  
           </div>
  
         </li>

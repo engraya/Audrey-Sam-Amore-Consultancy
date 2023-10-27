@@ -91,21 +91,16 @@
     {% csrf_token %}
   <div class="row">
   <div class="col-lg-4">
-    <h4 class="mb-3">{% trans 'Media' %}</h4>
     {% if error %}
     <p class="alert alert-danger"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
       <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
     </svg> {{ error }}</p>
     {% endif %}
   <div class="card card-profile">
-  <div style="background-image: url({{ user.profile.profileCover.url }});" class="card-header"></div>
+  <div style="" class="card-header"></div>
   <div class="card-body text-center"><img src="{{ user.profile.profile_pic.url }}" class="card-profile-img">
-    <h2 class="mb-3">{{ user.profile.first_name }}</h2>
-    <p class="mb-4">User Profession</p>
-    <div class="input-group">
-      <label class="input-group-text" for="id_profileCover">{% trans 'Cover Photo' %}</label>
-      <input type="file" name="profileCover" class="form-control" id="id_profileCover">
-    </div>
+    <h2 class="mb-3">{{ request.user.username }}</h2>
+    <p class="mb-4">{{user.profile.age}}</p>
     <hr>
     <div class="input-group">
       <label class="input-group-text" for="id_profile_pic">{% trans 'Picture' %}</label>
@@ -122,49 +117,57 @@
       <div class="col-sm-4 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">First Name</label>
-          <input type="text" placeholder="First name" class="form-control" value="{{ user.profile.first_name }}">
+          <!-- <input type="text" placeholder="First name" class="form-control" value="{{ user.profile.first_name }}"> -->
+          {{p_form.first_name}}
         </div>
       </div>
       <div class="col-sm-4 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Last Name</label>
-          <input type="text" placeholder="Last Name" class="form-control"  value="{{ user.profile.last_name }}">
+          <!-- <input type="text" placeholder="Last Name" class="form-control"  value="{{ user.profile.last_name }}"> -->
+          {{p_form.last_name}}
         </div>
       </div>
       <div class="col-sm-4 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">User Name</label>
-          <input type="text" placeholder="User Name" class="form-control"  value="{{ user.username }}">
+          <!-- <input type="text" placeholder="User Name" class="form-control"  value="{{ user.username }}"> -->
+          {{u_form.username}}
         </div>
       </div>
       <div class="col-sm-6 col-md-3">
         <div class="form-group mb-4">
           <label class="form-label">Date of Birth</label>
-          <input type="text" placeholder="DOB" class="form-control" value="{{ user.dateOfBirth }}">
+          <!-- <input type="text" placeholder="DOB" class="form-control" value="{{ user.dateOfBirth }}"> -->
+          {{p_form.dateOfBirth}}
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Age</label>
-          <input type="number" placeholder="Age" class="form-control" value="{{ user.profile.age }}" id="id_age" min="18" max="99" pattern="[0-9]{3}"  autocomplete="off">
+          <!-- <input type="number" placeholder="Age" class="form-control" value="{{ user.profile.age }}" id="id_age" min="18" max="99" pattern="[0-9]{3}"  autocomplete="off"> -->
+          {{p_form.age}}
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Country</label>
-          <input type="text" placeholder="Enter your Country" class="form-control" value="{{ user.profile.country }}" >
+          <!-- <input type="text" placeholder="Enter your Country" class="form-control" value="{{ user.profile.country }}" > -->
+          {{p_form.country}}
         </div>
       </div>
             <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">State</label>
-          <input type="text" placeholder="Enter your State" class="form-control" value="{{ user.profile.state }}">
+          <!-- <input type="text" placeholder="Enter your State" class="form-control" value="{{ user.profile.state }}"> -->
+          {{p_form.state}}
         </div>
       </div>
       <div class="col-sm-6 col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">City</label>
-          <input type="text" placeholder="Enter your City" class="form-control" value="{{ user.profile.city }}">
+          <!-- <input type="text" placeholder="Enter your City" class="form-control" value="{{ user.profile.city }}"> -->
+          {{p_form.state}}
         </div>
       </div>
       <div class="col">
@@ -198,44 +201,51 @@
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Relationship Status</label>
-          <input type="text" placeholder="Enter Relationship Status" class="form-control" value="{{ user.profile.relationshipStatus  }}">
+          <!-- <input type="text" placeholder="Enter Relationship Status" class="form-control" value="{{ user.profile.relationshipStatus  }}"> -->
+          {{p_form.relationshipStatus}}
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Kids Status</label>
-          <input type="text" placeholder="Enter Kid's Status" class="form-control" value="{{ user.profile.kidsStatus  }}">
+          <!-- <input type="text" placeholder="Enter Kid's Status" class="form-control" value="{{ user.profile.kidsStatus  }}"> -->
+          {{p_form.kidsStatus}}
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Partner Preference</label>
-          <input type="text" placeholder="Choose Partner Preference" class="form-control" value="{{ user.profile.partnerPreference  }}">
+          <!-- <input type="text" placeholder="Choose Partner Preference" class="form-control" value="{{ user.profile.partnerPreference  }}"> -->
+          {{p_form.partnerPreference}}
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Complexion</label>
-          <input type="text" placeholder="Enter Complexion" class="form-control" value="{{ user.profile.complexion  }}">
+          <!-- <input type="text" placeholder="Enter Complexion" class="form-control" value="{{ user.profile.complexion  }}"> -->
+          {{p_form.complexion}}
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group mb-4">
           <label class="form-label">Seeking Relationship Type</label>
-          <input type="text" placeholder="Enter Seeking Relationship Type" class="form-control" value="{{ user.profile.seekingRelationship  }}">
+          <!-- <input type="text" placeholder="Enter Seeking Relationship Type" class="form-control" value="{{ user.profile.seekingRelationship  }}"> -->
+          {{p_form.seekingRelationship}}
         </div>
       </div>
       <div class="col-md-12">
         <div class="form-group mb-4">
           <label class="form-label">Hobby List</label>
-          <textarea type="textarea" class="form-control" rows="5" name="hobbyList" id="idhobbyList">{{ user.profile.hobbyList }}</textarea>
+          <!-- <textarea type="textarea" class="form-control" rows="5" name="hobbyList" id="idhobbyList">{{ user.profile.hobbyList }}</textarea> -->
+          {{p_form.hobbyList}}
         </div>
       </div>
       <div class="col-md-12">
         <div class="form-group mb-0">
           <label class="form-label">About</label>
-          <textarea type="textarea" class="form-control" rows="5" name="about" id="id_about">{{ user.profile.about }}</textarea>
+          <!-- <textarea type="textarea" class="form-control" rows="5" name="about" id="id_about">{{ user.profile.about }}</textarea> -->
+          {{p_form.about}}
         </div>
       </div>
     </div>

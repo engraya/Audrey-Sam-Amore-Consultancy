@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -166,21 +165,11 @@ def user_account(request):
 	if profile.about:
 		if request.method == 'POST':
 			u_form = UserUpdateForm(request.POST, instance=request.user)
-			p_form = ProfileUpdateForm(request.POST,
-										request.FILES,
-										instance=request.user.profile)
-			if int(request.POST['age']) < 18:
-				return render(request, 'user_app/user_account.html', {'error':'Your age must be at least 18 years old'})
-			elif not str(request.POST['age']).isnumeric():
-				return render(request, 'user_app/user_account.html', {'error':'Uncorrect age field'})
-			else:
-				try:
-					u_form.save()
-					p_form.save()
-					return redirect('user_app:user_account') 
-				except ValueError:
-					return render(request, 'user_account.html', {'error':'Files is too large, requirement is less than 2.5 MB'})
-
+			p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
+			if u_form.is_valid() &  p_form.is_valid():
+				u_form.save()
+				p_form.save()
+			return redirect('user_app:user_account') 
 		else:
 			u_form = UserUpdateForm(instance=request.user)
 			p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -188,7 +177,6 @@ def user_account(request):
 		context = {
 			'u_form': u_form,
 			'p_form': p_form,
-			'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')
 		}
 
 		return render(request, 'user_account.html', context)

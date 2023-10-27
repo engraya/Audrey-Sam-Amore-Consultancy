@@ -6,8 +6,8 @@ app_name = 'dating_app'
 urlpatterns = [
     path('', views.dating, name='dating'),
     path('admin', views.adminPage, name='adminPage'),
-    path('favorite/add/<int:user_id>/', views.favorite_add, name='favorite_add'),
-    path('random_card/', views.random_card, name='random_card'),
+    # path('favorite/add/<int:user_id>/', views.favorite_add, name='favorite_add'),
+    # path('random_card/', views.random_card, name='random_card'),
     path('<int:user_id>/', views.partner_account, name='partner_account'),
 
     path('admin-dashboard', views.admin_dashboard_view, name="admin-dashboard"),

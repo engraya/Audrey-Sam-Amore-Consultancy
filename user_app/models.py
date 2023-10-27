@@ -54,7 +54,6 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=30, null=True, blank=True)
     profile_pic = models.ImageField(default='avatar.svg', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
-    profileCover = models.ImageField(default='banner.jpg', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
     age = models.PositiveIntegerField(null=True, blank=True)
     dateOfBirth = models.DateField(auto_now=False, auto_now_add=False ,null=True, blank=True)
     relationshipStatus = models.CharField(max_length=20, choices=RelationshipStatus_CHOICES, blank=True, null=True)
@@ -82,11 +81,11 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.profile_pic.path)
         
-        img = Image.open(self.profileCover.path)
+        # img = Image.open(self.profileCover.path)
 
-        if img.height > 1200 or img.width > 1200:
-            output_size = (1200, 1200)
-            img.thumbnail(output_size)
-            img.save(self.profileCover.path)
+        # if img.height > 1200 or img.width > 1200:
+        #     output_size = (1200, 1200)
+        #     img.thumbnail(output_size)
+        #     img.save(self.profileCover.path)
 
     
