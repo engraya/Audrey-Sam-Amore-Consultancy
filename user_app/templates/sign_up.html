@@ -1,4 +1,4 @@
-{% extends "auth_base.html" %}
+{% extends "base/auth_base.html" %}
 {% load i18n %}
 {% load static %}
 {% block content %}
@@ -16,27 +16,38 @@
 					Member Register
 				</span>
 
-				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-					<input class="input100" type="text" id="username" name="username" placeholder="Username">
+				<div class="wrap-input100 validate-input">
+					<!-- <input class="input100" type="text" id="first_name" name="first_name" placeholder="First Name"> -->
+					{{form.first_name}}
 					<span class="focus-input100"></span>
 					<span class="symbol-input100">
-						<i class="fa fa-envelope" aria-hidden="true"></i>
-					</span>
-				</div>
-
-				<div class="wrap-input100 validate-input" data-validate = "Password is required">
-					<input class="input100" id="password1" type="password" name="password1" placeholder="Password">
-			
-					<span class="focus-input100"></span>
-					<span class="symbol-input100 float-md-start">
-						<i class="fa fa-lock" aria-hidden="true"></i>
+						<i class="fa fa-user" aria-hidden="true"></i>
 					</span>
 				</div>
 
 				
+				<div class="wrap-input100 validate-input">
+					<!-- <input class="input100" type="text" id="last_name" name="last_name" placeholder="Last Name"> -->
+					{{form.last_name}}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
+				
+				<div class="wrap-input100 validate-input">
+					<!-- <input class="input100" type="text" id="username" name="username" placeholder="Username"> -->
+					{{form.username}}
+					<span class="focus-input100"></span>
+					<span class="symbol-input100">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+				</div>
+
 				<div class="wrap-input100 validate-input" data-validate = "Password is required">
-					<input class="input100" id="password2" type="password" name="password2" placeholder=" Confirm Password">
-			
+					<!-- <input class="input100" id="password1" type="password" name="password1" placeholder="Password"> -->
+					{{form.password}}
 					<span class="focus-input100"></span>
 					<span class="symbol-input100 float-md-start">
 						<i class="fa fa-lock" aria-hidden="true"></i>

@@ -22,86 +22,58 @@
 				{% if user.profile.country %}
 				<input type="text" name="country" id="id_country" value="{{ user.profile.country }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="country" id="id_country" placeholder="{% trans 'Enter Your country' %}" autocomplete="off">
+                <!-- <input type="text" name="country" id="id_country" placeholder="{% trans 'Enter Your country' %}" autocomplete="off"> -->
+				{{form.country}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.state %}
 				<input type="text" name="state" id="id_state" value="{{ user.profile.state }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="state" id="id_state" placeholder="{% trans 'Your country and state' %}" autocomplete="off">
+                <!-- <input type="text" name="state" id="id_state" placeholder="{% trans 'Your country and state' %}" autocomplete="off"> -->
+				{{form.state}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.city %}
 				<input type="text" name="city" id="id_city" value="{{ user.profile.city }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="city" id="id_city" placeholder="{% trans 'Your city' %}" autocomplete="off">
+                <!-- <input type="text" name="city" id="id_city" placeholder="{% trans 'Your city' %}" autocomplete="off"> -->
+				{{form.city}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.kidsStatus %}
 				<input type="text" name="kidsStatus" id="id_kidsStatus" value="{{ user.profile.kidsStatus }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="kidsStatus" id="id_kidsStatus" placeholder="{% trans 'Enter Your Kid's Status' %}" autocomplete="off">
+                <!-- <input type="text" name="kidsStatus" id="id_kidsStatus" placeholder="{% trans 'Enter Your Kids Status' %}" autocomplete="off"> -->
+				{{form.kidsStatus}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.partnerPreference %}
 				<input type="text" name="partnerPreference" id="id_partnerPreference" value="{{ user.profile.partnerPreference }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="partnerPreference" id="id_partnerPreference" placeholder="{% trans 'Enter Your Partner Preference' %}" autocomplete="off">
+                <!-- <input type="text" name="partnerPreference" id="id_partnerPreference" placeholder="{% trans 'Enter Your Partner Preference' %}" autocomplete="off"> -->
+				{{form.partnerPreference}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.complexion %}
 				<input type="text" name="complexion" id="id_complexion" value="{{ user.profile.complexion }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="complexion" id="id_complexion" placeholder="{% trans 'Enter Your Compexion' %}" autocomplete="off">
+                <!-- <input type="text" name="complexion" id="id_complexion" placeholder="{% trans 'Enter Your Compexion' %}" autocomplete="off"> -->
+				{{form.complexion}}
 				{% endif %}
             </div>
 			<div class="mb-3">
 				{% if user.profile.seekingRelationship %}
 				<input type="text" name="seekingRelationship" id="id_seekingRelationship" value="{{ user.profile.seekingRelationship }}" autocomplete="off">
 				{% else %}
-                <input type="text" name="seekingRelationship" id="id_seekingRelationship" placeholder="{% trans 'Enter Your Seeking Realtionship Type' %}" autocomplete="off">
+                <!-- <input type="text" name="seekingRelationship" id="id_seekingRelationship" placeholder="{% trans 'Enter Your Seeking Realtionship Type' %}" autocomplete="off"> -->
+				{{form.seekingRelationship}}
 				{% endif %}
             </div>
-			<div class="mb-3">
-				{% if user.profile.hobbyList %}
-				<textarea class="form-control" name="hobbyList" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_hobbyList" value="{{ user.profile.hobbyList }}" placeholder="{% trans 'Enter Your List of hobbies' %}" "></textarea>
-				{% else %}
-				<textarea class="form-control" name="hobbyList" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_hobbyList" placeholder="{% trans 'Enter Your List of hobbies' %}" "></textarea>
-				{% endif %}
-            </div>
-            <div class="input-group mb-3">
-				<div class="input-group-prepend">
-				  <label class="input-group-text" for="id_sex">{% trans "I'm a" %}</label>
-				</div>
-				<select class="custom-select" name="gender" id="id_gender">
-					{% if user.profile.gender == "M" %}
-					<option value="M" selected="selected">{% trans 'Male' %}</option>
-					<option value="F">{% trans 'Female' %}</option>
-					{% else %}
-					<option value="M">{% trans 'Male' %}</option>
-					<option value="F" selected="selected">{% trans 'Female' %}</option>
-					{% endif %}
-				</select>
-			  </div>
-			  <div class="input-group mb-3">
-				<div class="input-group-prepend">
-				  <label class="input-group-text" for="id_seeking">{% trans 'Looking for' %}</label>
-				</div>
-				<select class="custom-select" name="seeking" id="id_seeking">
-					{% if user.profile.seeking == "M" %}
-					<option value="M" selected="selected">{% trans 'Male' %}</option>
-					<option value="F">{% trans 'Female' %}</option>
-					{% else %}
-					<option value="M">{% trans 'Male' %}</option>
-					<option value="F" selected="selected">{% trans 'Female' %}</option>
-					{% endif %}
-				</select>
-			  </div>
         <div class="form-footer d-flex">
 			<a href="{% url 'user_app:sign_up_step_one' %}" class="previous">{% trans 'Back' %}</a>
             <button type="submit">{% trans 'Next' %}</button>

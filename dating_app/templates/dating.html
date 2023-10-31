@@ -78,15 +78,14 @@ h4 {
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="justify-content-center d-flex alignt-content-center">
                             {% if card.id in saved_to_favorite %}
-                            <a href="{% url 'dating_app:favorite_add' card.id %}"><span><i class="fas fa-heart fa-bg-success fa-1x"></i></span></a>
+                            <a href=""><span><i class="fas fa-heart fa-bg-success fa-1x"></i></span></a>
                             {% else %}
-                            <a href="{% url 'dating_app:favorite_add' card.id %}"><span><i class="fas fa-heart fa-1x"></i></span></a>
+                            <a href=""><span><i class="fas fa-heart fa-1x"></i></span></a>
                             {% endif %}
                         </div>
                       </div>
                     <a href="{% url 'dating_app:partner_account' card.id %}"><button type="button" class="btn btn-success mt-3 btn-rounded waves-effect w-md waves-light">View</button></a>
                     <div class="mt-4">
-  
                     </div>
                 </div>
             </div>

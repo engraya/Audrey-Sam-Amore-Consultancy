@@ -3,10 +3,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from .forms import UserUpdateForm, ProfileUpdateForm, SignUpStepOneForm, SignUpStepTwoForm, SignUpStepThreeForm, AdminRegistrationForm, AdminLoginForm, ClientLoginForm
+from .forms import UserUpdateForm, ProfileUpdateForm, SignUpStepOneForm, SignUpStepTwoForm, SignUpStepThreeForm, AdminRegistrationForm, AdminLoginForm, ClientLoginForm, ClientRegistrationForm
 from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
-from dating_app.models import Favorite
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
@@ -53,38 +52,18 @@ def admin_signup(request):
 
 
 def client_signup(request):
-	error_contex = []
-	if request.method == 'GET':
-		context = {'form': UserCreationForm}
-		return render(request, 'sign_up.html', context)
+	if request.method == 'POST':
+		form = ClientRegistrationForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			my_client_group = Group.objects.get_or_create(name='CLIENT')
+			my_client_group[0].user_set.add(user)
+			login(request, user)
+			return redirect('user_app:sign_up_step_one')
 	else:
-		if not(request.POST['username']):
-			error_contex.append('Login can\'t be empty')
-		elif not(request.POST['password1']):
-			error_contex.append('Password can\'t be empty')
-		elif not(request.POST['password2']):
-			error_contex.append('Confirm Password can\'t be empty')
-		elif request.POST['password1'] != request.POST['password2']:
-			error_contex.append('Password did not match')
-		elif len(request.POST['password1']) < 8:
-			error_contex.append('Password less then 8 characters')
-		elif str(request.POST['username']).lower() in ['admin', 'админ', 'аdmin', 'god', 'administrator', 'аdministrator', 'аdministrаtor']:
-			error_contex.append('This login can\'t be taken')
-		else:
-			try:
-				user = User.objects.create_user(username = request.POST['username'], password=request.POST['password1'])
-				user.save()
-				my_client_group = Group.objects.get_or_create(name='CLIENT')
-				my_client_group[0].user_set.add(user)
-				if user is not None:
-					if user.groups.filter(name='CLIENT').exists():
-						login(request, user)
-						return redirect('user_app:sign_up_step_one')
-			except IntegrityError:
-				error_contex.append('That username has already been taken')
-				return render(request, 'sign_up.html', {'form': UserCreationForm(), 'error_contex': error_contex})	
-		return render(request, 'user_app/sign_up.html', {'form': UserCreationForm(), 'error_contex': error_contex})
-
+		form = ClientRegistrationForm()	
+		context = {'form': form}
+		return render(request, 'sign_up.html', context)	
 
 
 
@@ -161,7 +140,7 @@ def logout_user(request):
 
 @login_required
 def user_account(request):
-	profile = Profile.objects.get(pk=request.user.pk)
+	profile = Profile.objects.get_or_create(pk=request.user.pk)
 	if profile.about:
 		if request.method == 'POST':
 			u_form = UserUpdateForm(request.POST, instance=request.user)
@@ -187,31 +166,16 @@ def user_account(request):
 @login_required
 def sign_up_step_one(request):
 	if request.method == 'POST':
-		step_one_form = SignUpStepOneForm(request.POST,
-									request.FILES,
-									instance=request.user.profile)
-		if not(request.POST['first_name']):
-			return render(request, 'sign_up_step_one.html', {'error': 'First name can\'t be empty'})
-		if not(str(request.POST['first_name']).isalpha()):
-			return render(request, 'sign_up_step_one.html', {'error': 'First name can\'t have numbers'})
-		elif not(request.POST['last_name']):
-			return render(request, 'sign_up_step_one.html', {'error': 'Last name can\'t be empty'})
-		if not(str(request.POST['last_name']).isalpha()):
-			return render(request, 'sign_up_step_one.html', {'error': 'Last name can\'t have numbers'})
-		elif not(request.POST['age']):
-			return render(request, 'sign_up_step_one.html', {'error': 'Age can\'t be empty'})
-		elif int(request.POST['age']) < 18:
-			return render(request, 'user_app/sign_up_step_one.html', {'error': 'Your age must be at least 18 years old'})
-		elif not str(request.POST['age']).isnumeric():
-				return render(request, 'sign_up_step_one.html', {'error':'Uncorrect age field'})
-		else:
+		step_one_form = SignUpStepOneForm(request.POST,request.FILES,instance=request.user.profile)
+		if step_one_form.is_valid():
 			step_one_form.save()
-			return redirect('user_app:sign_up_step_two')
+			
+		return redirect('user_app:sign_up_step_two')
 	else:
 		step_one_form = SignUpStepOneForm(instance=request.user.profile)
 
 	context = {
-		'step_one_form': step_one_form,
+		'form': step_one_form,
 	}
 	return render(request, 'sign_up_step_one.html', context)
 
@@ -219,26 +183,20 @@ def sign_up_step_one(request):
 
 @login_required
 def sign_up_step_two(request):
-	profile = Profile.objects.get(pk=request.user.pk)
-	if profile.first_name and profile.last_name and profile.age:
+	profile = Profile.objects.get(user_id=request.user.id)
+	if profile.dateOfBirth and profile.relationshipStatus and profile.age:
 		if request.method == 'POST':
-			step_two_form = SignUpStepTwoForm(request.POST,
-										request.FILES,
-										instance=request.user.profile)
-			if not(request.POST['city']):
-				return render(request, 'sign_up_step_two.html', {'error': 'Location can\'t be empty'})
-			elif request.POST['gender'] not in ['M', 'F']:
-					return render(request, 'sign_up_step_two.html', {'error': 'Choose correct gender field'})
-			elif request.POST['seeking'] not in ['M', 'F']:
-					return render(request, 'sign_up_step_two.html', {'error': 'Choose correct seeking field'})
-			else:
+			step_two_form = SignUpStepTwoForm(request.POST,request.FILES,instance=request.user.profile)
+			if step_two_form.is_valid():
 				step_two_form.save()
-				return redirect('user_app:sign_up_step_three')
+				profile.user = request.user
+				profile.save()
+			return redirect('user_app:sign_up_step_three')
 		else:
 			step_two_form = SignUpStepTwoForm(instance=request.user.profile)
 
 		context = {
-			'step_two_form': step_two_form,
+			'form': step_two_form,
 		}
 		return render(request, 'sign_up_step_two.html', context)
 	return redirect('user_app:sign_up_step_one')
@@ -246,12 +204,10 @@ def sign_up_step_two(request):
 
 @login_required
 def sign_up_step_three(request):
-	profile = Profile.objects.get(pk=request.user.pk)
-	if profile.city and profile.gender and profile.seeking:
+	profile = Profile.objects.get(user_id=request.user.id)
+	if profile.city and profile.gender and profile.country and profile.state and profile.kidsStatus and profile.partnerPreference and profile.complexion and profile.seeking:
 		if request.method == 'POST':
-			step_three_form = SignUpStepThreeForm(request.POST,
-										request.FILES,
-										instance=request.user.profile)
+			step_three_form = SignUpStepThreeForm(request.POST,request.FILES,instance=request.user.profile)
 			if not(request.POST['about']):
 				return render(request, 'user_app/sign_up_step_three.html', {'error': 'About field can\'t be empty'})
 			else:
@@ -260,12 +216,11 @@ def sign_up_step_three(request):
 					return redirect('dating_app:dating')
 				except ValueError:
 					return render(request, 'user_app/sign_up_step_three.html', {'error': 'File is too large, requirement is less than 2.5 MB'})
-
 		else:
 			step_three_form = SignUpStepThreeForm(instance=request.user.profile)
 
 		context = {
-			'step_three_form': step_three_form,
+			'form': step_three_form,
 		}
 		return render(request, 'sign_up_step_three.html', context)
 	return redirect('user_app:sign_up_step_two')
