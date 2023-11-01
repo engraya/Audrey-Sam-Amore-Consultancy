@@ -26,14 +26,7 @@
                 {{form.age}}
                 {% endif %}
             </div>
-            <div class="mb-3">
-                {% if user.profile.dateOfBirth %}
-                <input type="date" name="dateOfBirth" value="{{ user.profile.dateOfBirth }}" id="id_dateOfBirth"  autocomplete="off">
-                {% else %}
-                <!-- <input type="date" name="dateOfBirth" placeholder="{% trans 'Enter your Date of Birth' %}" id="id_dateOfBirth"  autocomplete="off"> -->
-                {{form.dateOfBirth}}
-                {% endif %}
-            </div>
+ 
             <div class="mb-3">
                 {% if user.profile.relationshipStatus %}
                 <input type="text" name="relationshipStatus" value="{{ user.profile.relationshipStatus }}" id="id_relationshipStatus"  autocomplete="off">

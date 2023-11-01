@@ -53,7 +53,6 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='clear.png', upload_to=user_directory_path, blank=True, validators=[validate_file_size])
     age = models.PositiveIntegerField(null=True, blank=True)
-    dateOfBirth = models.DateField(auto_now=False, auto_now_add=False ,null=True, blank=True)
     relationshipStatus = models.CharField(max_length=20, choices=RelationshipStatus_CHOICES, blank=True, null=True)
     kidsStatus = models.CharField(max_length=20, choices=KidsStatus_CHOICES, null=True, blank=True)
     hobbyList = models.CharField(max_length=200, blank=True, null=True)

@@ -11,54 +11,31 @@ import random
 
 @login_required
 def dating(request):
-	profile = Profile.objects.get(pk=request.user.pk)
+	profile = Profile.objects.get(user_id=request.user.id)
 	if profile.about:
 		query = request.GET.get("q", default = "")
 		gender = request.GET.get('gender', default = "ALL")
 		if gender == 'ALL':
 			gender = ['M', 'F']
 		
-		profiles_list = Profile.objects.filter(
-				Q(first_name__icontains=query) | Q(last_name__icontains=query), gender__in=gender
-			).exclude(id=request.user.id)
+		profiles_list = Profile.objects.all()
 
 		context = get_pogination(request, profiles_list, 10)
-		# if profiles_list:
-		# 	context.update({'query': f'We found {len(profiles_list)} people with name "{query}"'})
-		# 	context.update({'saved_to_favorite': Favorite.objects.values_list('saved', flat=True)})
-		# 	context.update({'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
-		# else:
-		# 	context.update({'query': f'There are no people with name "{query}"'})
 		return render(request, 'dating.html', context)
 	return redirect('user_app:sign_up_step_three')
 
 
-# def favorite_add(request, user_id):
-# 	saved = User.objects.get(id=user_id)
-# 	favorites = Favorite.objects.filter(user=request.user, saved=saved)
-
-# 	if not favorites.exists():
-# 		Favorite.objects.create(user=request.user, saved=saved)
-# 	else:
-# 		favorite = favorites.first()
-# 		favorite.delete()
-# 	return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
-
-
 @login_required
 def partner_account(request, user_id):
-	profile = Profile.objects.get(pk=request.user.pk)
+	profile = Profile.objects.get(pk=user_id)
 	if profile.about:
-		
 		partner_account = get_object_or_404(User, pk=user_id)
 		return render(request, 'partner_account.html', {'partner_account':partner_account, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 	return redirect('user_app:sign_up_step_three')
 
 @login_required
 def home(request):
-	profile = Profile.objects.get(pk=request.user.pk)
+	profile = Profile.objects.get(user_id=request.user.id)
 	if profile.about:
 		return redirect('dating_app:dating')
 	return redirect('user_app:sign_up_step_three')
@@ -83,17 +60,6 @@ def get_pogination(request, profiles_list, objects_num):
 		'page_range': page_range
 	}
 	return context
-
-
-# def random_card(request):
-# 	profile = Profile.objects.get(pk=request.user.pk)
-# 	card_list = list(Profile.objects.filter(gender__in=str(profile.seeking)
-# 			).exclude(id=request.user.id))
-# 	if card_list:
-# 		random_card = random.sample(card_list, 1)
-# 	else:
-# 		random_card = None
-# 	return render(request, 'random_card.html', {'random_card':random_card, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
 
 
 def is_admin(user):

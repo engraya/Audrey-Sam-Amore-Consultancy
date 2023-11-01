@@ -140,8 +140,8 @@ def logout_user(request):
 
 @login_required
 def user_account(request):
-	profile = Profile.objects.get_or_create(pk=request.user.pk)
-	if profile.about:
+	profile = Profile.objects.get_or_create(user_id=request.user.id)
+	if request.user.profile.about:
 		if request.method == 'POST':
 			u_form = UserUpdateForm(request.POST, instance=request.user)
 			p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
@@ -156,6 +156,7 @@ def user_account(request):
 		context = {
 			'u_form': u_form,
 			'p_form': p_form,
+			'profile' : profile,
 		}
 
 		return render(request, 'user_account.html', context)
@@ -172,7 +173,7 @@ def sign_up_step_one(request):
 			
 		return redirect('user_app:sign_up_step_two')
 	else:
-		step_one_form = SignUpStepOneForm(instance=request.user.profile)
+		step_one_form = SignUpStepOneForm()
 
 	context = {
 		'form': step_one_form,
@@ -184,16 +185,16 @@ def sign_up_step_one(request):
 @login_required
 def sign_up_step_two(request):
 	profile = Profile.objects.get(user_id=request.user.id)
-	if profile.dateOfBirth and profile.relationshipStatus and profile.age:
+	if profile.relationshipStatus and profile.age:
 		if request.method == 'POST':
-			step_two_form = SignUpStepTwoForm(request.POST,request.FILES,instance=request.user.profile)
+			step_two_form = SignUpStepTwoForm(request.POST,request.FILES,instance=profile)
 			if step_two_form.is_valid():
 				step_two_form.save()
 				profile.user = request.user
 				profile.save()
 			return redirect('user_app:sign_up_step_three')
 		else:
-			step_two_form = SignUpStepTwoForm(instance=request.user.profile)
+			step_two_form = SignUpStepTwoForm()
 
 		context = {
 			'form': step_two_form,
@@ -205,7 +206,7 @@ def sign_up_step_two(request):
 @login_required
 def sign_up_step_three(request):
 	profile = Profile.objects.get(user_id=request.user.id)
-	if profile.city and profile.gender and profile.country and profile.state and profile.kidsStatus and profile.partnerPreference and profile.complexion and profile.seeking:
+	if profile.city and profile.country and profile.state and profile.kidsStatus and profile.partnerPreference and profile.complexion and profile.seekingRelationship:
 		if request.method == 'POST':
 			step_three_form = SignUpStepThreeForm(request.POST,request.FILES,instance=request.user.profile)
 			if not(request.POST['about']):

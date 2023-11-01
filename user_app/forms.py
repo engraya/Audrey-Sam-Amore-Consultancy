@@ -89,7 +89,6 @@ class ProfileUpdateForm(forms.ModelForm):
         self.fields['about'].widget.attrs.update({'class' : 'form-control'})
         self.fields['state'].widget.attrs.update({'class' : 'form-control'})
         self.fields['city'].widget.attrs.update({'class' : 'form-control'})
-        self.fields['dateOfBirth'].widget.attrs.update({'class' : 'form-control'})
         self.fields['relationshipStatus'].widget.attrs.update({'class' : 'form-control'})
         self.fields['kidsStatus'].widget.attrs.update({'class' : 'form-control'})
         self.fields['hobbyList'].widget.attrs.update({'class' : 'form-control'})
@@ -100,20 +99,19 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['profile_pic','age', 'gender', 'seeking', 'about', 'state', 'city', 'dateOfBirth', 'relationshipStatus', 'kidsStatus', 'hobbyList', 'partnerPreference', 'complexion', 'seekingRelationship', 'country']
+        fields = ['profile_pic','age', 'gender', 'seeking', 'about', 'state', 'city', 'relationshipStatus', 'kidsStatus', 'hobbyList', 'partnerPreference', 'complexion', 'seekingRelationship', 'country']
 
 class SignUpStepOneForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['age'].widget.attrs.update({'class' : 'input100','placeholder' : 'Enter your age'})
-        self.fields['dateOfBirth'].widget.attrs.update({'class' : 'input100'})
         self.fields['relationshipStatus'].widget.attrs.update({'class' : 'form-control'})
         
    
 
     class Meta:
         model = Profile
-        fields = ['dateOfBirth', 'age', 'relationshipStatus']
+        fields = ['age', 'relationshipStatus']
 
 class SignUpStepTwoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -127,13 +125,18 @@ class SignUpStepTwoForm(forms.ModelForm):
         self.fields['seekingRelationship'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Select Seeking Realtionship'})
     class Meta:
         model = Profile
-        fields = ['country', 'state','city', 'gender', 'seeking', 'kidsStatus', 'partnerPreference', 'complexion', 'seekingRelationship']
+        fields = ['country', 'state','city', 'kidsStatus', 'partnerPreference', 'complexion', 'seekingRelationship']
 
 
 class SignUpStepThreeForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['profile_pic'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['hobbyList'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Hobby List'})
+        self.fields['about'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'About'})
     class Meta:
         model = Profile
-        fields = ['profile_pic', 'hobbyList', 'about', 'seekingRelationship']
+        fields = ['profile_pic', 'hobbyList', 'about']
 
 
 
