@@ -76,9 +76,11 @@ class UserUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['first_name'].widget.attrs.update({'class' : 'form-control'})
+        self.fields['last_name'].widget.attrs.update({'class' : 'form-control'})
     class Meta:
         model = User
-        fields = ['username']
+        fields = ['first_name', 'last_name', 'username']
 
 
 class ProfileUpdateForm(forms.ModelForm):

@@ -12,7 +12,7 @@ import random
 @login_required
 def dating(request):
 	profile = Profile.objects.get(user_id=request.user.id)
-	if profile.about:
+	if profile:
 		query = request.GET.get("q", default = "")
 		gender = request.GET.get('gender', default = "ALL")
 		if gender == 'ALL':
@@ -35,8 +35,8 @@ def partner_account(request, user_id):
 
 @login_required
 def home(request):
-	profile = Profile.objects.get(user_id=request.user.id)
-	if profile.about:
+	profile = Profile.objects.get_or_create(user_id=request.user.id)
+	if profile:
 		return redirect('dating_app:dating')
 	return redirect('user_app:sign_up_step_three')
 
@@ -342,7 +342,7 @@ def client_messages_view(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_view_messages_view(request):
-	messages = Message.objects.all().filter(sender__groups__name='ADMIN')
+	messages = Message.objects.all().filter(sender__groups__name='ADMIN', recipient=request.user)
 	context = {'messages' : messages}
 	return render(request, 'client_view_messages.html', context)
 
@@ -351,7 +351,7 @@ def client_view_messages_view(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_read_messages_view(request):
-    messages = Message.objects.all().filter(sender__groups__name='ADMIN')
+    messages = Message.objects.all().filter(sender__groups__name='ADMIN', recipient=request.user)
     context = {'messages':messages}
     return render(request,'client_read_messages.html', context)
 

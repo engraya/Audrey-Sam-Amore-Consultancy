@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from .forms import UserUpdateForm, ProfileUpdateForm, SignUpStepOneForm, SignUpStepTwoForm, SignUpStepThreeForm, AdminRegistrationForm, AdminLoginForm, ClientLoginForm, ClientRegistrationForm
-from django.contrib.auth.forms import UserCreationForm
 from .models import Profile
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect

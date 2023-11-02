@@ -67,7 +67,7 @@ h4 {
                 <div class="member-card pt-2 pb-2">
                     <div class="thumb-lg member-thumb mx-auto"><a href="{% url 'dating_app:partner_account' card.id %}"><img src="{{ card.profile_pic.url }}" class="rounded-circle img-thumbnail" alt="profile-image"></a></div>
                     <div class="">
-                        <h4><strong>{{ card.first_name }} {{ card.last_name }}</strong></h4>
+                        <h4><strong>{{ account.profile.user }} {{ card.last_name }}</strong></h4>
                         <p class="text-muted">@User Profession</p>
                         <p class="text-muted"> <span><i class="fas fa-location"></i>{{ card.city }}, {{ card.state }}</span></p>
                         <span><a href="#" class="text-dark">{{ card.gender }}</a></span><br>
