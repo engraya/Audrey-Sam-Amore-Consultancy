@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <title></title>
   <style media="screen">
     .market-update-block {
       padding: 2em 2em;
@@ -150,12 +145,6 @@
       background-color: #1f8997;
     }
   </style>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
 
 <div class="container pt-5 mt-5">
   <div class="container">
@@ -164,8 +153,8 @@
             <div class="card order-card">
                 <div class="card-block">
                     <h5 class="m-b-20 text-white">Total Appointments</h5>
-                    <h2 class="text-right text-white"><i class="fas fa-book text-white f-left"></i><span>486</span></h2>
-                    <p class="m-b-0 text-white">{{consultantName}}<span class="f-right">351</span></p>
+                    <h2 class="text-right text-white"><i class="fas fa-book text-white f-left"></i><span>{{appointmentcount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Appointments<span class="f-right">{{pendingappointmentcount}}</span></p>
                 </div>
             </div>
         </div>
@@ -174,8 +163,8 @@
             <div class="card order-card">
                 <div class="card-block">
                     <h5 class="m-b-20 text-white">Total Messages</h5>
-                    <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span>486</span></h2>
-                    <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right">351</span></p>
+                    <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span>{{messagescount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Messages<span class="f-right">{{pendingmessagescount}}</span></p>
                 </div>
             </div>
         </div>
@@ -183,9 +172,9 @@
         <div class="col-md-3 col-xl-3">
           <div class="card order-card">
               <div class="card-block">
-                  <h5 class="m-b-20 text-white"> <a href="https://api.whatsapp.com/send?phone={{doctorMobile}}" target="_blank" class="text-white">Video Chat With Consultant</a></h5>
-                  <h2 class="text-right text-white"><i class="fa fa-whatsapp f-left text-white"></i><span>486</span></h2>
-                  <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right">351</span></p>
+                  <h5 class="m-b-20 text-white"> <a href="https://api.whatsapp.com/send?phone={{consultantMobile}}" target="_blank" class="text-white">Video Chat With Consultant</a></h5>
+                  <h2 class="text-right text-white"><i class="fa fa-whatsapp f-left text-white"></i><span></span></h2>
+                  <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right"></span></p>
               </div>
           </div>
       </div>
@@ -197,9 +186,6 @@
 </div>
 
 
-</body>
-
-</html>
 
 
 

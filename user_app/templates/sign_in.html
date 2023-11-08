@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-<div class="limiter pt-3 mt-3">
+<div class="limiter pt-4 mt-4">
 	<div class="container-login100">
 		<div class="wrap-login100">
 			<div class="login100-pic js-tilt" data-tilt>
@@ -13,7 +13,7 @@
 			<form class="login100-form validate-form" method="POST">
 				{% csrf_token %}
 				<span class="login100-form-title">
-					Member Login
+					Client Login
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -40,7 +40,7 @@
 						Login
 					</button>
 				</div>
-
+<!-- 
 				<div class="text-center p-t-12">
 					<span class="txt1">
 						Forgot
@@ -48,7 +48,7 @@
 					<a class="txt2" href="#">
 						Username / Password?
 					</a>
-				</div>
+				</div> -->
 
 				<div class="text-center p-t-136">
 					<a class="txt2" href="/client_signup">
@@ -61,7 +61,7 @@
 	</div>
 </div>
 
-
+{% include "base/footer.html" %}
 {% endblock %}
 
 

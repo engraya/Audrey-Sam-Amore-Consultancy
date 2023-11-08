@@ -19,16 +19,20 @@
 		  </div>
             <p class="text-center mb-4">{% trans 'STEP' %} 3/3</p>
             <div class="text-center">
-				<img src="{{ user.profile.profile_pic.url }}" style="object-fit: cover; object-position: center; height: 200px; width: 200px; margin-bottom: 20px;" class="rounded-circle">
+				
+				<img src="{{ user.profile.profile_pic.url }}" style="object-fit: cover; object-position: center; height: 100px; width: 100px; margin-bottom: 20px;" class="rounded-circle">
 				</div>
 				<div class="profile-pic text-center">
+					<label for="profile_pic" class="float-left">Profile Picture</label>
 				  <!-- <input type="file" name="profile_pic" id="id_profile_pic"> -->
 				  {{form.profile_pic}}
 				</div>
 				<div class="mb-3 mt-2">
+					<label for="hobbyList" class="float-left">Hobby List</label>
 					<!-- <input type="text" name="hobbyList" id="id_hobby" placeholder="{% trans 'Your Hobby List' %}" autocomplete="off"> -->
 					{{form.hobbyList}}
 				</div>
+				<label for="about" class="float-left">About</label>
 				  <!-- <textarea class="form-control" name="about" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_about" placeholder="{% trans 'About you' %}"></textarea> -->
 				  {{form.about}}
         <div class="form-footer d-flex">

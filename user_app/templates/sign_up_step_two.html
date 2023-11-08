@@ -19,6 +19,7 @@
 		{% csrf_token %}
             <p class="text-center mb-4">{% trans 'STEP' %} 2/3</p>
             <div class="mb-3">
+				<label for="country" class="float-left">Country</label>
 				{% if user.profile.country %}
 				<input type="text" name="country" id="id_country" value="{{ user.profile.country }}" autocomplete="off">
 				{% else %}
@@ -27,6 +28,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="state" class="float-left">State</label>
 				{% if user.profile.state %}
 				<input type="text" name="state" id="id_state" value="{{ user.profile.state }}" autocomplete="off">
 				{% else %}
@@ -35,6 +37,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="city" class="float-left">City</label>
 				{% if user.profile.city %}
 				<input type="text" name="city" id="id_city" value="{{ user.profile.city }}" autocomplete="off">
 				{% else %}
@@ -43,6 +46,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="kidsStatus" class="float-left">Kids Status</label>
 				{% if user.profile.kidsStatus %}
 				<input type="text" name="kidsStatus" id="id_kidsStatus" value="{{ user.profile.kidsStatus }}" autocomplete="off">
 				{% else %}
@@ -51,6 +55,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="partnerPreference" class="float-left">Partner Preference</label>
 				{% if user.profile.partnerPreference %}
 				<input type="text" name="partnerPreference" id="id_partnerPreference" value="{{ user.profile.partnerPreference }}" autocomplete="off">
 				{% else %}
@@ -59,6 +64,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="complexion" class="float-left">Complexion</label>
 				{% if user.profile.complexion %}
 				<input type="text" name="complexion" id="id_complexion" value="{{ user.profile.complexion }}" autocomplete="off">
 				{% else %}
@@ -67,6 +73,7 @@
 				{% endif %}
             </div>
 			<div class="mb-3">
+				<label for="seekingRelationship" class="float-left">Seeking Relationship Type</label>
 				{% if user.profile.seekingRelationship %}
 				<input type="text" name="seekingRelationship" id="id_seekingRelationship" value="{{ user.profile.seekingRelationship }}" autocomplete="off">
 				{% else %}

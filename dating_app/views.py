@@ -18,7 +18,12 @@ def dating(request):
 		if gender == 'ALL':
 			gender = ['M', 'F']
 		
-		profiles_list = Profile.objects.all()
+		# profiles_list = Profile.objects.filter(
+		# 		Q(first_name__icontains=query) | Q(last_name__icontains=query), gender__in=gender
+		# ).exclude(user_id=request.user.id)
+
+	
+		profiles_list = Profile.objects.all().exclude(user_id=request.user.id)
 
 		context = get_pogination(request, profiles_list, 10)
 		return render(request, 'dating.html', context)
@@ -261,16 +266,16 @@ def admin_reply_messages_view(request):
 def client_dashboard_view(request):
 	appointments = Appointment.objects.all().filter(clientID=request.user.id)
 	messages = Message.objects.all().filter(senderID=request.user.id)
-	appointmentcount = Appointment.objects.all().filter(status=True).count()
-	pendingappointmentcount = Appointment.objects.all().filter(status=False)
-	messagescount = Message.objects.all().filter(status=True).count()
-	pendingmessagescount = Message.objects.all().filter(status=False).count()
+	appointmentcount = Appointment.objects.all().filter(client=request.user, status=True).count()
+	pendingappointmentcount = Appointment.objects.all().filter(client=request.user, status=False).count()
+	messagescount = Message.objects.all().filter(senderID=request.user.id, status=True).count()
+	pendingmessagescount = Message.objects.all().filter(sender=request.user, recipient=request.user, status=False).count()
 
 	context = {
 		'appointmentcount':appointmentcount,
 		'pendingappointmentcount':pendingappointmentcount,
 		'messagescount':messagescount,
-		'pendingmesssagescount':pendingmessagescount,
+		'pendingmessagescount':pendingmessagescount,
 		'appointments' : appointments,
 		'messages' : messages
 	}

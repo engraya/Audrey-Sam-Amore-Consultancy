@@ -67,9 +67,9 @@ h4 {
                 <div class="member-card pt-2 pb-2">
                     <div class="thumb-lg member-thumb mx-auto"><a href="{% url 'dating_app:partner_account' card.id %}"><img src="{{ card.profile_pic.url }}" class="rounded-circle img-thumbnail" alt="profile-image"></a></div>
                     <div class="">
-                        <h4><strong>{{ account.profile.user }} {{ card.last_name }}</strong></h4>
-                        <p class="text-muted">@User Profession</p>
-                        <p class="text-muted"> <span><i class="fas fa-location"></i>{{ card.city }}, {{ card.state }}</span></p>
+                        <h4><strong>{{ card.first_name }} {{ card.last_name }}</strong></h4>
+                        <p class="text-muted">{{ card.profession }}</p>
+                        <p class="text-muted"> <span><i class="fas fa-location"> </i>{{ card.state }}, {{ card.country.name }}</span></p>
                         <span><a href="#" class="text-dark">{{ card.gender }}</a></span><br>
                         <span><a href="#" class="text-pink">{{ card.age }}</a></span>
                    
@@ -99,7 +99,7 @@ h4 {
 <hr>
 <ul class="pagination justify-content-center flex-wrap mt-2 mb-4">
     {% if cards.has_previous %}
-        <li class="page-item"><a class="page-link" href="?q={{ request.GET.q }}&{% if sex %}sex={{ request.GET.sex }}{% else %}sex=ALL{% endif %}&page={{ cards.previous_page_number }}" style="color: #8538f7;">&laquo;</a></li>
+        <li class="page-item"><a class="page-link" href="?q={{ request.GET.q }}&{% if gender %}gender={{ request.GET.gender }}{% else %}gender=ALL{% endif %}&page={{ cards.previous_page_number }}" style="color: #8538f7;">&laquo;</a></li>
     {% else %}
         <li class="disabled page-item"><span class="page-link" style="color: green ; border: none;">&laquo;</span></li>
     {% endif %}
@@ -111,12 +111,12 @@ h4 {
             {% if i == cards.paginator.ELLIPSIS %}
                 <li class="page-item"><span class="page-link" style="color: green;">{{ i }}</span></li>
             {% else %}
-                <li class="page-item"><a class="page-link" style="color: green;" href="?q={{ request.GET.q }}&{% if sex %}sex={{ request.GET.sex }}{% else %}sex=ALL{% endif %}&page={{ i }}">{{ i }}</a></li>
+                <li class="page-item"><a class="page-link" style="color: green;" href="?q={{ request.GET.q }}&{% if gender %}gender={{ request.GET.gender }}{% else %}gender=ALL{% endif %}&page={{ i }}">{{ i }}</a></li>
             {% endif %}
         {% endif %}
     {% endfor %}
     {% if cards.has_next %}
-        <li class="page-item"><a class="page-link" style="color: green;" href="?q={{ request.GET.q }}&{% if sex %}sex={{ request.GET.sex }}{% else %}sex=ALL{% endif %}&page={{ cards.next_page_number }}">&raquo;</a></li>
+        <li class="page-item"><a class="page-link" style="color: green;" href="?q={{ request.GET.q }}&{% if gender %}gender={{ request.GET.gender }}{% else %}gender=ALL{% endif %}&page={{ cards.next_page_number }}">&raquo;</a></li>
     {% else %}
         <li class="disabled page-item"><span class="page-link" style="color: green; border: none;">&raquo;</span></li>
     {% endif %}

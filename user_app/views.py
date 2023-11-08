@@ -8,7 +8,7 @@ from .models import Profile
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-
+from django.contrib.auth.forms import AuthenticationForm
 
 def corePage(request):
 	return render(request, 'corePage.html')

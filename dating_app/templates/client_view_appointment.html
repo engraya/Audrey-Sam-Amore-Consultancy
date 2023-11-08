@@ -1,32 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-  <style media="screen">
-
-    h6 {
-      text-align: center;
-    }
-
-    
-    h4 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-    .container{
-      margin-top: 120px;
-    }
-  </style>
-</head>
-<div class="container" style="background-color: #149eca;">
-  <div class="panel panel-primary">
+  <div class="panel panel-primary pt-5 m-5">
     <div class="panel-heading">
       <h4 class="text-center text-white text-align-center">Your Appointments</h4>
     </div>
@@ -59,6 +35,6 @@
     </table>
     <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
   </div>
-</div>
+
 
 {% endblock content %}

@@ -2,38 +2,23 @@
 {% block content %}
 {%load static%}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-  <style media="screen">
-
-    h6 {
-      text-align: center;
-    }
-
-    .row {
-      margin: 100px;
-    }
-  </style>
-</head>
-<br><br>
-<div class="container pt-1 mt-1" style="background-color: #149eca;">
-  <div class="panel panel-primary">
+  <div class="panel panel-success m-5">
+    <h1 class="text-center">Clients</h1>
+    <a class="btn btn-sm btn-danger my-2" href="/dating/admin-dashboard">&larr;Back to Dashboard</a>
     <div class="panel-heading">
       <h4 class="text-center text-white">Available Clients</h4>
     </div>
-    <table class="table table-hover" id="dev-table">
+    <table class="table table-hover" >
       <thead>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
+          <th>Username</th>
           <th>Profile Picture</th>
           <th>Age</th>
           <th>Gender</th>
-          <th>Seeking</th>
           <th>Nationality</th>
+          <th>State</th>
           <th>City</th>
         </tr>
       </thead>
@@ -41,10 +26,11 @@
       <tr>
         <td> {{client.profile.first_name}}</td>
         <td> {{client.profile.last_name}}</td>
+        <td> {{client.username}}</td>
         <td> <img src="{{client.profile.profile_pic.url}}" class="rounded-circle" height="40px" width="40px" /></td>
         <td>{{client.profile.age}}</td>
         <td>{{client.profile.gender}}</td>
-        <td>{{client.profile.seeking}}</td>
+        <td>{{client.profile.country.name}}</td>
         <td>{{client.profile.state}}</td>
         <td>{{client.profile.city}}</td>
       </tr>
@@ -52,8 +38,5 @@
     </table>
  
   </div>
-  <a class="btn btn-sm btn-danger my-2" href="/dating/admin-dashboard">&larr;Back to Dashboard</a>
-</div>
-
 
 {% endblock content %}

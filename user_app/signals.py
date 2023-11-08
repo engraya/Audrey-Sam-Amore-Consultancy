@@ -1,7 +1,7 @@
-from django.db.models.signals import post_save # Импортируется сигнал post_save при создании пользователя
-from django.contrib.auth.models import User # Импортируется встроенная модель User, которая является отправителем
-from django.dispatch import receiver # Импорт приемника
-from .models import Profile # Модель профиля
+from django.db.models.signals import post_save 
+from django.contrib.auth.models import User 
+from django.dispatch import receiver 
+from .models import Profile 
 
 
 @receiver(post_save, sender=User)

@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-<div class="limiter">
+<div class="limiter mt-3 pt-3">
 	<div class="container-login100">
 		<div class="wrap-login100">
 			<div class="login100-pic js-tilt" data-tilt>
@@ -13,29 +13,9 @@
 			<form class="login100-form validate-form" method="POST">
 				{% csrf_token %}
 				<span class="login100-form-title">
-					Member Register
+					Client Register
 				</span>
 
-				<div class="wrap-input100 validate-input">
-					<!-- <input class="input100" type="text" id="first_name" name="first_name" placeholder="First Name"> -->
-					{{form.first_name}}
-					<span class="focus-input100"></span>
-					<span class="symbol-input100">
-						<i class="fa fa-user" aria-hidden="true"></i>
-					</span>
-				</div>
-
-				
-				<div class="wrap-input100 validate-input">
-					<!-- <input class="input100" type="text" id="last_name" name="last_name" placeholder="Last Name"> -->
-					{{form.last_name}}
-					<span class="focus-input100"></span>
-					<span class="symbol-input100">
-						<i class="fa fa-user" aria-hidden="true"></i>
-					</span>
-				</div>
-
-				
 				<div class="wrap-input100 validate-input">
 					<!-- <input class="input100" type="text" id="username" name="username" placeholder="Username"> -->
 					{{form.username}}
@@ -45,7 +25,7 @@
 					</span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Password is required">
+				<div class="wrap-input100 validate-input">
 					<!-- <input class="input100" id="password1" type="password" name="password1" placeholder="Password"> -->
 					{{form.password}}
 					<span class="focus-input100"></span>
@@ -71,7 +51,7 @@
 	</div>
 </div>
 
-
+{% include "base/footer.html" %}
 {% endblock %}
 
 

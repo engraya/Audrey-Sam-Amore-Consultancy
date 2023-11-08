@@ -35,33 +35,25 @@
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
           <h4>{% trans 'Relationship Status' %}</h4>
-          <p>{% trans 'Coming soon' %}</p>
+          <p>{{ partner_account.profile.relationshipStatus }} </p>
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans 'Seeking Preference' %}</h4>
-          <p>{% trans 'Coming soon' %}</p>
-        </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans 'Interests' %}</h4>
-          <p>{% trans 'Coming soon' %}</p>
+          <h4>{% trans 'Seeking Relationship' %}</h4>
+          <p>{{ partner_account.profile.seekingRelationship }} </p>
         </div>
       </div>
       <div class="col-sm-7" >
-        <div class="card p-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans 'Background and Location' %}</h4>
-          <p>{{ partner_account.profile.about }}</p>
-        </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans "Looking for" %}</h4>
-          <p>{{ partner_account.profile.seeking }} </p>
+          <h4>{% trans "Partner Preference" %}</h4>
+          <p>{{ partner_account.profile.partnerPreference }} </p>
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
           <h4>{% trans "Hobby List" %}</h4>
-          <p>{{ partner_account.profile.seeking }} </p>
+          <p>{{ partner_account.profile.hobbyList }} </p>
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans "Region and Complexion" %}</h4>
-          <p>{{ partner_account.profile.seeking }} </p>
+          <h4>{% trans "Complexion" %}</h4>
+          <p>{{ partner_account.profile.complexion }} </p>
         </div>
       </div>
     </div>
