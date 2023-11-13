@@ -8,7 +8,6 @@ from .models import Profile
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 
 def corePage(request):
 	return render(request, 'corePage.html')
@@ -114,8 +113,8 @@ def client_login(request):
 			if user is not None:
 				if user.groups.filter(name='CLIENT').exists():
 					login(request, user)
-					messages.info(request, 'You are now Loggged in as admin')
-					return redirect('dating_app:dating')
+					messages.info(request, 'You are now Loggged in as client')
+					return redirect('dating_app:clientPage')
 			else:
 				messages.error(request, "Invalid Username or Password, Try agin later!")
 		else:
@@ -123,7 +122,7 @@ def client_login(request):
 
 	form = ClientLoginForm()
 	context = {'form' : form}
-	return render(request, 'sign_in.html', context)
+	return render(request, 'client_sign_in.html', context)
 
 
 		

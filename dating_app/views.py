@@ -22,8 +22,10 @@ def dating(request):
 		# 		Q(first_name__icontains=query) | Q(last_name__icontains=query), gender__in=gender
 		# ).exclude(user_id=request.user.id)
 
+		clientGroup = Group.objects.get(name='CLIENT')
+
 	
-		profiles_list = Profile.objects.all().exclude(user_id=request.user.id)
+		profiles_list = Profile.objects.filter(user__groups=clientGroup).exclude(user_id=request.user.id)
 
 		context = get_pogination(request, profiles_list, 10)
 		return render(request, 'dating.html', context)
@@ -33,9 +35,10 @@ def dating(request):
 @login_required
 def partner_account(request, user_id):
 	profile = Profile.objects.get(pk=user_id)
-	if profile.about:
+	if profile.age:
 		partner_account = get_object_or_404(User, pk=user_id)
-		return render(request, 'partner_account.html', {'partner_account':partner_account, 'favorites': Favorite.objects.filter(user=request.user).order_by('-saved_date')})
+		context = {'partner_account':partner_account}
+		return render(request, 'partner_account.html', context)
 	return redirect('user_app:sign_up_step_three')
 
 @login_required
@@ -260,6 +263,12 @@ def admin_reply_messages_view(request):
 
 
 #-----------------CLIENT VIEW STARTS HERE----------------------------------------------------------------#####
+
+
+@login_required(login_url='clientlogin')
+@user_passes_test(is_client)
+def clientPage(request):
+	return render(request, 'client_dashboard.html')
 
 @login_required(login_url='client_login')
 @user_passes_test(is_client)

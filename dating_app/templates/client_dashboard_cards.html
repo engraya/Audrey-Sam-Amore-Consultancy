@@ -142,43 +142,43 @@
       padding: 0px;
     }
     .order-card {
-      background-color: #1f8997;
+      background-color: #48b6c5;
+      padding : 12px;
     }
   </style>
 
-<div class="container pt-5 mt-5">
-  <div class="container">
+<div class="container pt-5 mt-5 mb-3">
+  <div class="container mb-3">
     <div class="row">
         <div class="col-md-3 col-xl-3">
-            <div class="card order-card">
+            <div class="card order-card mb-3">
                 <div class="card-block">
                     <h5 class="m-b-20 text-white">Total Appointments</h5>
                     <h2 class="text-right text-white"><i class="fas fa-book text-white f-left"></i><span>{{appointmentcount}}</span></h2>
-                    <p class="m-b-0 text-white">Pending Appointments<span class="f-right">{{pendingappointmentcount}}</span></p>
+                    <p class="m-b-0 text-white">Pending Appointments<span class="text f-left">{{pendingappointmentcount}}</span></p>
                 </div>
             </div>
         </div>
         
         <div class="col-md-3 col-xl-3">
-            <div class="card order-card">
+            <div class="card order-card mb-3">
                 <div class="card-block">
                     <h5 class="m-b-20 text-white">Total Messages</h5>
                     <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span>{{messagescount}}</span></h2>
-                    <p class="m-b-0 text-white">Pending Messages<span class="f-right">{{pendingmessagescount}}</span></p>
+                    <p class="m-b-0 text-white">Pending Messages<span class="f-left">{{pendingmessagescount}}</span></p>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3 col-xl-3">
-          <div class="card order-card">
+          <div class="card order-card mb-3">
               <div class="card-block">
-                  <h5 class="m-b-20 text-white"> <a href="https://api.whatsapp.com/send?phone={{consultantMobile}}" target="_blank" class="text-white">Video Chat With Consultant</a></h5>
+                  <h5 class="m-b-20 text-white"> <a href="#" class="text-white">Video Chat With Consultant</a></h5>
                   <h2 class="text-right text-white"><i class="fa fa-whatsapp f-left text-white"></i><span></span></h2>
                   <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right"></span></p>
               </div>
           </div>
       </div>
-
 
 	</div>
 

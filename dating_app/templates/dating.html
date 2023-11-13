@@ -56,13 +56,20 @@ h4 {
 
 <div class="album">
     <div class="container align-items-center">
-      {% include 'search_bar.html' %}
+      <!-- {% include 'search_bar.html' %} -->
       <hr>
+      <div class="container mt-5">
+        <h2 class="text-dark text-center">All Users</h2>
+    </div>
       <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
 		{% if cards %}
+
 		{% for card in cards %}
                     <!-- end col -->
-          <div class="col-lg-3">
+                
+
+          <div class="col-lg-3 mt-5">
+     
             <div class="text-center card-box" style="border-radius:20px; shadow:2px">
                 <div class="member-card pt-2 pb-2">
                     <div class="thumb-lg member-thumb mx-auto"><a href="{% url 'dating_app:partner_account' card.id %}"><img src="{{ card.profile_pic.url }}" class="rounded-circle img-thumbnail" alt="profile-image"></a></div>
@@ -77,11 +84,6 @@ h4 {
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="justify-content-center d-flex alignt-content-center">
-                            {% if card.id in saved_to_favorite %}
-                            <a href=""><span><i class="fas fa-heart fa-bg-success fa-1x"></i></span></a>
-                            {% else %}
-                            <a href=""><span><i class="fas fa-heart fa-1x"></i></span></a>
-                            {% endif %}
                         </div>
                       </div>
                     <a href="{% url 'dating_app:partner_account' card.id %}"><button type="button" class="btn btn-success mt-3 btn-rounded waves-effect w-md waves-light">View</button></a>

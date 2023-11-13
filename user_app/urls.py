@@ -9,14 +9,13 @@ urlpatterns = [
     path('admin_signup/', views.admin_signup, name='admin_signup'),
     
 	path('admin_sign_in', views.admin_login, name='admin_sign_in'),
-
+	path('client_sign_in', views.client_login, name='client_sign_in'),
     path('adminclick', views.adminclick_view, name='adminclick'),
     path('clientclick', views.clientclick_view, name='clientclick'),
     
 	path('afterlogin', views.afterlogin_view,name='afterlogin'),
     
-    
-	path('client_login/', views.client_login, name='client_login'),
+
 	path('logout/', views.logout_user, name='logout_user'),
     
 

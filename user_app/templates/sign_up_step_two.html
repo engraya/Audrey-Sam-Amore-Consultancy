@@ -81,9 +81,9 @@
 				{{form.seekingRelationship}}
 				{% endif %}
             </div>
-        <div class="form-footer d-flex">
-			<a href="{% url 'user_app:sign_up_step_one' %}" class="previous">{% trans 'Back' %}</a>
-            <button type="submit">{% trans 'Next' %}</button>
+        <div class="">
+			<a href="{% url 'user_app:sign_up_step_one' %}" class="previous btn btn-danger mx-4">{% trans 'Back' %}</a>
+            <button type="submit" class="btn btn-success mx-4">{% trans 'Next' %}</button>
         </div>
     </form>
 </div>

@@ -35,9 +35,9 @@
 				<label for="about" class="float-left">About</label>
 				  <!-- <textarea class="form-control" name="about" cols="40" rows="10" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" id="id_about" placeholder="{% trans 'About you' %}"></textarea> -->
 				  {{form.about}}
-        <div class="form-footer d-flex">
-			<a href="{% url 'user_app:sign_up_step_two' %}" class="previous">{% trans 'Previous' %}</a>
-            <button type="submit">{% trans 'Done' %}</button>
+        <div class="container m-3">
+			<a href="{% url 'user_app:sign_up_step_two' %}" class="previous btn btn-danger mx-3">{% trans 'Back' %}</a>
+            <button type="submit" class="btn btn-success mx-3">{% trans 'Submit' %}</button>
         </div>
     </form>
 </div>
