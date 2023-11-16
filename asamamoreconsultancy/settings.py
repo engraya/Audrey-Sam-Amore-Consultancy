@@ -26,10 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 'django_extensions',
-
-    'dbbackup',  # django-dbbackup
-
     # Apps
     'chat_app',
     'dating_app',
