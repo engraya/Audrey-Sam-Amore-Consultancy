@@ -18,8 +18,6 @@ if os.path.isfile(dotenv_file):
 # Application definition
 
 INSTALLED_APPS = [
-    'django_crontab',
-    # 'modeltranslation',
 
     'django.contrib.admin',
     'django.contrib.auth',
