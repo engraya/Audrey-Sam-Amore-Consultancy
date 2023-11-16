@@ -35,10 +35,6 @@ INSTALLED_APPS = [
     'django_countries'
 ]
 
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-DBBACKUP_STORAGE_OPTIONS = {'location': BASE_DIR / 'backup'}
-
-
 
 
 MIDDLEWARE = [
