@@ -4,56 +4,59 @@
 {% block content %}
   <link rel="stylesheet" href="{% static "styles/partner_account.css" %}">
  
-  <div class="container pt-5 mt-5">
+  <div class="container pt-4 mt-4">
     <a class="btn btn-sm btn-danger my-2" href="{% url 'dating_app:dating' %}">&larr;Back</a>
       <div class="row">
         <div class="col-12">
           <div class="card">
             <img class="card-img-top"  style="object-fit: cover; object-position: center;">
             <div class="card-body little-profile text-center">
-              <div class="pro-img"><img src="{{ partner_account.profile.profile_pic.url }}" style="width: 190px; height: 190px; object-fit: cover; object-position: center;"  alt="user"></div>
-              <h3 class="m-b-0">{{ partner_account.profile.user }} {{ partner_account.user.last_name }}<br> {{ partner_account.profile.age }}</h3>
-              <h3 class="m-b-0">{{ partner_account.profile.gender }}</h3><br>
+              <div class="pro-img"><img src="{{ profile.profile_pic.url }}" style="width: 180px; height: 180px; object-fit: cover; object-position: center;"  alt="user"></div>
+              <h3 class="m-b-0">{{ profile.first_name }} {{ profile.last_name }}<br> {{ profile.age }}</h3>
+              <h3 class="m-b-0">{{ profile.gender }}</h3><br>
               <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom: 5px;" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-              </svg> {{ partner_account.profile.city }}</p> <a href="{% url 'chat_app:inbox' partner_account %}" class="m-t-10 waves-effect waves-dark btn btn-sm btn-success bi-chat-fill btn-md btn-rounded" data-abc="true">{% trans 'Chat' %}</a>
+              </svg> {{ profile.city }}, {{profile.state}}</p>
+              <p>{{profile.country.name}}</p>
+              <br>
+               <a href="{% url 'chat_app:inbox' profile %}" class="m-t-2 waves-effect waves-dark btn btn-sm btn-success bi-chat-fill btn-md btn-rounded" data-abc="true">{% trans 'Chat' %}</a>
           </div>
           </div>
        </div>
     </div>
     <div class="row mt-3">
       <div class="col-sm-5">
-        <div class="card p-3" style="background-color: rgb(177, 219, 173);">
+        <div class="card p-3" style="background-color: rgb(213, 231, 212);">
           <h4>{% trans 'Bio' %}</h4>
           <div class="row">
             <div class="col-lg-6">
-              <p>{{ partner_account.profile.about }}</p>
+              <p>{{ profile.about }}</p>
             </div>
             <div class="col-lg-6">
               </div>
           </div>
         </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
+        <div class="card p-3 mt-3" style="background-color: rgb(220, 233, 218);">
           <h4>{% trans 'Relationship Status' %}</h4>
-          <p>{{ partner_account.profile.relationshipStatus }} </p>
+          <p>{{ profile.relationshipStatus }} </p>
         </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
+        <div class="card p-3 mt-3" style="background-color: rgb(222, 235, 221);">
           <h4>{% trans 'Seeking Relationship' %}</h4>
-          <p>{{ partner_account.profile.seekingRelationship }} </p>
+          <p>{{ profile.seekingRelationship }} </p>
         </div>
       </div>
       <div class="col-sm-7" >
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
           <h4>{% trans "Partner Preference" %}</h4>
-          <p>{{ partner_account.profile.partnerPreference }} </p>
+          <p>{{ profile.partnerPreference }} </p>
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
           <h4>{% trans "Hobby List" %}</h4>
-          <p>{{ partner_account.profile.hobbyList }} </p>
+          <p>{{ profile.hobbyList }} </p>
         </div>
         <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
           <h4>{% trans "Complexion" %}</h4>
-          <p>{{ partner_account.profile.complexion }} </p>
+          <p>{{ profile.complexion }} </p>
         </div>
       </div>
     </div>

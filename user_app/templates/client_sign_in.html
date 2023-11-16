@@ -10,13 +10,13 @@
 				<img src="{% static 'images/img-01.png' %}" alt="IMG">
 			</div>
 
-			<form class="login100-form validate-form" method="POST">
+			<form class="login100-form" method="POST">
 				{% csrf_token %}
 				<span class="login100-form-title">
 					Client Login
 				</span>
 
-				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+				<div class="wrap-input100">
 					<!-- <input class="input100" type="text" name="username" placeholder="Username"> -->
 					{{form.username}}
 					<span class="focus-input100"></span>
@@ -25,7 +25,7 @@
 					</span>
 				</div>
 
-				<div class="wrap-input100 validate-input" data-validate = "Password is required">
+				<div class="wrap-input100">
 					<!-- <input class="input100" type="password" name="pass" placeholder="Password"> -->
 					{{form.password}}
 			

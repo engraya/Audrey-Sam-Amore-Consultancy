@@ -46,6 +46,15 @@
                 {% endif %}
             </div>
             <div class="mb-3">
+                <label for="gender" class="float-left">Gender</label>
+                {% if user.profile.gender %}
+                <input type="text" name="gender" value="{{ user.profile.gender }}" id="id_gender" autocomplete="off">
+                {% else %}
+                <!-- <input type="text" name="gender" placeholder="{% trans 'Select your Gender' %}" id="id_gender"> -->
+                {{form.gender}}
+                {% endif %}
+            </div>
+            <div class="mb-3">
                 <label for="profession" class="float-left">Profession</label>
                 {% if user.profile.profession %}
                 <input type="text" name="profession" value="{{ user.profile.profession }}" id="id_profession" autocomplete="off">

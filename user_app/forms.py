@@ -109,12 +109,13 @@ class SignUpStepOneForm(forms.ModelForm):
         self.fields['first_name'].widget.attrs.update({'class' : 'input100', 'placeholder' : 'Enter your First Name'})
         self.fields['last_name'].widget.attrs.update({'class' : 'input100', 'placeholder' : 'Enter your Last Name'})
         self.fields['profession'].widget.attrs.update({'class' : 'input100', 'placeholder' : 'Enter your Profession'})
+        self.fields['gender'].widget.attrs.update({'class' : 'form-control', 'placeholder' : 'Select your Gender'})
         self.fields['relationshipStatus'].widget.attrs.update({'class' : 'form-control'})
         
 
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'profession', 'age', 'relationshipStatus']
+        fields = ['first_name', 'last_name', 'profession', 'age', 'gender','relationshipStatus']
 
 class SignUpStepTwoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

@@ -53,7 +53,9 @@ def client_signup(request):
 	if request.method == 'POST':
 		form = ClientRegistrationForm(request.POST)
 		if form.is_valid():
-			user = form.save()
+			user = form.save(commit=False)
+			user.set_password(form.cleaned_data.get('password'))
+			user.save()
 			my_client_group = Group.objects.get_or_create(name='CLIENT')
 			my_client_group[0].user_set.add(user)
 			login(request, user)
@@ -116,7 +118,7 @@ def client_login(request):
 					messages.info(request, 'You are now Loggged in as client')
 					return redirect('dating_app:clientPage')
 			else:
-				messages.error(request, "Invalid Username or Password, Try agin later!")
+				messages.error(request, "User Group Does not exist!, Try agin later!")
 		else:
 			messages.error(request, "Invalid Username or Password, Try again later!")
 

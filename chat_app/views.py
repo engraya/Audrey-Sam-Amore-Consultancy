@@ -29,7 +29,6 @@ class MessagesListView(LoginRequiredMixin, ListView):
 		context['messages_list'] = messages
 		context['other_users'] = other_users
 		context['user'] = user
-		context['favorites'] = Favorite.objects.filter(user=self.request.user).order_by('-saved_date')
 		return context
 
 
@@ -74,7 +73,7 @@ class InboxView(LoginRequiredMixin, DetailView):
 		context['other_person'] = other_user  
 		context['user'] = user 
 		context['other_users'] = other_users
-		context['favorites'] = Favorite.objects.filter(user=self.request.user).order_by('-saved_date')
+	
 
 		return context
 
@@ -95,7 +94,7 @@ class InboxView(LoginRequiredMixin, DetailView):
 			pass
 
 class UserListsView(LoginRequiredMixin, ListView):
-	"""Список пользователей"""
+
 	model = User
 	template_name = 'chat_app/users_list.html'
 	context_object_name = 'users'
@@ -150,7 +149,7 @@ class ChatView(LoginRequiredMixin, DetailView):
 		context['other_person'] = other_user  
 		context['user'] = user 
 		context['other_users'] = other_users
-		context['favorites'] = Favorite.objects.filter(user=self.request.user).order_by('-saved_date')
+		
 
 		return context
 

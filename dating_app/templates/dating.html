@@ -63,11 +63,8 @@ h4 {
     </div>
       <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-3">
 		{% if cards %}
-
 		{% for card in cards %}
                     <!-- end col -->
-                
-
           <div class="col-lg-3 mt-5">
      
             <div class="text-center card-box" style="border-radius:20px; shadow:2px">
@@ -78,15 +75,15 @@ h4 {
                         <p class="text-muted">{{ card.profession }}</p>
                         <p class="text-muted"> <span><i class="fas fa-location"> </i>{{ card.state }}, {{ card.country.name }}</span></p>
                         <span><a href="#" class="text-dark">{{ card.gender }}</a></span><br>
-                        <span><a href="#" class="text-pink">{{ card.age }}</a></span>
-                   
+                        <span><a href="#" class="text-pink">{{ card.age }}</a></span>               
                         <!-- <p class="card-text"><i>{{ card.about|truncatechars:80 }}</i></p> -->
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="justify-content-center d-flex alignt-content-center">
                         </div>
                       </div>
-                    <a href="{% url 'dating_app:partner_account' card.id %}"><button type="button" class="btn btn-success mt-3 btn-rounded waves-effect w-md waves-light">View</button></a>
+                    <a href="{% url 'dating_app:partner_account' card.id %}"><button type="button" class="btn btn-secondary mt-3 btn-rounded waves-effect w-md waves-light">View</button></a>
+                    <a href=""><button type="button" class="btn btn-success mt-3 btn-rounded waves-effect w-md waves-light">Chat</button></a>
                     <div class="mt-4">
                     </div>
                 </div>

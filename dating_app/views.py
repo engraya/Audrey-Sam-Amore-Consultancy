@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 from user_app.models import Profile
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
-from .models import Favorite, Appointment, Client, Message
+from .models import Appointment, Client, Message
 from .forms import MessageForm, AppointmentForm, ClientMessageForm
 import random
 
@@ -23,8 +23,6 @@ def dating(request):
 		# ).exclude(user_id=request.user.id)
 
 		clientGroup = Group.objects.get(name='CLIENT')
-
-	
 		profiles_list = Profile.objects.filter(user__groups=clientGroup).exclude(user_id=request.user.id)
 
 		context = get_pogination(request, profiles_list, 10)
@@ -34,10 +32,13 @@ def dating(request):
 
 @login_required
 def partner_account(request, user_id):
-	profile = Profile.objects.get(pk=user_id)
-	if profile.age:
+	# profile = Profile.objects.get(pk=user_id)
+	clientGroup = Group.objects.get(name='CLIENT')
+	profile = Profile.objects.filter(user__groups=clientGroup).get(pk=user_id)
+	if profile.about:
+
 		partner_account = get_object_or_404(User, pk=user_id)
-		context = {'partner_account':partner_account}
+		context = {'partner_account':partner_account, 'profile' : profile}
 		return render(request, 'partner_account.html', context)
 	return redirect('user_app:sign_up_step_three')
 
