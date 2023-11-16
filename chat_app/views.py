@@ -124,8 +124,6 @@ class ChatView(LoginRequiredMixin, DetailView):
 		return get_object_or_404(User, username=UserName)
 
 
-
-
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
 		user = User.objects.get(pk=self.request.user.pk) 
