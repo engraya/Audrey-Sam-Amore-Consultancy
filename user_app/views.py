@@ -76,7 +76,7 @@ def is_client(user):
 
 def afterlogin_view(request):
     if is_admin(request.user):
-        return redirect('dating:adminPage')
+        return redirect('dating_app:adminPage')
     elif is_client(request.user):
             return redirect('dating_app:dating')
 
