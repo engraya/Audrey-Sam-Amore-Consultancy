@@ -4,7 +4,9 @@
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf'); 

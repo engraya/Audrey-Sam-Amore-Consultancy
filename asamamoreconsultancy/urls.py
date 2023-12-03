@@ -22,6 +22,7 @@ urlpatterns = [
     path('', views.home, name='home'),  
     path('', include('user_app.urls')), 
     path('chat/', include('chat_app.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
 
 )
 

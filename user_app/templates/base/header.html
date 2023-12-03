@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   {% load i18n %}
+  {% load compress %}
 {% load static %}
 <head>
   <meta charset="utf-8">
@@ -35,6 +36,10 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  {% compress css %}
+<link rel="stylesheet" href="{% static 'src/output.css' %}">
+{% endcompress %}
 
 </head>
 
@@ -77,3 +82,5 @@
 
     </div>
   </header><!-- End Header -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>

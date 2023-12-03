@@ -14,11 +14,8 @@ urlpatterns = [
     path('clientclick', views.clientclick_view, name='clientclick'),
     
 	path('afterlogin', views.afterlogin_view,name='afterlogin'),
-    
 
 	path('logout/', views.logout_user, name='logout_user'),
-    
-
 
 	path('signup/step_one/', views.sign_up_step_one, name='sign_up_step_one'),
 	path('signup/step_two/', views.sign_up_step_two, name='sign_up_step_two'),

@@ -15,3 +15,7 @@ venv.bak/
 
 .projectenv
 projectenv/
+
+theme/
+
+/node_modules

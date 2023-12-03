@@ -27,7 +27,6 @@ urlpatterns = [
     path('reject-messages/<int:pk>', views.reject_messages,name='reject-messages'),
     path('admin-reply-messages', views.admin_reply_messages_view, name='admin-reply-messages'),
 
-
     
     path('admin-client/', views.admin_client_view,name='admin-client'),
     path('admin-view-client/', views.admin_view_client_view,name='admin-view-client'),

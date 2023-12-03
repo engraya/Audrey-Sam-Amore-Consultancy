@@ -9,6 +9,9 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
   background: #fff;
   color: #666666;
