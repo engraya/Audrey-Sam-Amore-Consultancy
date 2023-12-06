@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-{% load compress %}
 <head>
     <title>Audrey Sam Amore Consult</title>
 	<meta charset="UTF-8">
@@ -22,9 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 <!--===============================================================================================-->
-{% compress css %}
-<link rel="stylesheet" href="{% static 'src/output.css' %}">
-{% endcompress %}
+
 </head>
 <body>
     {% include 'base/preheader2.html' %}

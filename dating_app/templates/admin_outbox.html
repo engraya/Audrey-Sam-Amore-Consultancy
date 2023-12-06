@@ -1,8 +1,10 @@
 {% extends "admin_base.html" %}
 {% block content %}
 
-
-<div class="container pt-5 mt-5" style="background-color: #149eca;">
+<div class="justify-content-center align-items-center d-flex my-5">
+  <a href="/dating/admin-messages"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+</div>
+<div class="container pt-3"  style="background: linear-gradient(45deg,#6c7e4b,#78a4d6);" >
   <div class="panel">
     <div class="panel-heading">
       <h4 class="text-white text-center">Messages - Outbox</h4>
@@ -33,7 +35,7 @@
       </tr>
       {% endfor %}
     </table>
-    <a class="btn btn-sm btn-danger my-2" href="/dating/admin-messages">&larr;Back to Messages</a>
+    <a class="btn btn-sm my-2" href="/dating/admin-messages"></a>
   </div>
 
 

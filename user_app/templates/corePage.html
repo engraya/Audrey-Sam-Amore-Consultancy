@@ -1,47 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  {% load static %}
-  {% load compress %}
-  {% load static tailwind_tags %}
-<head>
-  <!--====== Required meta tags ======-->
-  <meta charset="utf-8" />
-  <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+{% extends 'base/coreBase.html' %}
 
-  <!--====== Title ======-->
-  <title>Audrey Sam Amore Consult</title>
+{% load static %}
 
-  <!-- Favicons -->
-	<link rel="icon" type="image/png" class="rounded-circle" href="{% static 'images/icons/asa.png' %}"/>
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"/>
-
-  <!--====== Bootstrap css ======-->
-  <link rel="stylesheet" href="{% static 'assets0/css/bootstrap.min.css' %}" />
-
-  <link href='https://fonts.googleapis.com/css?family=Akronim' rel='stylesheet'/>
-
-  <!--====== Line Icons css ======-->
-  <link rel="stylesheet" href="{% static 'assets0/css/lineicons.css' %}" />
-
-  <!--====== Tiny Slider css ======-->
-  <link rel="stylesheet" href="{% static 'assets0/css/tiny-slider.css' %}" />
-
-  <!--====== gLightBox css ======-->
-  <link rel="stylesheet" href="{% static 'assets0/css/glightbox.min.css' %}" />
-
-  <link rel="stylesheet" href="{% static 'style0.css' %}" />
-  {% compress css %}
-  <link rel="stylesheet" href="{% static 'src/input.css' %}">
-  {% endcompress %}
-
-  {% tailwind_css %}
-
-</head>
-
-<body>
-
+{% block content %}
+  
   <!--====== NAVBAR NINE PART START ======-->
 
   <section class="navbar-area navbar-nine">
@@ -53,7 +15,7 @@
               <img src="{% static 'assets0/images/logo.png' %}" height="60px" width="60px" style="border-radius: 50%;" alt="Logo" />
         
             </a>
-            <a href="{% url 'home' %}"><h2 class="m-3" style="font-family: Akronim; color:bisque">Audre Sam Amore Consult</h2></a>
+            <a href="{% url 'home' %}"><h2 class="m-3" style="font-family: 'Brush Script MT', cursive; color:bisque">Audre Sam Amore Consult</h2></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNine"
               aria-controls="navbarNine" aria-expanded="false" aria-label="Toggle navigation">
               <span class="toggler-icon"></span>
@@ -109,8 +71,8 @@
       <div class="sidebar-menu">
         <h5 class="menu-title">Quick Links</h5>
         <ul>
-          <li><a href="javascript:void(0)">Admin</a></li>
-          <li><a href="javascript:void(0)">Client</a></li>
+          <li><a href="{% url 'user_app:adminclick' %}">Admin</a></li>
+          <li><a href="{% url 'user_app:clientclick' %}">Client</a></li>
           <li><a href="javascript:void(0)">Contact Us</a></li>
         </ul>
       </div>
@@ -148,7 +110,7 @@
           <div class="header-content">
             <h1>Dating & Consultancy Service for Everyone</h1>
             <p>
-              Our dating site helps millions find real love.Your search for a great relationship has never been easier with groundbreaking overhaul of the eharmony you know and trust.
+              Our mission is simple: to connect individuals searching for meaningful relationships and provide expert consultancy to guide them on their personal and professional journeys. We believe that everyone deserves companionship and deserves access to valuable insights that can shape their lives positively.
             </p>
             <div class="button">
               <a href="javascript:void(0)" class="btn primary-btn">Get Started</a>
@@ -275,31 +237,15 @@
               </nav>
               <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-who" role="tabpanel" aria-labelledby="nav-who-tab">
-                  <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                    when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, look like readable English.</p>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have in some
-                    form,
-                    by injected humour.</p>
+                  <p>Our team of experienced consultants is dedicated to guiding you through the nuances of dating and relationships. Whether you're seeking companionship, love, or expert advice, we are here to support you every step of the way. We believe that everyone deserves meaningful connections and the tools to build lasting, fulfilling relationships.</p>
                 </div>
                 <div class="tab-pane fade" id="nav-vision" role="tabpanel" aria-labelledby="nav-vision-tab">
-                  <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                    when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, look like readable English.</p>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have in some
-                    form,
-                    by injected humour.</p>
+                  <p>At Audre Sam Amore Consult, we believe in the power of genuine connections. Our vision is to create a space where individuals seeking love and guidance can find not just matches, but companions who resonate with their values and aspirations. We aspire to be more than a dating platform; we aim to be your trusted ally in the journey of self-discovery and relationship building.</p>
+                  <p>In a fast-paced world, we understand the importance of thoughtful connections. Our vision encompasses fostering a community where every interaction is meaningful and every piece of advice is a stepping stone towards personal and relational growth. Through a blend of technology and human insight, we aim to redefine the way people approach dating and consultancy, making it an enriching experience that goes beyond the surface.</p>
                 </div>
                 <div class="tab-pane fade" id="nav-history" role="tabpanel" aria-labelledby="nav-history-tab">
-                  <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                    when
-                    looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                    distribution of letters, look like readable English.</p>
-                  <p>There are many variations of passages of Lorem Ipsum available, but the majority have in some
-                    form,
-                    by injected humour.</p>
+                  <p>Over the years, we have witnessed the transformative power of connection. We've seen shy smiles turn into shared laughter, quiet conversations evolve into deep understanding, and the blossoming of relationships that stand the test of time. Guided by a team of experienced consultants, Our Platform has become a trusted companion on the path to love and fulfillment.</p>
+                  <p>Our commitment extends beyond matchmaking. We understand that relationships are a journey of growth and self-discovery. That's why we expanded our services to offer expert consultancy, providing valuable insights and advice on matters of the heart and personal development.</p>
                 </div>
               </div>
             </div>
@@ -320,12 +266,7 @@
         <div class="row">
           <div class="col-12">
             <div class="content">
-              <h6>Pricing</h6>
               <h2 class="fw-bold">Pricing & Plans</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form.
-              </p>
             </div>
           </div>
         </div>
@@ -340,10 +281,10 @@
           <div class="pricing-style-fourteen">
             <div class="table-head">
               <h6 class="title">Starter</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and industry.</p>
+                <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">$</span>0<span class="duration">/mo </span>
+                    <span class="currency">&#8358; </span>0<span class="duration">/mo </span>
                   </h2>
                 </div>
             </div>
@@ -359,10 +300,10 @@
           <div class="pricing-style-fourteen middle">
             <div class="table-head">
               <h6 class="title">Exclusive</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and industry.</p>
+                <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">$</span>99<span class="duration">/mo </span>
+                    <span class="currency">&#8358; </span>10,000<span class="duration">/mo </span>
                   </h2>
                 </div>
             </div>
@@ -378,10 +319,10 @@
           <div class="pricing-style-fourteen">
             <div class="table-head">
               <h6 class="title">Premium</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and industry.</p>
+                <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">$</span>150<span class="duration">/mo </span>
+                    <span class="currency">&#8358; </span>15,000<span class="duration">/mo </span>
                   </h2>
                 </div>
             </div>
@@ -407,12 +348,8 @@
         <div class="row">
           <div class="col-12">
             <div class="content">
-              <h6>latest news</h6>
+              <!-- <h6>latest news</h6> -->
               <h2 class="fw-bold">Latest News & Blog</h2>
-              <p>
-                There are many variations of passages of Lorem Ipsum available,
-                but the majority have suffered alteration in some form.
-              </p>
             </div>
           </div>
         </div>
@@ -430,17 +367,14 @@
               <a href="javascript:void(0)"><img class="thumb" src="{% static 'assets0/images/blog/1.jpg' %}" alt="Blog" /></a>
               <div class="meta-details">
                 <img class="thumb" src="{% static 'assets0/images/blog/b6.jpg' %}" alt="Author" />
-                <span>BY TIM NORTON</span>
               </div>
             </div>
             <div class="content-body">
               <h4 class="title">
-                <a href="javascript:void(0)"> Make your team a Design driven company </a>
+                <a href="javascript:void(0)">Love Chronicles</a>
               </h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard.
+                Uncover the latest trends in dating, explore relationship advice, and read heartwarming success stories. Dive into our Love Chronicles to enhance your understanding of building meaningful connections.
               </p>
             </div>
           </div>
@@ -453,19 +387,16 @@
               <a href="javascript:void(0)"><img class="thumb" src="{% static 'assets0/images/blog/2.jpg' %}" alt="Blog" /></a>
               <div class="meta-details">
                 <img class="thumb" src="{% static 'assets0/images/blog/b6.jpg' %}" alt="Author" />
-                <span>BY TIM NORTON</span>
               </div>
             </div>
             <div class="content-body">
               <h4 class="title">
                 <a href="javascript:void(0)">
-                  The newest web framework that changed the world
+                  "Expert Insights
                 </a>
               </h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard.
+                Gain valuable insights from our relationship experts. Stay informed with the latest research, tips, and advice on navigating the complexities of modern dating. Empower yourself with knowledge to make informed choices on your journey to find love.
               </p>
             </div>
           </div>
@@ -478,19 +409,16 @@
               <a href="javascript:void(0)"><img class="thumb" src="{% static 'assets0/images/blog/3.jpg' %}" alt="Blog" /></a>
               <div class="meta-details">
                 <img class="thumb" src="{% static 'assets0/images/blog/b6.jpg' %}" alt="Author" />
-                <span>BY TIM NORTON</span>
               </div>
             </div>
             <div class="content-body">
               <h4 class="title">
                 <a href="javascript:void(0)">
-                  5 ways to improve user retention for your startup
+                  Life & Love Diaries
                 </a>
               </h4>
               <p>
-                Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard.
+                Immerse yourself in the personal stories of those who have navigated the realms of love and relationships. From heartaches to triumphs, the Life & Love Diaries provide a candid glimpse into the diverse experiences of individuals in their quest for love.
               </p>
             </div>
           </div>
@@ -516,7 +444,7 @@
                   </div>
                   <div class="contact-content">
                     <h4>Contact</h4>
-                    <p>0984537278623</p>
+                    <p>1234567890</p>
                     <p>yourmail@gmail.com</p>
                   </div>
                 </div>
@@ -528,8 +456,8 @@
                   </div>
                   <div class="contact-content">
                     <h4>Address</h4>
-                    <p>175 5th Ave, New York, NY 10010</p>
-                    <p>United States</p>
+                    <p>175 5th Street, FCT Abuja</p>
+                    <p>Nigeria</p>
                   </div>
                 </div>
               </div>
@@ -554,12 +482,11 @@
               <div class="col-xl-10 col-lg-8 mx-auto">
                 <div class="section-title text-center">
                   <span> Get in Touch </span>
-                  <h2>
+                  <h4>
                     Ready to Get Started
-                  </h2>
+                  </h4>
                   <p>
-                    At vero eos et accusamus et iusto odio dignissimos ducimus
-                    quiblanditiis praesentium
+                    We value your inquiries and feedback. Let's start a conversation that could change your life. Reach out to us via the form below or connect through our social channels. Your journey towards fulfillment begins here.
                   </p>
                 </div>
               </div>
@@ -604,135 +531,8 @@
   <!-- ========================= contact-section end ========================= -->
 
 
-  <!-- Start Footer Area -->
-  <footer class="footer-area footer-eleven">
-    <!-- Start Footer Top -->
-    <div class="footer-top">
-      <div class="container">
-        <div class="inner-content">
-          <div class="row">
-            <div class="col-lg-4 col-md-6 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget f-about">
-                <div class="logo">
-                  <a href="{% url 'home' %}">
-                    <img style="height: auto; width:200px" src="{% static 'assets0/images/logo.png' %}" alt="#" class="img-fluid" />
-                  </a>
-                </div>
-                <p>
-                  Making the world a better place through constructing elegant
-                  hierarchies.
-                </p>
-                <p class="copyright-text">
-                  <span>© 2024 Audre Sam Amore Consult.</span>
-                  <a href="javascript:void(0)" rel="nofollow"></a>
-                </p>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-            <div class="col-lg-2 col-md-6 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget f-link">
-                <h5>Solutions</h5>
-                <ul>
-                  <li><a href="javascript:void(0)">Marketing</a></li>
-                  <li><a href="javascript:void(0)">Analytics</a></li>
-                  <li><a href="javascript:void(0)">Commerce</a></li>
-                  <li><a href="javascript:void(0)">Insights</a></li>
-                </ul>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-            <div class="col-lg-2 col-md-6 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget f-link">
-                <h5>Support</h5>
-                <ul>
-                  <li><a href="javascript:void(0)">Pricing</a></li>
-                  <li><a href="javascript:void(0)">Documentation</a></li>
-                  <li><a href="javascript:void(0)">Guides</a></li>
-                  <li><a href="javascript:void(0)">API Status</a></li>
-                </ul>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget newsletter">
-                <h5>Subscribe</h5>
-                <p>Subscribe to our newsletter for the latest updates</p>
-                <form action="#" method="get" target="_blank" class="newsletter-form">
-                  <input name="EMAIL" placeholder="Email address" required="required" type="email" />
-                  <div class="button">
-                    <button class="sub-btn">
-                      <i class="lni lni-envelope"></i>
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/ End Footer Top -->
-  </footer>
-  <!--/ End Footer Area -->
-  <a href="#" class="scroll-top btn-hover">
-    <i class="lni lni-chevron-up"></i>
-  </a>
+{% endblock content %}
+  
 
-  <!--====== js ======-->
-  <script src="{% static 'assets0/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'assets0/js/glightbox.min.js' %}"></script>
-  <script src="{% static 'assets0/js/main.js' %}"></script>
-  <script src="{% static 'assets0/js/tiny-slider.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 
-  <script>
-
-    //===== close navbar-collapse when a  clicked
-    let navbarTogglerNine = document.querySelector(
-      ".navbar-nine .navbar-toggler"
-    );
-    navbarTogglerNine.addEventListener("click", function () {
-      navbarTogglerNine.classList.toggle("active");
-    });
-
-    // ==== left sidebar toggle
-    let sidebarLeft = document.querySelector(".sidebar-left");
-    let overlayLeft = document.querySelector(".overlay-left");
-    let sidebarClose = document.querySelector(".sidebar-close .close");
-
-    overlayLeft.addEventListener("click", function () {
-      sidebarLeft.classList.toggle("open");
-      overlayLeft.classList.toggle("open");
-    });
-    sidebarClose.addEventListener("click", function () {
-      sidebarLeft.classList.remove("open");
-      overlayLeft.classList.remove("open");
-    });
-
-    // ===== navbar nine sideMenu
-    let sideMenuLeftNine = document.querySelector(".navbar-nine .menu-bar");
-
-    sideMenuLeftNine.addEventListener("click", function () {
-      sidebarLeft.classList.add("open");
-      overlayLeft.classList.add("open");
-    });
-
-    //========= glightbox
-    GLightbox({
-      'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
-      'type': 'video',
-      'source': 'youtube', //vimeo, youtube or local
-      'width': 900,
-      'autoplayVideos': true,
-    });
-
-  </script>
-</body>
-
-</html>
 

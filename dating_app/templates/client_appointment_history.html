@@ -3,7 +3,10 @@
 
 
 
-  <div class="panel panel-primary pt-5 m-5">
+  <div class="panel panel-primary pt-5 m-3">
+    <div class="justify-content-center align-items-center d-flex my-2">
+      <a href="/dating/client-appointment"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+    </div>
     <div class="panel-heading">
       <h4 class="text-center text-dark">Appointments History</h4>
     </div>
@@ -33,12 +36,15 @@
         </td>
       </tr>
       {% empty %}
-      <tr>
-        <td colspan="4">No appointments scheduled yet..</td>
-      </tr>
+      <div class="justify-content-center align-items-center d-flex my-2">
+        <tr>
+          <td colspan="5 center">No appointments scheduled yet..</td>
+        </tr>
+      </div>
+   
       {% endfor %}
     </table>
-    <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
+
   </div>
 
 

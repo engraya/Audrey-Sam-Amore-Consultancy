@@ -2,11 +2,14 @@
 {% block content %}
 
 
-  <div class="panel panel-primary pt-5 m-5">
+  <div class="panel panel-primary pt-5 m-5 ">
+    <div class="justify-content-center align-items-center d-flex my-3">
+      <a href="/dating/client-appointment"><button type="button" class="btn btn-outline-info">&larr;  Back to Appointments</button></a>
+    </div>
     <div class="panel-heading">
       <h4 class="text-center text-dark text-align-center">Available Appointments</h4>
     </div>
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered" >
       <thead>
         <tr>
           <th>Appiontment Category</th>
@@ -32,7 +35,6 @@
       </tr>
       {% endfor %}
     </table>
-    <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
   </div>
 
 

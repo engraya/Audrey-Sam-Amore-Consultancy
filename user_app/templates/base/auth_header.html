@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-{% load compress %}
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -9,8 +8,6 @@
   <title>Audrey Sam Amore Consult</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-  
-
   <!-- Google Fonts -->
   <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700' %}" rel="stylesheet">
 
@@ -38,10 +35,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
-  
-  {% compress css %}
-<link rel="stylesheet" href="{% static 'src/output.css' %}">
-{% endcompress %}
+
 
 </head>
 
@@ -54,8 +48,6 @@
       <div class="row justify-content-center align-items-center">
         <div class="col-xl-11 d-flex align-items-center justify-content-between">
           <a href="/dating/client-dashboard" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
           <nav id="navbar" class="navbar mt-4">
             <ul>
               <li><a class="nav-link scrollto" href="/dating/client-dashboard">Dashboard</a></li>

@@ -10,11 +10,12 @@
     .note {
       text-align: center;
       height: 80px;
-     background-color: #1f8997;
+      background: linear-gradient(45deg,#6c7e4b,#73b4ff);
       color: #fff;
       font-weight: bold;
       line-height: 80px;
     }
+
  
     .form-control {
       border-radius: 1.5rem;
@@ -34,17 +35,16 @@
       top: 50px;
     }
   </style>
-
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <br><br>
 <div class="container pt-1">
-  <a class="btn btn-sm btn-danger my-2" href="/dating/client-appointment">&larr;Back to Appointments</a>
-    <div class="container register-form">
+  
+<div class="justify-content-center align-items-center d-flex my-3">
+  <a href="/dating/client-appointment"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+</div>
+    <div class="container register-form p-3">
       <div class="form">
-        <div class="note">
+        <div class="note p-3">
           <h3>Book Appointment</h3>
         </div>
         <div class="form-content">
@@ -60,7 +60,9 @@
               <!-- <textarea class="form-control" rows="5" id="description" name="description"></textarea> -->
               {{form.description}}
             </div>
-            <button type="submit" class="btn btn-success">Book Appointment</button>
+            <div class="justify-content-center align-items-center d-flex my-3">
+              <button type="submit" class="btn btn-success">Book Appointment</button>
+            </div>
           </form>
         </div>
       </div>

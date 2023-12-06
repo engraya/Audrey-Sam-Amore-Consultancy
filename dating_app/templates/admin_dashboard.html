@@ -4,20 +4,21 @@
 
 <div class="container pt-3 mt-3">
   <div class="container">
-    <h1 class="text-center">Admin Dashboard</h1>
+    <h1 class="text-center bold">Admin Dashboard</h1>
     <hr>
     <div class="row">
-        <div class="col-md-4 col-xl-3">
+        <!-- <div class="col-md-4 col-xl-3">
             <div class="card bg-c-blue order-card">
                 <div class="card-block">
-                    <h6 class="m-b-20 text-white">Total Users</h6>
+                    <h6 class="m-b-20 text-azure text-xl">Total Users</h6>
                     <h2 class="text-right text-white"><i class="fa fa-user-plus text-white f-left"></i><span>{{clientUsersCount}}</span></h2>
                     <p class="m-b-0 text-white">Active Users<span class="f-right">{{clientUsersCount}}</span></p>
                 </div>
             </div>
         </div>
-        
-        <div class="col-md-4 col-xl-3">
+         -->
+        <div class="col-md-4 col-xl-4">
+            <a href="/dating/admin-client">
             <div class="card bg-c-green order-card">
                 <div class="card-block">
                     <h6 class="m-b-20 text-white">Total Clients</h6>
@@ -25,9 +26,11 @@
                     <p class="m-b-0 text-white">Active Clients<span class="f-right">{{clientUsersCount}}</span></p>
                 </div>
             </div>
+        </a>
         </div>
         
-        <div class="col-md-4 col-xl-3">
+        <div class="col-md-4 col-xl-4">
+            <a href="/dating/admin-appointment">
             <div class="card bg-c-yellow order-card">
                 <div class="card-block">
                     <h6 class="m-b-20 text-white">Total Requests</h6>
@@ -35,9 +38,11 @@
                     <p class="m-b-0 text-white">Consultation Requests<span class="f-right">{{pendingappointmentcount}}</span></p>
                 </div>
             </div>
+        </a>
         </div>
         
-        <div class="col-md-4 col-xl-3">
+        <div class="col-md-4 col-xl-4">
+            <a href="/dating/admin-messages">
             <div class="card bg-c-pink order-card">
                 <div class="card-block">
                     <h6 class="m-b-20 text-white">Total Messages</h6>
@@ -45,6 +50,7 @@
                     <p class="m-b-0 text-white">Unread Messages<span class="f-right">{{pendingmessagescount}}</span></p>
                 </div>
             </div>
+        </a>
         </div>
 	</div>
 </div>

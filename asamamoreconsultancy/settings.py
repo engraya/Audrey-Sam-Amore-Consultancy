@@ -33,10 +33,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'widget_tweaks',
     'django_countries',
-    'compressor', 
-    'tailwind',
-    'theme',
-    'django_browser_reload'
 ]
 
 
@@ -142,18 +138,5 @@ try:
     from .local_settings import *
 except ImportError:
     from .prod_settings import *
-    
 
-TAILWIND_APP_NAME = 'theme'
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
-NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
-
-# COMPRESSOR CONFIG
-COMPRESS_ROOT = BASE_DIR / 'static'
-
-COMPRESS_ENABLED = True
-
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)    
+  

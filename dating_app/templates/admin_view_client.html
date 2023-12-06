@@ -2,41 +2,28 @@
 {% block content %}
 {%load static%}
 
-  <div class="panel panel-success m-5">
-    <h1 class="text-center">Clients</h1>
-    <a class="btn btn-sm btn-danger my-2" href="/dating/admin-dashboard">&larr;Back to Dashboard</a>
-    <div class="panel-heading">
-      <h4 class="text-center text-dark">Available Clients</h4>
-    </div>
-    <table class="table table-hover" >
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-          <th>Profile Picture</th>
-          <th>Age</th>
-          <th>Gender</th>
-          <th>Nationality</th>
-          <th>State</th>
-          <th>City</th>
-        </tr>
-      </thead>
-      {% for client in clients %}
-      <tr>
-        <td> {{client.profile.first_name}}</td>
-        <td> {{client.profile.last_name}}</td>
-        <td> {{client.username}}</td>
-        <td> <img src="{{client.profile.profile_pic.url}}" class="rounded-circle" height="40px" width="40px" /></td>
-        <td>{{client.profile.age}}</td>
-        <td>{{client.profile.gender}}</td>
-        <td>{{client.profile.country.name}}</td>
-        <td>{{client.profile.state}}</td>
-        <td>{{client.profile.city}}</td>
-      </tr>
-      {% endfor %}
-    </table>
- 
+
+
+
+  <div class="justify-content-center align-items-center d-flex my-5">
+    <a href="/dating/admin-client"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
   </div>
+
+  <div class="d-flex justify-content-center">
+ 
+    {% for client in clients %}
+    <div class="card mx-2" style="width:200px">
+      <img class="card-img-top" src="{{client.profile.profile_pic.url}}" alt="Card image">
+      <div class="card-body">
+        <h5 class="card-title">{{client.username}}</h5>
+        <span class="card-text" >{{client.profile.age}}</span><br>
+        <span>{{client.profile.gender}}</span><br>
+        <span>{{client.profile.country.name}}</span><br>
+        <p class="card-text">{{client.profile.state}}, {{client.profile.city}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
 
 {% endblock content %}

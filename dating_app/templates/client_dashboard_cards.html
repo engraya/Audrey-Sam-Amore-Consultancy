@@ -1,191 +1,100 @@
-
-  <style media="screen">
-    .market-update-block {
-      padding: 2em 2em;
-      border-radius: 6px;
-      background: #999;
-    }
-
-    .market-update-block h3 {
+ <style>
+    body{
+      margin-top:20px;
+      background:#FAFAFA;
+  }
+  .order-card {
       color: #fff;
-      font-size: 1.5em;
-      font-family: 'Carrois Gothic', sans-serif;
-    }
-
-    .market-update-block h4 {
-      font-size: 1.2em;
-      color: #fff;
-      margin: 0.3em 0em;
-      font-family: 'Carrois Gothic', sans-serif;
-    }
-
-    .market-update-block p {
-      color: #fff;
-      font-size: 0.8em;
-      line-height: 1.8em;
-    }
-
-    .market-update-block.clr-block-1 {
-      background: #1daeb3;
-      border-radius: 6px;
-      margin-right: 0.8em;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-    .market-update-block.clr-block-12 {
-      background: #5ea73e;
-      border-radius: 6px;
-      margin-right: 0.8em;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-block.clr-block-2 {
-      background: #4f5905;
-      border-radius: 6px;
-      margin-right: 0.8em;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-block.clr-block-3 {
-      background: #429ff7;
-      border-radius: 6px;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-block.clr-block-1:hover {
-      background: #3C3C3C;
-      border-radius: 6px;
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-block.clr-block-2:hover {
-      background: #3C3C3C;
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-block.clr-block-3:hover {
-      background: #3C3C3C;
-      transition: 0.5s all;
-      -webkit-transition: 0.5s all;
-      -moz-transition: 0.5s all;
-      -o-transition: 0.5s all;
-    }
-
-    .market-update-right i.fa.fa-user-o,
-    i.fa.fa-map-marker {
-      font-size: 3em;
-      color: #68AE00;
-      width: 80px;
-      height: 80px;
-      background: #fff;
-      text-align: center;
-      border-radius: 49px;
-      -webkit-border-radius: 49px;
-      -moz-border-radius: 49px;
-      -o-border-radius: 49px;
-      line-height: 1.7em;
-    }
-
-    .market-update-right i.fa.fa-info-circle,
-    i.fa.fa-list-alt {
-      font-size: 3em;
-      color: #FC8213;
-      width: 80px;
-      height: 80px;
-      background: #fff;
-      text-align: center;
-      border-radius: 49px;
-      -webkit-border-radius: 49px;
-      -moz-border-radius: 49px;
-      -o-border-radius: 49px;
-      line-height: 1.7em;
-    }
-
-    .market-update-right i.fa.fa-mobile,
-    i.fa.fa-calendar-o {
-      font-size: 3em;
-      color: #337AB7;
-      width: 80px;
-      height: 80px;
-      background: #fff;
-      text-align: center;
-      border-radius: 49px;
-      -webkit-border-radius: 49px;
-      -moz-border-radius: 49px;
-      -o-border-radius: 49px;
-      line-height: 1.7em;
-    }
-
-
-    .market-update-left {
-      padding: 0px;
-    }
-    .order-card {
-      background-color: #48b6c5;
-      padding : 12px;
-    }
+  }
+  
+  .bg-c-blue {
+      background: linear-gradient(45deg,#6c7e4b,#73b4ff);
+  }
+  
+  .bg-c-green {
+      background: linear-gradient(45deg,#2ed8b6,#60ad9e);
+  }
+  
+  .bg-c-yellow {
+      background: linear-gradient(45deg,#6bac98,#ffcb80);
+  }
+  
+  .bg-c-pink {
+      background: linear-gradient(45deg,#53d7ff,#ff869a);
+  }
+  
+  
+  .card {
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(116, 136, 163, 0.16);
+      box-shadow: 0 1px 2.94px 0.06px rgba(97, 122, 124, 0.16);
+      border: none;
+      margin-bottom: 30px;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+  }
+  
+  .card .card-block {
+      padding: 25px;
+  }
+  
+  .order-card i {
+      font-size: 26px;
+  }
+  
+  .f-left {
+      float: left;
+  }
+  
+  .f-right {
+      float: right;
+  }
   </style>
 
-<div class="container pt-5 mt-5 mb-3">
-  <div class="container mb-3">
+<div class="container pt-3 mt-3 justify-center align-content-center d-flex">
+  <div class="container">
+    <h3 class="text-center">Client Dashboard</h3>
+    <hr>
     <div class="row">
-        <div class="col-md-3 col-xl-3">
-            <div class="card order-card mb-3">
+        <div class="col-md-4 col-xl-3">
+          <a href="/dating/client-appointment">
+            <div class="card bg-c-blue order-card">
                 <div class="card-block">
-                    <h5 class="m-b-20 text-white">Total Appointments</h5>
-                    <h2 class="text-right text-white"><i class="fas fa-book text-white f-left"></i><span>{{appointmentcount}}</span></h2>
-                    <p class="m-b-0 text-white">Pending Appointments<span class="text f-left">{{pendingappointmentcount}}</span></p>
+                    <h6 class="m-b-20 text-azure text-xl">Total Appointments</h6>
+                    <h2 class="text-right text-white"><i class="fa fa-user-plus text-white f-left"></i><span>{{appointmentcount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Appointments<span class="f-right">{{pendingappointmentcount}}</span></p>
                 </div>
             </div>
+          </a>
         </div>
         
-        <div class="col-md-3 col-xl-3">
-            <div class="card order-card mb-3">
+        <div class="col-md-4 col-xl-3">
+          <a href="/dating/client-messages">
+            <div class="card bg-c-yellow order-card">
                 <div class="card-block">
-                    <h5 class="m-b-20 text-white">Total Messages</h5>
-                    <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span>{{messagescount}}</span></h2>
-                    <p class="m-b-0 text-white">Pending Messages<span class="f-left">{{pendingmessagescount}}</span></p>
+                    <h6 class="m-b-20 text-white">Total Messages</h6>
+                    <h2 class="text-right text-white"><i class="fa fa-refresh f-left text-white"></i><span>{{messagescount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Messages<span class="f-right">{{pendingmessagescount}}</span></p>
                 </div>
             </div>
+          </a>
+        </div>
+        
+      
+        <div class="col-md-4 col-xl-3">
+          <a href="#">
+            <div class="card bg-c-pink order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20 text-white">Video Chat With Consultant</h6>
+                    <h2 class="text-right text-white"><i class="fa fa-envelope f-left"></i><span></span></h2>
+                </div>
+            </div>
+          </a>
         </div>
 
-        <div class="col-md-3 col-xl-3">
-          <div class="card order-card mb-3">
-              <div class="card-block">
-                  <h5 class="m-b-20 text-white"> <a href="#" class="text-white">Video Chat With Consultant</a></h5>
-                  <h2 class="text-right text-white"><i class="fa fa-whatsapp f-left text-white"></i><span></span></h2>
-                  <p class="m-b-0 text-white">{{serviceRequestDate}}<span class="f-right"></span></p>
-              </div>
-          </div>
-      </div>
-
 	</div>
-
 </div>
 </div>
-
-
 
 
 

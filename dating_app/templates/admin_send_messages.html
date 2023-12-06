@@ -40,10 +40,13 @@
 
 <br><br>
 <div class="container">
-  <a class="btn btn-sm btn-danger my-1" href="/dating/admin-messages">&larr;Back to Messages</a>
+
+  <div class="justify-content-center align-items-center d-flex mb-2">
+    <a href="/dating/admin-messages"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+  </div>
     <div class="container register-form">
       <div class="form">
-        <div class="note">
+        <div class="note"  style="background: linear-gradient(45deg,#6c7e4b,#73b4ff);">
           <h4 class="text-center pt-4">Compose Message to a Client</h4>
         </div>
         <div class="form-content">
@@ -59,7 +62,9 @@
               <!-- <textarea class="form-control" rows="5" id="content" name="content"></textarea> -->
               {{form.content}}
             </div>
-            <button type="submit" class="btn btn-success">Send Message</button>
+            <div class="justify-content-center align-items-center d-flex mb-2">
+              <button type="submit" class="btn btn-success">Send Message</button>
+            </div>
           </form>
         </div>
       </div>

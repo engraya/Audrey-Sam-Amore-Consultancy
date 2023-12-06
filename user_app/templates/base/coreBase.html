@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+<head>
+  <!--====== Required meta tags ======-->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!--====== Title ======-->
+  <title>Audrey Sam Amore Consult</title>
+
+  <!-- Favicons -->
+	<link rel="icon" type="image/png" class="rounded-circle" href="{% static 'images/icons/asa.png' %}"/>
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"/>
+
+  <!--====== Bootstrap css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/bootstrap.min.css' %}" />
+
+  <link href="https://fonts.googleapis.com/css?family=Akronim" rel="stylesheet"/>
+
+  <!--====== Line Icons css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/lineicons.css' %}" />
+
+  <!--====== Tiny Slider css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/tiny-slider.css' %}" />
+
+  <!--====== gLightBox css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/glightbox.min.css' %}" />
+
+  <link rel="stylesheet" href="{% static 'style0.css' %}" />
+
+</head>
+
+<body>
+    
+    {% block content  %}
+
+
+    {% endblock content  %}
+
+  <!-- Start Footer Area -->
+  <footer class="footer-area footer-eleven">
+    <!-- Start Footer Top -->
+    <div class="footer-top">
+      <div class="container">
+        <div class="inner-content">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="footer-widget f-about">
+                <div class="logo">
+                  <a href="{% url 'home' %}">
+                    <img style="height: auto; width:200px" src="{% static 'assets0/images/logo.png' %}" alt="#" class="img-fluid" />
+                  </a>
+                </div>
+                <p>
+                  Discover the perfect blend of dating expertise and professional consultation. Our dedicated team is committed to helping you navigate the exciting journey of relationships and personal growth.
+                </p>
+                <p class="copyright-text">
+                  <span>© 2024 Audre Sam Amore Consult.</span>
+                  <a href="javascript:void(0)" rel="nofollow"></a>
+                </p>
+              </div>
+              <!-- End Single Widget -->
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+              <!-- Single Widget -->
+              <div class="footer-widget newsletter">
+                <h5>Subscribe</h5>
+                <p>Subscribe to our newsletter for the latest updates</p>
+                <form action="#" method="get" target="_blank" class="newsletter-form">
+                  <input name="EMAIL" placeholder="Email address" required="required" type="email" />
+                  <div class="button">
+                    <button class="sub-btn">
+                      <i class="lni lni-envelope"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!-- End Single Widget -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ End Footer Top -->
+  </footer>
+  <!--/ End Footer Area -->
+  <a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+  </a>
+
+  <!--====== js ======-->
+  <script src="{% static 'assets0/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets0/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets0/js/main.js' %}"></script>
+  <script src="{% static 'assets0/js/tiny-slider.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+  <script>
+
+    //===== close navbar-collapse when a  clicked
+    let navbarTogglerNine = document.querySelector(
+      ".navbar-nine .navbar-toggler"
+    );
+    navbarTogglerNine.addEventListener("click", function () {
+      navbarTogglerNine.classList.toggle("active");
+    });
+
+    // ==== left sidebar toggle
+    let sidebarLeft = document.querySelector(".sidebar-left");
+    let overlayLeft = document.querySelector(".overlay-left");
+    let sidebarClose = document.querySelector(".sidebar-close .close");
+
+    overlayLeft.addEventListener("click", function () {
+      sidebarLeft.classList.toggle("open");
+      overlayLeft.classList.toggle("open");
+    });
+    sidebarClose.addEventListener("click", function () {
+      sidebarLeft.classList.remove("open");
+      overlayLeft.classList.remove("open");
+    });
+
+    // ===== navbar nine sideMenu
+    let sideMenuLeftNine = document.querySelector(".navbar-nine .menu-bar");
+
+    sideMenuLeftNine.addEventListener("click", function () {
+      sidebarLeft.classList.add("open");
+      overlayLeft.classList.add("open");
+    });
+
+    //========= glightbox
+    GLightbox({
+      'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
+      'type': 'video',
+      'source': 'youtube', //vimeo, youtube or local
+      'width': 900,
+      'autoplayVideos': true,
+    });
+
+  </script>
+</body>
+
+</html>
+
