@@ -15,4 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'asamamoreconsultancy.settings')
 
 application = get_asgi_application()
 
-app = application
