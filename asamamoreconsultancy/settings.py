@@ -7,7 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1']
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 
 
@@ -66,6 +66,8 @@ TEMPLATES = [
         },
     },
 ]
+
+WSGI_APPLICATION = 'vercel_app.wsgi.app'
 
 WSGI_APPLICATION = 'asamamoreconsultancy.wsgi.application'
 
