@@ -2,7 +2,7 @@
     "version": 2,
     "builds": [
       {
-        "src": "asamamoreconsultancy/wsgi.py",
+        "src": "asamamoreconsultancy/asgi.py",
         "use": "@vercel/python",
         "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
       },
@@ -21,7 +21,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "asamamoreconsultancy/wsgi.py"
+        "dest": "asamamoreconsultancy/asgi.py"
       }
     ]
   }
