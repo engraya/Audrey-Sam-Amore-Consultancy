@@ -60,17 +60,17 @@
               {% if user.is_authenticated %}
 
               <li><a class="nav-link scrollto " href="{% url 'user_app:user_account' %}">Profile</a></li>
+          
+              <form action="{% url 'user_app:logout_user' %}" method="POST">
+                {% csrf_token %}
+                  <button class="btn btn-danger mx-3" onclick="this.closest('form').submit();return false">Logout</button>
+              </form>
               <img
               src="{{ user.profile.profile_pic.url }}"
               class="rounded-circle mx-3 mb-2"
               height="55"
               alt="Black and White Portrait of a Man"
               loading="lazy"/>
-              <form action="{% url 'user_app:logout_user' %}" method="POST">
-                {% csrf_token %}
-                  <button class="btn btn-danger mx-3" onclick="this.closest('form').submit();return false">Logout</button>
-              </form>
-              <p class="mx-2 text-success mt-4">Welcome, {{request.user.username}}</p>
               {% endif %}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

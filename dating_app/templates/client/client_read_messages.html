@@ -1,33 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <style media="screen">
-    a:link {
-      text-decoration: none;
-    }
-
-    h6 {
-      text-align: center;
-    }
-    .container{
-      margin-top: 110px;
-    }
-  </style>
-</head>
-
+<div class="justify-content-center align-items-center d-flex mt-5 pt-5">
+  <a href="/dating/client-messages"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+</div>
 <div class="container">
-  <div class="justify-content-center align-items-center d-flex">
-    <a href="/dating/client-messages"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
-  </div>
-  <div class="panel pt-2 mt-2">
+
+  <div class="container align-items-center justify-content-center p-3 mt-3" style="background: linear-gradient(45deg,#6c7e4b,#73b4ff);">
     <div class="panel-heading">
-      <h3 class="text-center text-dark">Inbox</h3>
+      <h4 class="text-white text-center">Messages</h4>
     </div>
-    <table class="table table-hover">
+    <table class="table table-hover" id="dev-table">
       <thead>
         <tr>
           <th>Sender</th>
@@ -44,13 +27,17 @@
         <td>{{message.timestamp}}</td>
         <td><a class="btn btn-success btn-xs" href="/dating/read-messages/{{message.id}}"><span class="glyphicon glyphicon-ok"></span></a></td>
         <td><a class="btn btn-primary btn-xs" href="/dating/client-send-messages"><span class="glyphicon glyphicon-trash"></span></a></td>
-      </tr>
       {% endfor %}
     </table>
+  
   </div>
 
 
 </div>
+
+
+
+
 
 
 {% endblock content %}

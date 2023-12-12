@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 from user_app.models import Profile
@@ -6,7 +6,6 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from .models import Appointment, Client, Message
 from .forms import MessageForm, AppointmentForm, ClientMessageForm
-import random
 
 
 @login_required
@@ -106,14 +105,14 @@ def admin_dashboard_view(request):
 		'userscount' : userscount,
 		'clientUsersCount' : clientsUsersCount
 	}
-	return render(request, 'admin_dashboard.html', context)
+	return render(request, 'admin/admin_dashboard.html', context)
 
 
 	
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_client_view(request):
-    return render(request,'admin_client.html')
+    return render(request,'admin/admin_client.html')
 
 
 
@@ -123,7 +122,7 @@ def admin_view_client_view(request):
 	clientGroup = Group.objects.get(name="CLIENT")
 	clientUsers = clientGroup.user_set.all()
 	context = {'clients' : clientUsers}
-	return render(request, 'admin_view_client.html', context)
+	return render(request, 'admin/admin_view_client.html', context)
 
 
 
@@ -140,7 +139,7 @@ def delete_client_view(request,pk):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_appointment_view(request):
-    return render(request,'admin_appointment.html')
+    return render(request,'admin/admin_appointment.html')
 
 
 
@@ -149,7 +148,7 @@ def admin_appointment_view(request):
 def admin_view_appointment_view(request):
     appointments = Appointment.objects.all()
     context = {'appointments':appointments}
-    return render(request,'admin_view_appointment.html', context)
+    return render(request,'admin/admin_view_appointment.html', context)
 
 
 @login_required(login_url='adminlogin')
@@ -157,7 +156,7 @@ def admin_view_appointment_view(request):
 def admin_appointment_history_view(request):
 	appointments = Appointment.objects.all()
 	context = {'appointments' : appointments}
-	return render(request, 'admin_appointment_history.html', context)
+	return render(request, 'admin/admin_appointment_history.html', context)
 
 
 
@@ -166,7 +165,7 @@ def admin_appointment_history_view(request):
 def admin_approve_appointment_view(request):
     appointments = Appointment.objects.all().filter(status=False)
     context = {'appointments':appointments}
-    return render(request,'admin_approve_appointment.html', context)
+    return render(request,'admin/admin_approve_appointment.html', context)
 
 
 @login_required(login_url='adminlogin')
@@ -201,7 +200,7 @@ def admin_messages_view(request):
 def admin_view_messages_view(request):
 	messages = Message.objects.filter(sender__groups__name='CLIENT')
 	context = {'messages' : messages}
-	return render(request, 'admin_view_messages.html', context)
+	return render(request, 'admin/admin_view_messages.html', context)
 
 
 @login_required(login_url='adminlogin')
@@ -209,14 +208,15 @@ def admin_view_messages_view(request):
 def admin_read_messages_view(request):
     messages = Message.objects.filter(sender__groups__name='CLIENT')
     context = {'messages':messages}
-    return render(request,'admin_read_messages.html', context)
+    return render(request,'admin/admin_read_messages.html', context)
+
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_outbox(request):
 	messages = Message.objects.filter(sender=request.user)
 	context = {'messages' : messages}
-	return render(request, 'admin_outbox.html', context)
+	return render(request, 'admin/admin_outbox.html', context)
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -249,13 +249,13 @@ def admin_send_messages_view(request):
 			message.save()
 			return redirect('dating_app:admin-outbox')
 	context = {'form' : messageForm}
-	return render(request, 'admin_send_messages.html', context)
+	return render(request, 'admin/admin_send_messages.html', context)
 
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_reply_messages_view(request):
-	return render(request, 'admin_reply_messages.html')
+	return render(request, 'admin/admin_reply_messages.html')
 
 
 #-----------------ADMIN MESSAGES ENDS HERE----------------------------------------------------------------#####
@@ -289,13 +289,13 @@ def client_dashboard_view(request):
 		'appointments' : appointments,
 		'messages' : messages
 	}
-	return render(request, 'client_dashboard.html', context)
+	return render(request, 'client/client_dashboard.html', context)
 
 
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_appointment_view(request):
-    return render(request,'client_appointment.html')
+    return render(request,'client/client_appointment.html')
 
 
 @login_required(login_url='client_login')
@@ -317,7 +317,7 @@ def client_book_appointment(request):
 			appointment.save()
 			return redirect('dating_app:client-appointment-history')
 	context = {'form' : appointmentForm}
-	return render(request, 'client_book_appointment.html', context)
+	return render(request, 'client/client_book_appointment.html', context)
 		
 
 
@@ -334,7 +334,7 @@ def client_cancel_appointment_view(request, pk):
 def client_view_appointment_view(request):
 	appointments = Appointment.objects.all().filter(clientID=request.user.id)
 	context = {'appointments' : appointments}
-	return render(request, 'client_view_appointment.html', context)
+	return render(request, 'client/client_view_appointment.html', context)
 
 
 
@@ -343,7 +343,7 @@ def client_view_appointment_view(request):
 def client_appointment_history(request):
 	appointments = Appointment.objects.filter(status=False)
 	context = {'appointments' : appointments}
-	return render(request, 'client_appointment_history.html', context)	
+	return render(request, 'client/client_appointment_history.html', context)	
 
 
 #-----------------CLIENT MESSAGES STARTS HERE----------------------------------------------------------------#####
@@ -351,7 +351,7 @@ def client_appointment_history(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_messages_view(request):
-	return render(request, 'client_messages.html')
+	return render(request, 'client/client_messages.html')
 
 
 @login_required(login_url='client_login')
@@ -359,7 +359,7 @@ def client_messages_view(request):
 def client_view_messages_view(request):
 	messages = Message.objects.all().filter(sender__groups__name='ADMIN', recipient=request.user)
 	context = {'messages' : messages}
-	return render(request, 'client_view_messages.html', context)
+	return render(request, 'client/client_view_messages.html', context)
 
 
 
@@ -368,7 +368,7 @@ def client_view_messages_view(request):
 def client_read_messages_view(request):
     messages = Message.objects.all().filter(sender__groups__name='ADMIN', recipient=request.user)
     context = {'messages':messages}
-    return render(request,'client_read_messages.html', context)
+    return render(request,'client/client_read_messages.html', context)
 
 
 @login_required(login_url='client_login')
@@ -387,7 +387,7 @@ def client_send_messages(request):
 			message.save()
 			return redirect('dating_app:client-outbox')
 	context = {'form' : messageForm}
-	return render(request, 'client_send_messages.html', context)
+	return render(request, 'client/client_send_messages.html', context)
 
 
 @login_required(login_url='client_login')
@@ -395,7 +395,7 @@ def client_send_messages(request):
 def client_messages_outbox(request):
 	messages = Message.objects.filter(sender=request.user)
 	context = {'messages' : messages}
-	return render(request, 'client_outbox.html', context)
+	return render(request, 'client/client_outbox.html', context)
 
 
 

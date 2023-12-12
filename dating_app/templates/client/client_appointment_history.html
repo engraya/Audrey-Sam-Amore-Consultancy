@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="justify-content-center align-items-center d-flex my-2 mt-5 pt-5">
+  <a href="/dating/client-appointment"><button type="button" class="btn btn-outline-info">&larr;</button></a>
+</div>
+<div class="container align-items-center justify-content-center p-3" style="background: linear-gradient(45deg,#6c7e4b,#73b4ff);">
+  <div class="panel-heading">
+    <h4 class="text-white text-center">Available Appointments</h4>
+  </div>
+  <table class="table table-hover" id="dev-table">
+    <thead>
+      <tr>
+        <th>Appointment Category</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    {% for appointment in appointments %}
+    <tr>
+      <td>{{appointment.category}}</td>
+      <td>{{appointment.description}}</td>
+      <td>{{appointment.appointmentDateTime}}</td>
+      {% if appointment.status %}
+      <td> <span class="btn bt-sm btn-success">Confirmed</span></td>
+      {% else %}
+      <td> <span class="btn btn-sm btn-success">Sent</span></td>
+      {% endif %}
+      <td>
+        <a href="/dating/cancel-appointment/{{appointment.id}}" class="btn btn-sm btn-danger">Cancel</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="6">No appointments scheduled yet..</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
