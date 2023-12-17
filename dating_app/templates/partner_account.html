@@ -2,63 +2,167 @@
 {% load i18n %}
 {% load static %}
 {% block content %}
-  <link rel="stylesheet" href="{% static "styles/partner_account.css" %}">
- 
-  <div class="container pt-4 mt-4">
-    <a class="btn btn-sm btn-danger my-2" href="{% url 'dating_app:dating' %}">&larr;Back</a>
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <img class="card-img-top"  style="object-fit: cover; object-position: center;">
-            <div class="card-body little-profile text-center">
-              <div class="pro-img"><img src="{{ profile.profile_pic.url }}" style="width: 180px; height: 180px; object-fit: cover; object-position: center;"  alt="user"></div>
-              <h3 class="m-b-0">{{ profile.first_name }} {{ profile.last_name }}<br> {{ profile.age }}</h3>
-              <h3 class="m-b-0">{{ profile.gender }}</h3><br>
-              <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom: 5px;" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-              </svg> {{ profile.city }}, {{profile.state}}</p>
-              <p>{{profile.country.name}}</p>
-              <br>
-               <a href="{% url 'chat_app:inbox' profile %}" class="m-t-2 waves-effect waves-dark btn btn-sm btn-success bi-chat-fill btn-md btn-rounded" data-abc="true">{% trans 'Chat' %}</a>
-          </div>
-          </div>
-       </div>
+<style>
+  body{margin-top:20px;
+    background: #f5f5f5;
+    }
+    .theme-bg-white {
+        background-color: #fff !important;
+    }
+    .ui-w-100 {
+        width: 100px !important;
+        height: auto;
+    }
+    .ui-w-40 {
+        width: 40px !important;
+        height: auto;
+    }
+    .row-bordered>.col::before, .row-bordered>[class^="col-"]::before, .row-bordered>[class*=" col-"]::before, .row-bordered>[class^="col "]::before, .row-bordered>[class*=" col "]::before, .row-bordered>[class$=" col"]::before, .row-bordered>[class="col"]::before {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        left: 0;
+        display: block;
+        height: 0;
+        border-top: 1px solid rgba(24,28,33,0.06);
+    }
+    .row-bordered>.col::after, .row-bordered>[class^="col-"]::after, .row-bordered>[class*=" col-"]::after, .row-bordered>[class^="col "]::after, .row-bordered>[class*=" col "]::after, .row-bordered>[class$=" col"]::after, .row-bordered>[class="col"]::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -1px;
+        display: block;
+        width: 0;
+        border-left: 1px solid rgba(24,28,33,0.06);
+    }
+    
+    .ui-bg-cover {
+        background-color: rgba(0,0,0,0);
+        background-position: center center;
+        background-size: cover;
+    }
+    
+    .ui-square {
+        padding-top: 100% !important;
+    }
+    .ui-square, .ui-rect, .ui-rect-30, .ui-rect-60, .ui-rect-67, .ui-rect-75 {
+        position: relative !important;
+        display: block !important;
+        padding-top: 100% !important;
+        width: 100% !important;
+    }
+</style>
+
+<div class="layout-content">
+
+  <!-- Content -->
+  <div class="container flex-grow-1 container-p-y mt-5 pt-5">
+    <div class="card-body">
+      <a class="btn btn-sm btn-danger" href="{% url 'dating_app:dating' %}">&larr;Back</a>
+      &nbsp;
     </div>
-    <div class="row mt-3">
-      <div class="col-sm-5">
-        <div class="card p-3" style="background-color: rgb(213, 231, 212);">
-          <h4>{% trans 'Bio' %}</h4>
-          <div class="row">
-            <div class="col-lg-6">
-              <p>{{ profile.about }}</p>
-            </div>
-            <div class="col-lg-6">
+    <!-- Header -->
+    <div class="container-m-nx container-m-ny theme-bg-white mb-4">
+      <div class="media col-md-10 col-lg-8 col-xl-7 py-5 mx-auto">
+        <img src="{{ profile.profile_pic.url }}" alt="" class="d-block ui-w-100 rounded-circle">
+        <div class="media-body ml-5">
+          <h4 class="font-weight-bold mb-4">{{ profile.first_name }} {{ profile.last_name }}</h4>
+
+          <div class="text-muted mb-4">
+            {{ profile.about }}
+          </div>
+
+          <a href="javascript:void(0)" class="d-inline-block text-body">
+            <strong>Gender - </strong>
+            <span class="text-muted">{{ profile.gender }}</span>
+          </a>
+          <a href="javascript:void(0)" class="d-inline-block text-body ml-3">
+            <strong>Age - </strong>
+            <span class="text-muted">{{ profile.age }}</span>
+          </a>
+          <div class="card-body">
+            <p class="">
+              <i class="ion ion-md-desktop ui-w-30 text-center text-lighter"></i>{{ profile.profession }}</p>
+            <p class="mb-2">
+              <i class="ion ion-ios-navigate ui-w-30 text-center text-lighter"></i> {{ profile.state }}, {{ profile.country.name }}</p>
+          </div>
+          <div class="card-body">
+            <a href="{% url 'chat_app:inbox' profile %}" class="waves-effect waves-dark btn btn-sm btn-success bi-chat-fill btn-md btn-rounded" data-abc="true"> Chat</a>
+            &nbsp;
+            <a href="javascript:void(0)" class="btn icon-btn btn-default md-btn-flat rounded-pill">
+              <span class="ion ion-md-mail"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr class="m-0">
+      
+    </div>
+    
+    <!-- Header -->
+
+    <div class="row">
+      <div class="col">
+
+        <!-- Info -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted">Complexion:</div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.complexion }}</a>
               </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted">Relationship Status:</div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.relationshipStatus }}</a>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted">Kids Status:</div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.kidsStatus }}</a>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted"><span>Seeking For:</span></div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.seekingRelationship }} </a>
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted">Partner Preference:</div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.partnerPreference }} </a>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-md-3 text-muted">Hobbies:</div>
+              <div class="col-md-9">
+                <a href="javascript:void(0)" class="text-body">{{ profile.hobbyList }}</a>
+              </div>
+            </div>
           </div>
+
         </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(220, 233, 218);">
-          <h4>{% trans 'Relationship Status' %}</h4>
-          <p>{{ profile.relationshipStatus }} </p>
-        </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(222, 235, 221);">
-          <h4>{% trans 'Seeking Relationship' %}</h4>
-          <p>{{ profile.seekingRelationship }} </p>
-        </div>
+        <!-- / Info -->
       </div>
-      <div class="col-sm-7" >
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans "Partner Preference" %}</h4>
-          <p>{{ profile.partnerPreference }} </p>
-        </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans "Hobby List" %}</h4>
-          <p>{{ profile.hobbyList }} </p>
-        </div>
-        <div class="card p-3 mt-3" style="background-color: rgb(177, 219, 173);">
-          <h4>{% trans "Complexion" %}</h4>
-          <p>{{ profile.complexion }} </p>
-        </div>
+      <div class="col-xl-4">
+
+
       </div>
     </div>
+
   </div>
+  <!-- / Content -->
+
+
+</div>
 {% endblock %}
+
+
