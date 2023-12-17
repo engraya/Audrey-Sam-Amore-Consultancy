@@ -1,0 +1,255 @@
+<link rel="stylesheet" href="{% static "styles/user_account.css" %}">
+<style>
+  body{
+    margin-top:20px;
+    background:#eee;
+}
+.card {
+    background-color: #fff;
+    border: 0 solid #eee;
+    border-radius: 0;
+}
+.card {
+    margin-bottom: 30px;
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+}
+
+.card-profile .card-header {
+    height: 9rem;
+    background-size: cover;
+    background-position: center center
+}
+
+.card-profile-img {
+    max-width: 8rem;
+    margin-top: -6rem;
+    margin-bottom: 1rem;
+    border: 3px solid #fff;
+    border-radius: 100%
+}
+
+.avatar {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    border-radius: 50%;
+    display: inline-block;
+    background: #ced4da no-repeat center/cover;
+    position: relative;
+    text-align: center;
+    color: #868e96;
+    font-weight: 600;
+    vertical-align: bottom
+}
+
+.avatar.avatar-md {
+    width: 3rem;
+    height: 3rem
+}
+
+.avatar.avatar-lg {
+    width: 4rem;
+    height: 4rem
+}
+
+.avatar.avatar-xl {
+    width: 5rem;
+    height: 5rem
+}
+
+.avatar.avatar-xxl {
+    width: 7rem;
+    height: 7rem;
+    min-width: 7rem
+}
+
+.card-header:first-child {
+    border-radius: 0 0 0 0;
+}
+.card-header:first-child {
+    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+}
+.card-header {
+    padding: 1rem 1.25rem;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+.card-header {
+    -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+}
+</style>
+
+<div class="container pt-5 mt-5">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  <div class="row">
+  <div class="col-lg-4">
+    {% if error %}
+    <p class="alert alert-danger"><svg xmlns="http://www.w3.org/2000/svg" style="margin-bottom: 5px;" width="16" height="16" fill="currentColor" class="bi bi-exclamation-octagon-fill" viewBox="0 0 16 16">
+      <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zM8 4c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995A.905.905 0 0 1 8 4zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+    </svg> {{ error }}</p>
+    {% endif %}
+  <div class="card card-profile">
+  <div style="" class="card-header"></div>
+  <div class="card-body text-center"><img src="{{ user.profile.profile_pic.url }}" class="card-profile-img">
+    <h2 class="mb-3">{{ request.user.username }}</h2>
+    <p class="mb-4">{{user.profile.age}}</p>
+    <hr>
+    <div class="input-group">
+      <label class="input-group-text" for="id_profile_pic">{% trans 'Picture' %}</label>
+      <input type="file" name="profile_pic" class="form-control" id="id_profile_pic">
+    </div>
+  </div>
+  </div>
+  </div>
+  <div class="col-lg-8">
+  <form class="card" novalidate>
+  <div class="card-body">
+    <h3 class="card-title">Edit Profile</h3>
+    <div class="row">
+      <div class="col-sm-4 col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">First Name</label>
+          <!-- <input type="text" placeholder="First name" class="form-control" value="{{ user.profile.first_name }}"> -->
+          {{p_form.first_name}}
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Last Name</label>
+          <!-- <input type="text" placeholder="Last Name" class="form-control"  value="{{ user.profile.last_name }}"> -->
+          {{p_form.last_name}}
+        </div>
+      </div>
+      <div class="col-sm-4 col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">User Name</label>
+          <!-- <input type="text" placeholder="User Name" class="form-control"  value="{{ user.username }}"> -->
+          {{u_form.username}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Age</label>
+          <!-- <input type="number" placeholder="Age" class="form-control" value="{{ user.profile.age }}" id="id_age" min="18" max="99" pattern="[0-9]{3}"  autocomplete="off"> -->
+          {{p_form.age}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Country</label>
+          <!-- <input type="text" placeholder="Enter your Country" class="form-control" value="{{ user.profile.country }}" > -->
+          {{p_form.country}}
+        </div>
+      </div>
+            <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">State</label>
+          <!-- <input type="text" placeholder="Enter your State" class="form-control" value="{{ user.profile.state }}"> -->
+          {{p_form.state}}
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">City</label>
+          <!-- <input type="text" placeholder="Enter your City" class="form-control" value="{{ user.profile.city }}"> -->
+          {{p_form.state}}
+        </div>
+      </div>
+      <div class="col">
+        <label for="gender" class="form-label">{% trans 'Gender' %}</label>
+        {% if user.profile.gender == "M" %}
+        <select name="gender" class="form-control" id="id_gender">
+        <option value="M" selected="selected">{% trans 'Male' %}</option>
+        <option value="F">{% trans 'Female' %}</option>
+        </select>
+        {% else %}
+        <select name="sex" class="form-control" id="id_sex">
+        <option value="M">{% trans 'Male' %}</option>
+        <option value="F" selected="selected">{% trans 'Female' %}</option>
+        </select>
+        {% endif %}
+      </div>
+      <div class="col">
+        <label for="country" class="form-label">{% trans 'Seeking' %}</label>
+        {% if user.profile.seeking == "M" %}
+        <select name="seeking" class="form-control" id="id_seeking">
+        <option value="M" selected="selected">{% trans 'Male' %}</option>
+        <option value="F">{% trans 'Female' %}</option>
+        </select>
+        {% else %}
+        <select name="seeking" class="form-control" id="id_seeking">
+        <option value="M">{% trans 'Male' %}</option>
+        <option value="F" selected="selected">{% trans 'Female' %}</option>
+        </select>
+        {% endif %}
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Relationship Status</label>
+          <!-- <input type="text" placeholder="Enter Relationship Status" class="form-control" value="{{ user.profile.relationshipStatus  }}"> -->
+          {{p_form.relationshipStatus}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Kids Status</label>
+          <!-- <input type="text" placeholder="Enter Kid's Status" class="form-control" value="{{ user.profile.kidsStatus  }}"> -->
+          {{p_form.kidsStatus}}
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Partner Preference</label>
+          <!-- <input type="text" placeholder="Choose Partner Preference" class="form-control" value="{{ user.profile.partnerPreference  }}"> -->
+          {{p_form.partnerPreference}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Complexion</label>
+          <!-- <input type="text" placeholder="Enter Complexion" class="form-control" value="{{ user.profile.complexion  }}"> -->
+          {{p_form.complexion}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Seeking Relationship Type</label>
+          <!-- <input type="text" placeholder="Enter Seeking Relationship Type" class="form-control" value="{{ user.profile.seekingRelationship  }}"> -->
+          {{p_form.seekingRelationship}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group mb-4">
+          <label class="form-label">Profession</label>
+          <!-- <input type="text" placeholder="Enter your Profession" class="form-control" value="{{ user.profile.profession  }}"> -->
+          {{p_form.profession}}
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group mb-4">
+          <label class="form-label">Hobby List</label>
+          <!-- <textarea type="textarea" class="form-control" rows="5" name="hobbyList" id="idhobbyList">{{ user.profile.hobbyList }}</textarea> -->
+          {{p_form.hobbyList}}
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group mb-0">
+          <label class="form-label">About</label>
+          <!-- <textarea type="textarea" class="form-control" rows="5" name="about" id="id_about">{{ user.profile.about }}</textarea> -->
+          {{p_form.about}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-right">
+    <button type="submit" class="btn btn-success">Update Profile</button>
+  </div>
+  </form>
+  </div>
+  </div>
+</form>
+</div>
