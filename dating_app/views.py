@@ -3,43 +3,63 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User, Group
 from user_app.models import Profile
 from django.db.models import Q
-from django.core.paginator import Paginator, EmptyPage, InvalidPage
 from .models import Appointment, Client, Message
 from .forms import MessageForm, AppointmentForm, ClientMessageForm
+from django.contrib.auth.models import User
+from .decorators import user_not_Admin
+
+
+
 
 
 @login_required
+@user_not_Admin
 def dating(request):
 	profile = Profile.objects.get(user_id=request.user.id)
 	if profile:
-		query = request.GET.get("q", default = "")
-		gender = request.GET.get('gender', default = "ALL")
-		if gender == 'ALL':
-			gender = ['M', 'F']
-		
-		# profiles_list = Profile.objects.filter(
-		# 		Q(first_name__icontains=query) | Q(last_name__icontains=query), gender__in=gender
-		# ).exclude(user_id=request.user.id)
 
-		clientGroup = Group.objects.get(name='CLIENT')
-		profiles_list = Profile.objects.filter(user__groups=clientGroup).exclude(user_id=request.user.id)
+		searchQuery = request.GET.get('search', '')
 
-		context = get_pogination(request, profiles_list, 10)
+		users = User.objects.filter(
+			Q(username__icontains=searchQuery) | 
+			Q(first_name__icontains=searchQuery) |
+			Q(last_name__icontains=searchQuery),
+			profile__isnull=False
+		).exclude(
+			Q(id=request.user.id) | Q(groups__name='ADMIN')
+		)
+
+		# users = User.objects.filter(profile__isnull=False).exclude(
+		# 	Q(id=request.user.id) | Q(groups__name='ADMIN')
+		# )
+		context = {'users' : users, 'searchQuery' : searchQuery}
 		return render(request, 'dating.html', context)
 	return redirect('user_app:sign_up_step_three')
 
 
 @login_required
-def partner_account(request, user_id):
-	# profile = Profile.objects.get(pk=user_id)
-	clientGroup = Group.objects.get(name='CLIENT')
-	profile = Profile.objects.filter(user__groups=clientGroup).get(pk=user_id)
-	if profile.about:
+def profileDetail(request, user_id):
+	userProfile = get_object_or_404(Profile, user_id=user_id)
+	context = {'profile' : userProfile}
+	return render(request, 'partner_account.html', context)
 
-		partner_account = get_object_or_404(User, pk=user_id)
-		context = {'partner_account':partner_account, 'profile' : profile}
-		return render(request, 'partner_account.html', context)
-	return redirect('user_app:sign_up_step_three')
+
+@login_required
+def searchUsers(request):
+	if request.method == 'GET':
+		searchQuery = request.GET.get('search', '')
+		users = User.objects.filter(
+			Q(username__icontains=searchQuery) | 
+			Q(first_name__icontains=searchQuery) |
+			Q(last_name__icontains=searchQuery),
+			profile__isnull=False
+		).exclude(
+			Q(id=request.user.id) | Q(groups__name='ADMIN')
+		)
+		context = {'users' : users, 'searchQuery' : searchQuery}
+		return render(request, )
+
+
 
 @login_required
 def home(request):
@@ -48,26 +68,6 @@ def home(request):
 		return redirect('dating_app:dating')
 	return redirect('user_app:sign_up_step_three')
 
-
-
-def get_pogination(request, profiles_list, objects_num):
-	paginator = Paginator(profiles_list, objects_num)
-	try:
-		page = int(request.GET.get('page', '1'))
-	except:
-		page = 1
-	
-	try:
-		cards = paginator.page(page)
-	except(EmptyPage, InvalidPage):
-		cards = paginator.page(paginator.num_pages)
-	page_range = paginator.get_elided_page_range(number=page)
-
-	context = {
-		'cards':cards,
-		'page_range': page_range
-	}
-	return context
 
 
 def is_admin(user):
@@ -269,7 +269,7 @@ def admin_reply_messages_view(request):
 @login_required(login_url='clientlogin')
 @user_passes_test(is_client)
 def clientPage(request):
-	return render(request, 'client_dashboard.html')
+	return render(request, 'client/client_dashboard.html')
 
 @login_required(login_url='client_login')
 @user_passes_test(is_client)

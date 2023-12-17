@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 {% extends "base.html" %}
 {% load i18n %}
 {% load static %}
@@ -267,23 +267,12 @@
         <div class="col-lg-12 card-margin">
             <div class="card search-form">
                 <div class="card-body p-0">
-                    <form id="search-form">
+                    <form id="search-form" method="GET" action="{% url 'dating_app:dating' %}">
                         <div class="row">
                             <div class="col-12">
                                 <div class="row no-gutters">
-                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                        <select class="form-control" id="exampleFormControlSelect1">
-                                            <option>Location</option>
-                                            <option>London</option>
-                                            <option>Boston</option>
-                                            <option>Mumbai</option>
-                                            <option>New York</option>
-                                            <option>Toronto</option>
-                                            <option>Paris</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
-                                        <input type="text" placeholder="Search..." class="form-control" id="search" name="search">
+                                    <div class="col-lg-10 col-md-6 col-sm-12 p-0">
+                                        <input type="text" placeholder="Search..." class="form-control" id="search" name="search" value="{{searchQuery}}">
                                     </div>
                                     <div class="col-lg-1 col-md-3 col-sm-12 p-0">
                                         <button type="submit" class="btn btn-base">
@@ -370,35 +359,35 @@
                                         <div class="table-responsive">
                                             <table class="table widget-26">
                                                 <tbody>
+                                                  {% for user in users %}
                                                     <tr>
-                                                        {% if cards %}
-                                                        {% for card in cards %}
+                                             
                                                         <td>
                                                             <div class="widget-26-job-emp-img">
-                                                                <img src="{{ card.profile_pic.url }}" alt="Company" />
+                                                                <img src="{{ user.profile.profile_pic.url }}" alt="Company" />
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="widget-26-job-title">
-                                                                <a href="{% url 'dating_app:partner_account' card.id %}">{{ card.first_name }} {{ card.last_name }}</a>
-                                                                <p class="m-0"><a href="#" class="employer-name">{{ card.profession }}</a></p>
+                                                                <a href="{% url 'dating_app:profileDetail' user.id %}">{{ user.profile.first_name }} {{ user.profile.last_name }}</a>
+                                                                <p class="m-0"><a href="#" class="employer-name">{{ user.profile.profession }}</a></p>
                                                             </div>
                                                         </td>
                                                         <td>
                                                             <div class="widget-26-job-info">
                                                                 <p class="type m-0">{{ card.state}}</p>
-                                                                <p class="text-muted m-0"><span class="location">{{ card.country.name  }}</span></p>
+                                                                <p class="text-muted m-0"><span class="location">{{ user.profile.country.name  }}</span></p>
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <div class="widget-26-job-salary">{{ card.gender }}</div>
+                                                            <div class="widget-26-job-salary">{{ user.profile.gender }}</div>
                                                         </td>
                                                         <td>
-                                                            <div class="widget-26-job-salary">{{ card.age }}</div>
+                                                            <div class="widget-26-job-salary">{{ user.profile.age }}</div>
                                                         </td>
                                                         <td>
                                                             <div class="widget-26-job-starred">
-                                                                <a href="{% url 'dating_app:partner_account' card.id %}">
+                                                                <a href="#">
                                                                     <svg
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         width="24"
@@ -416,9 +405,9 @@
                                                                 </a>
                                                             </div>
                                                         </td>
-                                                        {% endfor %}
-                                                        {% endif %}
+                                                 
                                                     </tr>
+                                                    {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
