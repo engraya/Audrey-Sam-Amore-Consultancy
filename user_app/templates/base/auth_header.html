@@ -46,8 +46,10 @@
     <div class="container-fluid">
 
       <div class="row justify-content-center align-items-center">
-        <div class="col-xl-11 d-flex align-items-center justify-content-between">
-          <a href="/dating/client-dashboard" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
+        <div class=" d-flex align-items-center justify-content-evenly">
+      
+          <a href="/dating/client-dashboard" class="logo m-1"><span class="text-light"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt="">Audrey Sam Amore Consult</span></a>
+          
           <nav id="navbar" class="navbar mt-4">
             <ul>
               <li><a class="nav-link scrollto" href="/dating/client-dashboard">Dashboard</a></li>
@@ -66,9 +68,9 @@
                   <button class="btn btn-danger mx-3" onclick="this.closest('form').submit();return false">Logout</button>
               </form>
               <img
+              style="height: 50px; width:50px"
               src="{{ user.profile.profile_pic.url }}"
               class="rounded-circle mx-3 mb-2"
-              height="55"
               alt="Black and White Portrait of a Man"
               loading="lazy"/>
               {% endif %}

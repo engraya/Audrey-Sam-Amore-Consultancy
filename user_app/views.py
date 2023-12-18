@@ -8,6 +8,8 @@ from .models import Profile
 from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from dating_app.models import Message, Appointment
+
 
 def corePage(request):
 	return render(request, 'corePage.html')
@@ -139,6 +141,12 @@ def logout_user(request):
 
 @login_required
 def user_account(request):
+	appointmentCount = Appointment.objects.all().filter(client=request.user, status=True).count()
+	messageCount = Message.objects.all().filter(senderID=request.user.id, status=True).count()
+	pendingAppointments = Appointment.objects.all().filter(client=request.user, status=False).count()
+	pendingMessages = Message.objects.all().filter(sender=request.user, recipient=request.user, status=False).count()
+
+
 	profile = Profile.objects.get_or_create(user_id=request.user.id)
 	if request.user.profile.about:
 		if request.method == 'POST':
@@ -156,6 +164,10 @@ def user_account(request):
 			'u_form': u_form,
 			'p_form': p_form,
 			'profile' : profile,
+			'totalAppointments' : appointmentCount,
+			'totalMessages' : messageCount,
+			'pendingAppointments' : pendingAppointments,
+			'pendingMesssages' : pendingMessages
 		}
 
 		return render(request, 'user_account.html', context)

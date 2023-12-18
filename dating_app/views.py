@@ -81,7 +81,7 @@ def is_client(user):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def adminPage(request):
-	return render(request, 'admin_dashboard.html')
+	return render(request, 'admin/admin_dashboard.html')
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_dashboard_view(request):
@@ -193,7 +193,7 @@ def reject_appointment(request, pk):
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
 def admin_messages_view(request):
-    return render(request,'admin_messages.html')
+    return render(request,'admin/admin_messages.html')
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -351,7 +351,23 @@ def client_appointment_history(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_messages_view(request):
-	return render(request, 'client/client_messages.html')
+	recievedmessages = Message.objects.all().filter(sender__groups__name='ADMIN', recipient=request.user)
+	sentmessages = Message.objects.filter(sender=request.user)
+	pendingmessagescount = Message.objects.all().filter(sender=request.user, recipient=request.user, status=False).count()
+	messageForm = ClientMessageForm()
+	if request.method == 'POST':
+		messageForm = ClientMessageForm(request.POST)
+		if messageForm.is_valid():
+			message = messageForm.save(commit=False)
+			message.senderID = request.user.id
+			message.senderName = request.user.first_name
+			message.content = request.POST.get('content')
+			message.sender = request.user
+			message.status = False
+			message.save()
+		return redirect('dating_app:client-messages')
+	context = {'form' : messageForm, 'sentmessages' : sentmessages, 'recievedmessages' : recievedmessages, 'pendingmessages' : pendingmessagescount}
+	return render(request, 'client/client_messages.html', context)
 
 
 @login_required(login_url='client_login')
@@ -405,7 +421,7 @@ def client_read_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.status = True
 	message.save()
-	return redirect('dating_app:client-read-messages')
+	return redirect('dating_app:client-messages')
 
 
 
@@ -414,6 +430,6 @@ def client_read_messages(request, pk):
 def client_delete_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.delete()
-	return redirect('dating_app:client-outbox')
+	return redirect('dating_app:client-messages')
 
 
