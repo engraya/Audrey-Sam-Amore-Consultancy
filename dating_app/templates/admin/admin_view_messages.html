@@ -1,4 +1,4 @@
-{% extends "admin_base.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 
 <div class="justify-content-center align-items-center d-flex my-5">
@@ -20,7 +20,7 @@
       {% for message in messages %}
       <tr>
         <td>{{message.sender}}</td>
-        <td>{{message.content}}</td>
+        <td><a href="/dating/message/{{message.id}}">{{message.content}}</a></td>
         <td>{{message.timestamp}}</td>
         {% if message.status %}
         <td> <span class="btn btn-sm btn-success">Read</span></td>

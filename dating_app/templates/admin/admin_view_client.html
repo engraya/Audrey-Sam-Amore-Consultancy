@@ -1,4 +1,4 @@
-{% extends "admin_base.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 {%load static%}
 
@@ -12,8 +12,8 @@
   <div class="d-flex justify-content-center">
  
     {% for client in clients %}
-    <div class="card mx-2" style="width:200px">
-      <img class="card-img-top" src="{{client.profile.profile_pic.url}}" alt="Card image">
+    <div class="card mx-2 text-center" style="width:200px; border-radius:22px">
+      <a href="{% url 'dating_app:profileDetail' user.id %}"><img class="card-img-top" src="{{client.profile.profile_pic.url}}" alt="Card image">
       <div class="card-body">
         <h5 class="card-title">{{client.username}}</h5>
         <span class="card-text" >{{client.profile.age}}</span><br>
@@ -21,6 +21,7 @@
         <span>{{client.profile.country.name}}</span><br>
         <p class="card-text">{{client.profile.state}}, {{client.profile.city}}</p>
       </div>
+    </a>
     </div>
     {% endfor %}
   </div>

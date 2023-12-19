@@ -228,6 +228,15 @@ def read_messages(request, pk):
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
+def messageDetail(request, pk):
+	pendingmessagescount = Message.objects.all().filter(status=False).count()
+	message = Message.objects.get(id=pk)
+	context = {'message' : message, 'messagesCount' : pendingmessagescount}
+	return render(request, 'admin/adminMessageDetail.html', context)
+
+
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
 def reject_messages(request, pk):
 	message = Message.objects.get(id=pk)
 	message.delete()
@@ -256,6 +265,7 @@ def admin_send_messages_view(request):
 @user_passes_test(is_admin)
 def admin_reply_messages_view(request):
 	return render(request, 'admin/admin_reply_messages.html')
+
 
 
 #-----------------ADMIN MESSAGES ENDS HERE----------------------------------------------------------------#####

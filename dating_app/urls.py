@@ -26,6 +26,7 @@ urlpatterns = [
     path('approve-messages/<int:pk>', views.read_messages,name='read-messages'),
     path('reject-messages/<int:pk>', views.reject_messages,name='reject-messages'),
     path('admin-reply-messages', views.admin_reply_messages_view, name='admin-reply-messages'),
+    path('message/<int:pk>', views.messageDetail, name='message-detail'),
 
     
     path('admin-client/', views.admin_client_view,name='admin-client'),

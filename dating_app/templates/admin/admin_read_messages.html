@@ -1,4 +1,4 @@
-{% extends "admin_base.html" %}
+{% extends "admin/admin_base.html" %}
 {% block content %}
 
 
@@ -24,7 +24,7 @@
       {% for message in messages %}
       <tr>
         <td>{{message.sender}}</td>
-        <td>{{message.content}}</td>
+        <td><a href="/dating/message/{{message.id}}">{{message.content}}</a></td>
         <td>{{message.timestamp}}</td>
         <td><a class="btn btn-success btn-xs" href="/dating/approve-messages/{{message.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i></a></td>
         <td><a class="btn btn-danger btn-xs" href="/dating/reject-messages/{{message.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a></td>

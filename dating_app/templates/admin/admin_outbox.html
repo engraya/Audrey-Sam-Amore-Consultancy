@@ -21,7 +21,7 @@
       {% for message in messages %}
       <tr>
         <td>{{message.recipient}}</td>
-        <td>{{message.content}}</td>
+        a<td><a href="/dating/message/{{message.id}}">{{message.content}}</a></td>
         <td>{{message.timestamp}}</td>
         {% if message.status %}
         <td> <span class="btn btn-sm btn-success">Read</span></td>
