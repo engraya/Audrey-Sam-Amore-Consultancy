@@ -38,6 +38,7 @@ urlpatterns = [
     path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),
     path('client-view-appointment', views.client_view_appointment_view,name='client-view-appointment'),
     path('client-appointment-history', views.client_appointment_history, name='client-appointment-history'),
+    path('cancel-appointment/<int:pk>', views.client_cancel_appointment_view, name="cancel-appointment"),
 
 
     path('client-messages', views.client_messages_view,name='client-messages'),

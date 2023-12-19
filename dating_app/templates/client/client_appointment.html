@@ -1,104 +1,204 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<br><br>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+<style>
+  body{
+    background: #edf1f5;
+    margin-top:20px;
+}
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid transparent;
+    border-radius: 0;
+}
+.mailbox-widget .custom-tab .nav-item .nav-link {
+    border: 0;
+    color: #fff;
+    border-bottom: 3px solid transparent;
+}
+.mailbox-widget .custom-tab .nav-item .nav-link.active {
+    background: 0 0;
+    color: #fff;
+    border-bottom: 3px solid #2cd07e;
+}
+.no-wrap td, .no-wrap th {
+    white-space: nowrap;
+}
+.table td, .table th {
+    padding: .9375rem .4rem;
+    vertical-align: top;
+    border-top: 1px solid rgba(120,130,140,.13);
+}
+.font-light {
+    font-weight: 300;
+}
+</style>
 
-<head>
-  <style type="text/css">
-    a:link {
-      text-decoration: none;
-    }
 
-    .menu {
-      top: 50px;
-    }
-
-    h6 {
-      color: white;
-    }
-
-    .order-card {
-      color: #fff;
-    }
-
-    .bg-c-blue {
-      background: linear-gradient(45deg,rgb(130, 91, 175)rgb(115, 255, 248)6),#45678d);
-    }
-
-
-    .card {
-      border-radius: 5px;
-      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      border: none;
-      margin-bottom: 30px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card .card-block {
-      padding: 25px;
-    }
-
-    .order-card i {
-      font-size: 26px;
-    }
-
-    .f-left {
-      float: left;
-    }
-
-    .f-right {
-      float: right;
-    }
-    .order-card {
-      background: linear-gradient(45deg,#6c7e4b,#73b4ff);
-    }
-  </style>
-</head>
-
-<div class="justify-content-center align-items-center d-flex my-3">
-  <a href="/dating/client-dashboard"><button type="button" class="btn btn-outline-info">&larr;  Back to Dashboard</button></a>
-</div>
-<div class="container">
-
+<div class="container pt-5 mt-5">
   <div class="row">
-    <div class="col-md-4 col-xl-4">
-      <a href="/dating/client-view-appointment">
-      <div class="card order-card">
-        <div class="card-block">
-            <h6 class="m-b-20">View Your Appointments</h6>
-          <br>
-        </div>
+      <div class="col-md-12">
+          <div class="card">
+              <div class="card-body bg-success text-white mailbox-widget pb-0">
+                  <h2 class="text-white pb-3 text-center">Your Appointments</h2>
+                  <ul class="nav nav-tabs custom-tab border-bottom-0 mt-4" id="myTab" role="tablist">
+                      <li class="nav-item">
+                          <a class="nav-link active" id="inbox-tab" data-toggle="tab" aria-controls="inbox" href="#inbox" role="tab" aria-selected="true">
+                              <span class="d-block d-md-none"><i class="ti-email"></i></span>
+                              <span class="d-none d-md-block">APPOINTMENTS</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
+                              <span class="d-block d-md-none"><i class="ti-export"></i></span>
+                              <span class="d-none d-md-block">APPOINTMENT HISTORY</span>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
+                              <span class="d-block d-md-none"><i class="ti-panel"></i></span>
+                              <span class="d-none d-md-block">BOOK APPOINTMENT</span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade active show" id="inbox" aria-labelledby="inbox-tab" role="tabpanel">
+                      <div>
+                          <div class="row p-4 no-gutters align-items-center">
+                              <div class="col-sm-12 col-md-6">
+                                  <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>{{pendingmessages}} Unread Messages</h3>
+                              </div>
+                              <div class="col-sm-12 col-md-6">
+                                  <ul class="list-inline dl mb-0 float-left float-md-right">
+                                      <li class="list-inline-item text-info mr-3">
+                                          <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
+                                              <button class="btn btn-sm btn-circle btn-success text-white" href="#spam" >
+                                                  <i class="fa fa-plus"></i>
+                                              </button>
+                                              <span class="ml-2 font-normal text-dark">BOOK</span>
+                                          </a>
+                                      </li>
+                                  </ul>
+                              </div>
+                          </div>
+                          <!-- Mail list-->
+                          <div class="table-responsive">
+                              <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">            
+                                  <tbody>
+                                      <!-- row -->
+                                      {% for appointment in appointments %}
+                                      <tr>
+                                          <!-- star -->
+                                          <td><i class="fa fa-star text-warning"></i></td>
+                                          <td>
+                                              <span class="mb-0 text-muted">{{appointment.category}}</span>
+                                          </td>
+                                          <!-- Message -->
+                                          <td>
+                                              <a class="link" href="javascript: void(0)">
+                                                  <span class="text-dark">{{appointment.description}}</span>
+                                              </a>
+                                          </td>
+                                                  <!-- Time -->
+                                          <td class="text-muted">{{appointment.appointmentDateTime}}</td>
+                                          <!-- Attachment -->
+                                          {% if appointment.status %}
+                                          <td><span class="badge badge-pill text-white font-medium badge-success mr-2">Approved</span></td>
+                                          {% else %}
+                                          <td><span class="badge badge-pill text-white font-medium badge-danger mr-2">Pending</span></td>
+                                          {% endif %}
+                                      </tr>
+                                      {% empty %}
+                                      <tr>
+                                        <!-- star -->
+                                        <td colspan="6">No Available Appointments yet..</td>
+                                    </tr>
+                                      {% endfor %}
+                                  </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="sent" aria-labelledby="sent-tab" role="tabpanel">
+                      <div class="row p-3 text-dark">
+                        <table class="table email-table no-wrap table-hover v-middle mb-0 font-14">            
+                          <tbody>
+                              <!-- row -->
+                              {% for appointment in historyAppointments %}
+                              <tr>
+                                  <!-- star -->
+                                  <td><i class="fa fa-star text-warning"></i></td>
+                                  <td>
+                                      <span class="mb-0 text-muted">{{appointment.category}}</span>
+                                  </td>
+                                  <!-- Message -->
+                                  <td>
+                                      <a class="link" href="javascript: void(0)">
+                                          <span class="text-dark">{{appointment.description}}</span>
+                                      </a>
+                                  </td>
+                                          <!-- Time -->
+                                  <td class="text-muted">{{appointment.appointmentDateTime}}</td>
+                                  <!-- Attachment -->
+                                  {% if message.status %}
+                                  <td><span class="badge badge-pill text-white font-medium badge-success mr-2">Approved</span></td>
+                                  {% else %}
+                                  <td><span class="badge badge-pill text-white font-medium badge-secondary mr-2">Booked</span></td>
+                                  {% endif %}
+                                  <td>
+                                      <a href="/dating/cancel-appointment/{{appointment.id}}">
+                                        <button class="btn btn-sm btn-circle btn-danger text-white" href="javascript:void(0)">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </a>
+                                </td>
+                              </tr>
+                              {% empty %}
+                              <tr>
+                                <!-- star -->
+                                <td colspan="6">No appointments scheduled yet..</td>
+                            </tr>
+                              {% endfor %}
+                          </tbody>
+                      </table>
+                      </div>
+                  </div>
+                  <div class="tab-pane fade" id="spam" aria-labelledby="spam-tab" role="tabpanel">
+                      <div class="row p-3 text-dark">
+                        <div class="form-content">
+                          <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3 mt-3">
+                              <label for="recipient" class="form-label">Consultancy Category</label>
+                              <!-- <input type="text" class="form-control" id="recipient" placeholder="Choose Recipient" name="recipient"> -->
+                              {{form.category}}
+                            </div>
+                            <div class="mb-3">
+                              <label for="content" class="form-label">Description</label>
+                              <!-- <textarea class="form-control" rows="5" id="content" name="content"></textarea> -->
+                              {{form.description}}
+                            </div>
+                            <div class="justify-content-center align-items-center d-flex my-3">
+                              <button type="submit" class="btn btn-success">Book Appointment</button>
+                            </div>
+                     
+                          </form>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-    </a>
-    </div>
-
-    <div class="col-md-4 col-xl-4">
-      <a href="/dating/client-book-appointment">
-      <div class="card order-card">
-        <div class="card-block">
-            <h6 class="m-b-20">Book Appointment</h6>
-          <br>
-        </div>
-      </div>
-    </a>
-    </div>
-
-    <div class="col-md-4 col-xl-4">
-      <a href="/dating/client-appointment-history">
-      <div class="card order-card">
-        <div class="card-block">
-            <h6 class="m-b-20">Appointment History</h6>
-          <br>
-        </div>
-      </div>
-    </a>
-    </div>
   </div>
 </div>
-
-
 
 
 

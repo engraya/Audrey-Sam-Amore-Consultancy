@@ -261,3 +261,118 @@
 
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br><br>
+
+<head>
+  <style type="text/css">
+    a:link {
+      text-decoration: none;
+    }
+
+    .menu {
+      top: 50px;
+    }
+
+    h6 {
+      color: white;
+    }
+
+    .order-card {
+      color: #fff;
+    }
+
+    .bg-c-blue {
+      background: linear-gradient(45deg,rgb(130, 91, 175)rgb(115, 255, 248)6),#45678d);
+    }
+
+
+    .card {
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
+      border: none;
+      margin-bottom: 30px;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .card .card-block {
+      padding: 25px;
+    }
+
+    .order-card i {
+      font-size: 26px;
+    }
+
+    .f-left {
+      float: left;
+    }
+
+    .f-right {
+      float: right;
+    }
+    .order-card {
+      background: linear-gradient(45deg,#6c7e4b,#73b4ff);
+    }
+  </style>
+</head>
+
+<div class="justify-content-center align-items-center d-flex my-3">
+  <a href="/dating/client-dashboard"><button type="button" class="btn btn-outline-info">&larr;  Back to Dashboard</button></a>
+</div>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4 col-xl-4">
+      <a href="/dating/client-view-appointment">
+      <div class="card order-card">
+        <div class="card-block">
+            <h6 class="m-b-20">View Your Appointments</h6>
+          <br>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+      <a href="/dating/client-book-appointment">
+      <div class="card order-card">
+        <div class="card-block">
+            <h6 class="m-b-20">Book Appointment</h6>
+          <br>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <div class="col-md-4 col-xl-4">
+      <a href="/dating/client-appointment-history">
+      <div class="card order-card">
+        <div class="card-block">
+            <h6 class="m-b-20">Appointment History</h6>
+          <br>
+        </div>
+      </div>
+    </a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

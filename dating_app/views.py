@@ -295,7 +295,25 @@ def client_dashboard_view(request):
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
 def client_appointment_view(request):
-    return render(request,'client/client_appointment.html')
+	appointments = Appointment.objects.all().filter(clientID=request.user.id)
+	historyAppointments = Appointment.objects.filter(status=False)
+	appointmentForm = AppointmentForm()
+	if request.method == 'POST':
+		admin_group = Group.objects.get(name="ADMIN")
+		appointmentForm = AppointmentForm(request.POST)
+		if appointmentForm.is_valid():
+			appointment = appointmentForm.save(commit=False)
+			appointment.admin = User.objects.filter(groups=admin_group).first()
+			appointment.clientID = request.user.id
+			appointment.clientName = request.user.first_name
+			appointment.category = request.POST.get('category')
+			appointment.description = request.POST.get('description')
+			appointment.client = request.user
+			appointment.status = False
+			appointment.save()
+			return redirect('dating_app:client-appointment')
+	context = {'form' : appointmentForm, 'appointments' : appointments, 'historyAppointments' : historyAppointments}
+	return render(request,'client/client_appointment.html', context)
 
 
 @login_required(login_url='client_login')
@@ -326,7 +344,7 @@ def client_book_appointment(request):
 def client_cancel_appointment_view(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
-	return redirect('dating_app:client-appointment-history')
+	return redirect('dating_app:client-appointment')
 
 
 @login_required(login_url='client_login')
