@@ -712,7 +712,7 @@
 </style>
 
 <div class="container pt-4 mt-4">
-    <a class="btn btn-sm btn-secondary my-2" href="/dating/admin-outbox">&larr;Back</a>
+    <a class="btn btn-sm btn-secondary my-2" href="/dating/admin-view-appointment">&larr;Back</a>
     <div class="row inbox-wrapper">
         <div class="col-lg-12">
           <div class="card">
@@ -721,16 +721,25 @@
                 <div class="col-lg-3 email-aside border-lg-right">
                   <div class="aside-content">
                     <div class="aside-header">
-                      <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></button><span class="title">Inbox</span>
+                      <button class="navbar-toggle" data-target=".aside-nav" data-toggle="collapse" type="button"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></span></button><span class="title">Appointments</span>
                       <p class="description">{{request.user.username}}</p>
                     </div>
-                    <div class="aside-compose"><a class="btn btn-success btn-block" href="/dating/admin-send-messages">Reply Messsage</a></div>
+                      {% if appointment.status %}
+                        <div class="aside-nav collapse">
+                            <ul class="nav">
+                            <li class="active"><a href="#"><span class="icon"></span>Status<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></a></li>
+                            <li><a href=""><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Approved</a></li>
+                            </ul>
+                        </div>
+                      {% else %}
+                    <div class="aside-compose"><a class="btn btn-success btn-block" href="/dating/approve-appointment/{{appointment.id}}">Approve Appointment</a></div>
                     <div class="aside-nav collapse">
-                      <ul class="nav">
-                        <li class="active"><a href="/dating/admin-view-messages"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Inbox<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></a></li>
-                        <li><a href="/dating/admin-outbox"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Sent Messages</a></li>
-                      </ul>
-                    </div>
+                        <ul class="nav">
+                          <li class="active"><a href="#"><span class="icon"></span>Status<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></a></li>
+                          <li><a href=""><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Pending</a></li>
+                        </ul>
+                      </div>
+                      {% endif %}
                   </div>
                 </div>
                 <div class="col-lg-9 email-content">
@@ -739,29 +748,34 @@
                       <div class="title d-flex align-items-center justify-content-between">
                         <div class="d-flex align-items-center">
                           <a class="active" href="#"><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star text-primary-muted"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span></a> 
-                          <span>New Message</span>
+                          <span>New Appointment Request from {{appointment.client}}</span>
                         </div>
+                        {% if appointment.status %}
                         <div class="icons">
-                          <a href="/dating/reject-messages/{{message.id}}" class="icon danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash text-muted" data-toggle="tooltip" title="" data-original-title="Delete"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                          </a>
                         </div>
+                        {% else %}
+                        <div class="icons">
+                            <a href="/dating/reject-appointment/{{appointment.id}}" class="icon danger"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash text-muted" data-toggle="tooltip" title="" data-original-title="Delete"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                            </a>
+                        </div>
+                        {% endif %}
+                 
                       </div>
                     </div>
                     <div class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
                       <div class="d-flex align-items-center">
                         <div class="avatar">
-                          <img src="{{message.sender.profile.profile_pic.url}}" alt="Avatar" class="rounded-circle user-avatar-md">
+                 
                         </div>
                         <div class="sender d-flex align-items-center">
-                          <a href="#">{{message.sender}}</a> <span>to</span><a href="#">{{message.recipient}}</a>
+                          <span>Appointment Category : </span><a href="#">{{appointment.category}}</a>
                         </div>
                       </div>
-                      <div class="date">{{message.timestamp}}</div>
+                      <div class="date">{{appointment.appointmentDateTime}}</div>
                     </div>
                   </div>
                   <div class="email-body">
-                    <p>{{message.content}}</p>
-
+                    <p>{{appointment.description}}</p>
                   </div>
                 </div>
               </div>

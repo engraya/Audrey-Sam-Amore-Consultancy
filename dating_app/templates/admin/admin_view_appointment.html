@@ -35,7 +35,7 @@
       <tr>
         <td>{{appointment.client}}</td>
         <td>{{appointment.category}}</td>
-        <td>{{appointment.description}}</td>
+        <td><a href="/dating/appointment/{{appointment.id}}">{{appointment.description}}</a></td>
         <td>{{appointment.appointmentDateTime}}</td>
         {% if appointment.status %}
         <td> <span class="btn btn-sm btn-success">Approved</span></td>

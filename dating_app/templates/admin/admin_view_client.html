@@ -1,30 +1,204 @@
 {% extends "admin/admin_base.html" %}
 {% block content %}
 {%load static%}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<style>
+  body{
+      background:#dcdcdc;
+      margin-top:20px;}
+  
+  .search-form {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1rem;
+  }
+  
+  .search-form input {
+    height: 100%;
+    background: transparent;
+    border: 0;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    height: 100%;
+    font-size: 1rem;
+  }
+  
+  .search-form select {
+    background: transparent;
+    border: 0;
+    padding: 1rem;
+    height: 100%;
+    font-size: 1rem;
+  }
+  
+  .search-form select:focus {
+    border: 0;
+  }
+  
+  .search-form button {
+    height: 100%;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .search-form button svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .search-body {
+    margin-bottom: 1.5rem;
+  }
+  
+  .search-body .search-filters .filter-list {
+    margin-bottom: 1.3rem;
+  }
+  
+  .search-body .search-filters .filter-list .title {
+    color: #3c4142;
+    margin-bottom: 1rem;
+  }
+  
+  .search-body .search-filters .filter-list .filter-text {
+    color: #727686;
+  }
+  
+  .search-body .search-result .result-header {
+    margin-bottom: 2rem;
+  }
+  
+  .search-body .search-result .result-header .records {
+    color: #3c4142;
+  }
+  
+  .search-body .search-result .result-header .result-actions {
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting span {
+    flex-shrink: 0;
+    font-size: 0.8125rem;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting select {
+    color: #68CBD7;
+  }
+  
+  .search-body .search-result .result-header .result-actions .result-sorting select option {
+    color: #3c4142;
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .search-body .search-filters {
+      display: flex;
+    }
+    .search-body .search-filters .filter-list {
+      margin-right: 1rem;
+    }
+  }
 
+  body{
+    background:#DCDCDC;
+    margin-top:20px;
+}
+.card-box {
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    background-color: #fff;
+}
 
+.thumb-lg {
+    height: 88px;
+    width: 88px;
+}
+.img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+}
+.text-pink {
+    color: #ff679b!important;
+}
+.btn-rounded {
+    border-radius: 2em;
+}
+.text-muted {
+    color: #98a6ad!important;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+}  
+  
+  
+  
+</style>
 
 
   <div class="justify-content-center align-items-center d-flex my-5">
     <a href="/dating/admin-client"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
   </div>
 
-  <div class="d-flex justify-content-center">
- 
-    {% for client in clients %}
-    <div class="card mx-2 text-center" style="width:200px; border-radius:22px">
-      <a href="{% url 'dating_app:profileDetail' user.id %}"><img class="card-img-top" src="{{client.profile.profile_pic.url}}" alt="Card image">
-      <div class="card-body">
-        <h5 class="card-title">{{client.username}}</h5>
-        <span class="card-text" >{{client.profile.age}}</span><br>
-        <span>{{client.profile.gender}}</span><br>
-        <span>{{client.profile.country.name}}</span><br>
-        <p class="card-text">{{client.profile.state}}, {{client.profile.city}}</p>
-      </div>
-    </a>
+  <div class="container">
+      <div class="content">
+        <div class="container">
+            <!-- end row -->
+            <div class="row">
+              {% for client in clients %}
+                <div class="col-lg-3">
+                    <div class="text-center card-box">
+                        <div class="member-card">
+                            <div class="thumb-lg member-thumb mx-auto"><img src="{{ user.profile.profile_pic.url }}" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                            <div class="">
+                                <h4>{{client.username}}</h4>
+                                <h6>{{client.profile.age}}</h6>
+                                <h6>{{client.profile.gender}}</h6>
+                                <p class="text-muted">{{client.profile.country.name}}<span></span></p>
+                                <a href="{% url 'dating_app:client-info' user.id %}"><button type="button" class="btn btn-success btn-rounded waves-effect w-md waves-light">View</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- container -->
     </div>
-    {% endfor %}
-  </div>
+      </div>
+  
 
 
 {% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

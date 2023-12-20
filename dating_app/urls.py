@@ -16,6 +16,7 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment,name='reject-appointment'),
+    path('appointment/<int:pk>', views.clientAppointmentDetail, name='appointment-detail'),
     path('admin-appointment-history', views.admin_appointment_history_view, name='admin-appointment-history'),
 
     path('admin-messages', views.admin_messages_view,name='admin-messages'),
@@ -36,6 +37,7 @@ urlpatterns = [
     path('client-dashboard', views.client_dashboard_view, name="client-dashboard"),
     path('client', views.clientPage, name='clientPage'),
     path('client-appointment', views.client_appointment_view,name='client-appointment'),
+     path('appointment/<int:pk>', views.appointmentDetail, name='appointment-detail'),
     path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),
     path('client-view-appointment', views.client_view_appointment_view,name='client-view-appointment'),
     path('client-appointment-history', views.client_appointment_history, name='client-appointment-history'),
@@ -43,6 +45,7 @@ urlpatterns = [
 
 
     path('client-messages', views.client_messages_view,name='client-messages'),
+    path('message/<int:pk>', views.messageDetail, name='message-detail'),
     path('client-send-messages', views.client_send_messages,name='client-send-messages'),
     path('client-view-messages', views.client_view_messages_view,name='client-view-messages'),
     path('client-read-messages', views.client_read_messages_view,name='client-read-messages'),

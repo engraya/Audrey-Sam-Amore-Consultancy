@@ -45,23 +45,6 @@ def profileDetail(request, user_id):
 
 
 @login_required
-def searchUsers(request):
-	if request.method == 'GET':
-		searchQuery = request.GET.get('search', '')
-		users = User.objects.filter(
-			Q(username__icontains=searchQuery) | 
-			Q(first_name__icontains=searchQuery) |
-			Q(last_name__icontains=searchQuery),
-			profile__isnull=False
-		).exclude(
-			Q(id=request.user.id) | Q(groups__name='ADMIN')
-		)
-		context = {'users' : users, 'searchQuery' : searchQuery}
-		return render(request, )
-
-
-
-@login_required
 def home(request):
 	profile = Profile.objects.get_or_create(user_id=request.user.id)
 	if profile:
@@ -158,7 +141,13 @@ def admin_appointment_history_view(request):
 	context = {'appointments' : appointments}
 	return render(request, 'admin/admin_appointment_history.html', context)
 
-
+@login_required(login_url='adminlogin')
+@user_passes_test(is_admin)
+def appointmentDetail(request, pk):
+	pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
+	appointment = Appointment.objects.get(id=pk)
+	context = {'appointment' : appointment, 'appointmentCount' : pendingappointmentcount}
+	return render(request, 'admin/adminAppointmentDetail.html', context)
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
@@ -174,7 +163,7 @@ def approve_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.status=True
 	appointment.save()
-	return redirect('dating_app:admin-approve-appointment')
+	return redirect('dating_app:admin-view-appointment')
 
 
 
@@ -183,7 +172,7 @@ def approve_appointment(request, pk):
 def reject_appointment(request, pk):
 	appointment = Appointment.objects.get(id=pk)
 	appointment.delete()
-	return redirect('dating_app:admin-approve-appointment')
+	return redirect('dating_app:admin-view-appointment')
 
 #-----------------ADMIN APPOINTMENTS ENDS HERE----------------------------------------------------------------#####
 
@@ -371,7 +360,18 @@ def client_view_appointment_view(request):
 def client_appointment_history(request):
 	appointments = Appointment.objects.filter(status=False)
 	context = {'appointments' : appointments}
-	return render(request, 'client/client_appointment_history.html', context)	
+	return render(request, 'client/client_appointment_history.html', context)
+
+
+
+
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
+def clientAppointmentDetail(request, pk):
+	pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
+	appointment = Appointment.objects.get(id=pk)
+	context = {'appointment' : appointment, 'appointmentCount' : pendingappointmentcount}
+	return render(request, 'client/clientAppointmentDetail.html', context)
 
 
 #-----------------CLIENT MESSAGES STARTS HERE----------------------------------------------------------------#####
@@ -460,4 +460,12 @@ def client_delete_messages(request, pk):
 	message.delete()
 	return redirect('dating_app:client-messages')
 
+
+@login_required(login_url='client_login')
+@user_passes_test(is_client)
+def messageDetail(request, pk):
+	pendingmessagescount = Message.objects.all().filter(status=False).count()
+	message = Message.objects.get(id=pk)
+	context = {'message' : message, 'messagesCount' : pendingmessagescount}
+	return render(request, 'client/clientMessageDetail.html', context)
 
