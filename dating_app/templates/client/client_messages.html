@@ -26,7 +26,7 @@
 .mailbox-widget .custom-tab .nav-item .nav-link.active {
     background: 0 0;
     color: #fff;
-    border-bottom: 3px solid #2cd07e;
+    border-bottom: 3px solid #27282c;
 }
 .no-wrap td, .no-wrap th {
     white-space: nowrap;
@@ -39,14 +39,18 @@
 .font-light {
     font-weight: 300;
 }
+#card-header {
+    background-color: #27282c;
+}
 </style>
 
 
 <div class="container pt-5 mt-5">
+    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
   <div class="row">
       <div class="col-md-12">
           <div class="card">
-              <div class="card-body bg-success text-white mailbox-widget pb-0">
+              <div class="card-body text-white mailbox-widget pb-0" id="card-header">
                   <h2 class="text-white pb-3 text-center">Your Mailbox</h2>
                   <ul class="nav nav-tabs custom-tab border-bottom-0 mt-4" id="myTab" role="tablist">
                       <li class="nav-item">
@@ -113,7 +117,7 @@
                                           {% if message.status %}
                                           <td><span class="badge badge-pill text-white font-medium badge-success mr-2">Read</span></td>
                                           {% else %}
-                                          <td><span class="badge badge-pill text-white font-medium badge-danger mr-2">Pending</span></td>
+                                          <td><span class="badge badge-pill text-white font-medium badge-warning mr-2">Pending</span></td>
                                           <td>
                                             <a href="/dating/read-messages/{{message.id}}">
                                               <button class="btn btn-sm btn-circle btn-success text-white" href="javascript:void(0)">

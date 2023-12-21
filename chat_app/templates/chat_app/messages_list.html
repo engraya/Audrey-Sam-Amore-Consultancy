@@ -12,7 +12,7 @@
 {% if us.pk == message.recipient.pk or us.pk == message.sender.pk  %}
 {% if other_person.username == us.username %}
 <a href="{% url 'chat_app:inbox' us %}">
-  <li class="contact" style="background-color: #eaf1f7; border-left: 5px solid #389eda;">
+  <li class="contact" style="background-color: #eaf1f7; border-left: 5px solid #a0c0d3;">
     <div class="wrap">
       <img src="{{ us.profile.profile_pic.url }}" style="width: 40px; height: 40px; object-fit: cover; object-position: center;" alt="" />
       <div class="meta">

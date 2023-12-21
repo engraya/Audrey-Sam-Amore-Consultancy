@@ -16,7 +16,7 @@ urlpatterns = [
     path('admin-approve-appointment', views.admin_approve_appointment_view,name='admin-approve-appointment'),
     path('approve-appointment/<int:pk>', views.approve_appointment,name='approve-appointment'),
     path('reject-appointment/<int:pk>', views.reject_appointment,name='reject-appointment'),
-    path('appointment/<int:pk>', views.clientAppointmentDetail, name='appointment-detail'),
+    path('appointment/<int:pk>', views.appointmentDetail, name='appointment-detail'),
     path('admin-appointment-history', views.admin_appointment_history_view, name='admin-appointment-history'),
 
     path('admin-messages', views.admin_messages_view,name='admin-messages'),
@@ -35,7 +35,7 @@ urlpatterns = [
     path('delete-client/<int:pk>', views.delete_client_view,name='delete-client'),
 
     path('client-dashboard', views.client_dashboard_view, name="client-dashboard"),
-    path('client', views.clientPage, name='clientPage'),
+    path('client-dashboard', views.clientPage, name='clientPage'),
     path('client-appointment', views.client_appointment_view,name='client-appointment'),
      path('appointment/<int:pk>', views.appointmentDetail, name='appointment-detail'),
     path('client-book-appointment', views.client_book_appointment,name='client-book-appointment'),

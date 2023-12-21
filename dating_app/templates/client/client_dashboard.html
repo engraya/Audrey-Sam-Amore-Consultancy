@@ -1,73 +1,87 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<br>
-<div>{%include 'client/client_dashboard_cards.html'%}</div>
-<!-- 
-<div class="container align-content-center container-fluid justify-content-center">
-  <h4 class="text-center text-dark">Your Recent Appointments</h4>
-  <table class="table table-bordered table-hover table-striped">
-    <thead>
-      <tr>
-        <th>Date and Time</th>
-        <th>Service Category</th>
-        <th>Description</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for appointment in appointments %}
-        <tr>
-          <td>{{ appointment.appointmentDateTime }}</td>
-          <td>{{ appointment.category }}</td>
-          <td>{{ appointment.description }}</td>
-          {% if appointment.status %}
-          <td> <span class="btn btn-sm btn-primary">Confirmed</span></td>
-          {% else %}
-          <td> <span class="btn btn-sm btn-success">Pending</span></td>
-          {% endif %}
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">No appointments scheduled yet..</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<style>
+  body{
+    margin-top:20px;
+    background:#FAFAFA;
+}
+.order-card {
+    color: #fff;
+}
+
+.bg-c-blue {
+    background: #27282c
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(116, 136, 163, 0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(97, 122, 124, 0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+</style>
+
+<div>
+
+<div class="container pt-3 mt-3 justify-center align-content-center d-flex mt-5 pt-4">
+  <div class="container">
+    <h3 class="text-center">Client Dashboard</h3>
+    <hr>
+    <div class="row">
+        <div class="col-md-4 col-xl-6">
+          <a href="/dating/client-appointment">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20 text-azure text-xl">Total Appointments</h6>
+                    <h2 class="text-right text-white"><i class="fa fa-user-plus text-white f-left"></i><span>{{appointmentcount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Appointments<span class="f-right">{{pendingappointmentcount}}</span></p>
+                </div>
+            </div>
+          </a>
+        </div>
+        
+        <div class="col-md-4 col-xl-6">
+          <a href="/dating/client-messages">
+            <div class="card bg-c-blue order-card">
+                <div class="card-block">
+                    <h6 class="m-b-20 text-azure text-xl">Total Messages</h6>
+                    <h2 class="text-right text-white"><i class="fa fa-envelope f-left text-white"></i><span>{{messagescount}}</span></h2>
+                    <p class="m-b-0 text-white">Pending Messages<span class="f-right">{{pendingmessagescount}}</span></p>
+                </div>
+            </div>
+          </a>
+        </div>
+
+	</div>
 </div>
-<br>
-<div class="container align-content-center container-fluid justify-content-center">
-  <h4 class="text-center text-dark">Your Recent Messages</h4>
-  <table class="table table-hover table-bordered table-striped" id="dev-table">
-    <thead>
-      <tr>
-        <th>Sender</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    {% for message in messages %}
-    <tr>
-      <td>{{message.sender}}</td>
-      <td>{{message.content}}</td>
-      <td>{{message.timestamp}}</td>
-      {% if message.status %}
-      <td> <span class="label label-primary">Read</span></td>
-      {% else %}
-      <td> <span class="btn btn-sm btn-success">Pending</span></td>
-      {% endif %}
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="4">No Messages yet</td>
-    </tr>
-    {% endfor %}
-  </table>
-</div> -->
+</div>
 
 
 
-  
+
+
+
+</div>
 
 {% endblock content %}

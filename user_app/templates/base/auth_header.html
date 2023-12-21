@@ -42,7 +42,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent" style="background-color: black;">
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent" style="background-color: #27282c">
     <div class="container-fluid">
 
       <div class="row justify-content-center align-items-center">
@@ -73,6 +73,7 @@
               class="rounded-circle mx-3 mb-2"
               alt="Black and White Portrait of a Man"
               loading="lazy"/>
+              <p class="mx-3 text-white mt-4">{{request.user.username}}</p>
               {% endif %}
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
