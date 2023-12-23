@@ -15,7 +15,13 @@
 				<span class="login100-form-title">
 					Client Register
 				</span>
-
+				{% if messages %}
+				<ul class="messages">
+					{% for message in messages %}
+					<span class="text-danger">{{message}}</span>
+					{% endfor %}
+				</ul>
+				{% endif %}
 				<div class="wrap-input100 validate-input">
 					<!-- <input class="input100" type="text" id="username" name="username" placeholder="Username"> -->
 					{{form.username}}
