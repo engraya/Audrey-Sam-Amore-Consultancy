@@ -19,14 +19,14 @@ def corePage(request):
 def adminclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'adminClick.html')
+    return render(request,'admin/adminClick.html')
 
 
 #for showing signup/login button for doctor(by sumit)
 def clientclick_view(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect('afterlogin')
-    return render(request,'clientClick.html')
+    return render(request,'client/clientClick.html')
 
 
 
@@ -46,8 +46,12 @@ def admin_signup(request):
 			return redirect('user_app:admin_sign_in')
 		except IntegrityError:
 			error_contex.append('That username has already been taken')
-			return render(request, 'admin_sign_up.html', {'form': AdminRegistrationForm(), 'error_contex': error_contex})	
-	return render(request, 'user_app/admin_sign_up.html', {'form': AdminRegistrationForm(), 'error_contex': error_contex})
+
+			#Clear Message after Page Refresh
+			storage = messages.get_messages(request)
+			storage.used = True
+			return render(request, 'admin/admin_sign_up.html', {'form': AdminRegistrationForm(), 'error_contex': error_contex})	
+	return render(request, 'user_app/admin/admin_sign_up.html', {'form': AdminRegistrationForm(), 'error_contex': error_contex})
 
 
 
@@ -67,7 +71,10 @@ def client_signup(request):
 	else:
 		form = ClientRegistrationForm()	
 		context = {'form': form}
-		return render(request, 'sign_up.html', context)	
+		#Clear Message after Page Refresh
+		storage = messages.get_messages(request)
+		storage.used = True
+		return render(request, 'client/client_sign_up.html', context)	
 
 
 
@@ -107,7 +114,11 @@ def admin_login(request):
 
 	form = AdminLoginForm()
 	context = {'form' : form}
-	return render(request, 'admin_sign_in.html', context)
+
+	#Clear Message after Page Refresh
+	storage = messages.get_messages(request)
+	storage.used = True
+	return render(request, 'client/admin_sign_in.html', context)
 
 
 def client_login(request):
@@ -130,7 +141,11 @@ def client_login(request):
 		messages.error(request, "Invalid Username or Password. Please try again.")		
 	form = ClientLoginForm()
 	context = {'form' : form}
-	return render(request, 'client_sign_in.html', context)
+
+	#Clear Message after Page Refresh
+	storage = messages.get_messages(request)
+	storage.used = True
+	return render(request, 'client/client_sign_in.html', context)
 
 
 		
@@ -175,7 +190,7 @@ def user_account(request):
 			'pendingMesssages' : pendingMessages
 		}
 
-		return render(request, 'user_account.html', context)
+		return render(request, 'client/user_account.html', context)
 	
 	return redirect('user_app:sign_up_step_three')
 
@@ -194,7 +209,7 @@ def sign_up_step_one(request):
 	context = {
 		'form': step_one_form,
 	}
-	return render(request, 'sign_up_step_one.html', context)
+	return render(request, 'client/sign_up_step_one.html', context)
 
 
 
@@ -211,11 +226,10 @@ def sign_up_step_two(request):
 			return redirect('user_app:sign_up_step_three')
 		else:
 			step_two_form = SignUpStepTwoForm()
-
 		context = {
 			'form': step_two_form,
 		}
-		return render(request, 'sign_up_step_two.html', context)
+		return render(request, 'client/sign_up_step_two.html', context)
 	return redirect('user_app:sign_up_step_one')
 
 
@@ -232,14 +246,14 @@ def sign_up_step_three(request):
 					step_three_form.save()
 					return redirect('dating_app:dating')
 				except ValueError:
-					return render(request, 'user_app/sign_up_step_three.html', {'error': 'File is too large, requirement is less than 2.5 MB'})
+					return render(request, 'user_app/client/sign_up_step_three.html', {'error': 'File is too large, requirement is less than 2.5 MB'})
 		else:
 			step_three_form = SignUpStepThreeForm(instance=request.user.profile)
 
 		context = {
 			'form': step_three_form,
 		}
-		return render(request, 'sign_up_step_three.html', context)
+		return render(request, 'client/sign_up_step_three.html', context)
 	return redirect('user_app:sign_up_step_two')
 
 
