@@ -62,6 +62,8 @@ def client_signup(request):
 			my_client_group[0].user_set.add(user)
 			login(request, user)
 			return redirect('user_app:sign_up_step_one')
+		else:
+			messages.error(request, "Registration failed. Please Enter Valid Credentials and Try again!.")	
 	else:
 		form = ClientRegistrationForm()	
 		context = {'form': form}
@@ -100,6 +102,8 @@ def admin_login(request):
 				messages.error(request, "Invalid Username or Password, Try agin later!")
 		else:
 			messages.error(request, "Invalid Username or Password, Try again later!")
+	else:
+		messages.error(request, "Invalid Username or Password. Please try again.")		
 
 	form = AdminLoginForm()
 	context = {'form' : form}
@@ -116,13 +120,14 @@ def client_login(request):
 			if user is not None:
 				if user.groups.filter(name='CLIENT').exists():
 					login(request, user)
-					messages.info(request, 'You are now Loggged in as client')
+					messages.info(request, 'You are now Logged Successfully......!')
 					return redirect('dating_app:clientPage')
 			else:
 				messages.error(request, "User Group Does not exist!, Try agin later!")
 		else:
 			messages.error(request, "Invalid Username or Password, Try again later!")
-
+	else:
+		messages.error(request, "Invalid Username or Password. Please try again.")		
 	form = ClientLoginForm()
 	context = {'form' : form}
 	return render(request, 'client_sign_in.html', context)
