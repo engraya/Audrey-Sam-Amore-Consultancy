@@ -2,30 +2,48 @@
 {% load static %}
 {% block content %}
 
-<br>
-<br>
-<div class="limiter">
- 
-	<div class="container-login100">
 
-		<div>
-      <div class="align-item-center justify-content-center d-flex">
-        <h1 style="text-align:center;">Administrator</h1>
+
+  <!-- ========================= contact-section start ========================= -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="contact-form-wrapper">
+            <div class="row">
+              <div class="col-xl-10 col-lg-8 mx-auto">
+                <div class="section-title text-center">
+                  <span>Administrator</span>
+                  <h4>
+                    Ready to Get Started
+                  </h4>
+                  <p>
+                    We value your inquiries and feedback. Let's start a conversation that could change your life. Reach out to us via the form below or connect through our social channels. Your journey towards fulfillment begins here.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="button text-center rounded-buttons">
+                <a href="/admin_signup">
+                  <button type="submit" class="btn primary-btn rounded-full">
+                    Register
+                  </button>
+                </a>
+                <a href="/admin_sign_in">
+                  <button type="submit" class="btn primary-btn rounded-full">
+                    Login
+                  </button>
+                </a>
+
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
       </div>
-      <hr class="my-4">
-      <p class="text-dark">You can access various features after Register/Login.</p>
-      <div class="container-login100-form-btn">
-        <a class="login100-form-btn" href="/admin_signup"><button type="submit" class="login100-form-btn">
-          Register
-        </button></a>
-      </div>
-      <div class="container-login100-form-btn">
-        <a class="login100-form-btn" href="/admin_sign_in"><button type="submit" class="login100-form-btn">
-          Login
-        </button></a>
-      </div>
-		</div>
-	</div>
-</div>
-{% include "base/footer.html" %}
+    </div>
+  </section>
+  <!-- ========================= contact-section end ========================= -->
 {% endblock content %}

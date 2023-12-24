@@ -1,120 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
+  {% load static %}
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!--====== Required meta tags ======-->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  <title>Admin Control Center</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <!--====== Title ======-->
+  <title>Audrey Sam Amore Consult</title>
 
   <!-- Favicons -->
-  <link rel="icon" type="image/png" class="rounded-circle" href="{% static 'images/icons/asa.png' %}"/>
-  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+	<link rel="icon" type="image/png" class="rounded-circle" href="{% static 'images/icons/asa.png' %}"/>
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"/>
 
-  <!-- Google Fonts -->
-  <link href="{% static 'https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700' %}" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!--====== Bootstrap css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/bootstrap.min.css' %}" />
 
-  <!-- Vendor CSS Files -->
-  <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Akronim" rel="stylesheet"/>
 
-  <link href="{% static 'https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap' %}" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <!--====== Line Icons css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/lineicons.css' %}" />
 
-  <link rel="stylesheet" href="{% static 'fonts/icomoon/style.css' %}">
+  <!--====== Tiny Slider css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/tiny-slider.css' %}" />
 
-  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+  <!--====== gLightBox css ======-->
+  <link rel="stylesheet" href="{% static 'assets0/css/glightbox.min.css' %}" />
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-  
-  <!-- Style -->
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'style0.css' %}" />
 
-  <!-- Template Main CSS File -->
-  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- new -->
+
+
+  <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'images/icons/asa.png' %}"/>
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+	<!--===============================================================================================-->	
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<!--===============================================================================================-->
 
 </head>
 
 <body>
+  <!--====== NAVBAR NINE PART START ======-->
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent" style="background-color: black;">
-    <div class="container-fluid">
+  <section class="navbar-area navbar-nine">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <nav class="navbar navbar-expand-lg">
+            <a class="navbar-brand" href="{% url 'home' %}">
+              <img src="{% static 'assets0/images/logo.png' %}" height="60px" width="60px" style="border-radius: 50%;" alt="Logo" />
+        
+            </a>
+            <a href="/dating/admin-dashboard"><h2 class="m-3" style="font-family: 'Brush Script MT', cursive; color:bisque">Audre Sam Amore Consult</h2></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNine"
+              aria-controls="navbarNine" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+              <span class="toggler-icon"></span>
+            </button>
 
-      <div class="row justify-content-center align-items-center">
-        <div class="col-xl-11 d-flex align-items-center justify-content-between">
-          <a href="/dating/admin-dashboard" class="logo m-1"><img class="rounded-circle" src="{% static 'images/asa.png' %}" alt=""><span class="mx-2 text-light">Audrey Sam Amore Consult</span></a>
-          <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-          <nav id="navbar" class="navbar mt-4">
-            <ul>
-              <li><a class="nav-link scrollto" href="/dating/admin-dashboard">Dashboard</a></li>
-              <li><a class="nav-link scrollto" href="/dating/admin-client">Clients</a></li>
-              <li><a class="nav-link scrollto" href="/dating/admin-appointment">Appointments</a></li>
-              <li><a class="nav-link scrollto " href="/dating/admin-messages">Messages</a></li>
-              {% if user.is_authenticated %}
+            <div class="collapse navbar-collapse sub-menu-bar" id="navbarNine">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a  href="/dating/admin-dashboard">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/dating/admin-client">Clients</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/dating/admin-appointment">Appointments</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/dating/admin-messages">Messages</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <form action="{% url 'user_app:logout_user' %}" method="POST" class="justify-content-center align-content-center align-items-center d-flex mt-3">
+                    {% csrf_token %}
+                      <button class="btn btn-sm btn-danger justify-content-center align-content-center d-flex rounded-lg mx-3" onclick="this.closest('form').submit();return false">Logout</button>
+                  </form>
+                </li>
 
-              <form action="{% url 'user_app:logout_user' %}" method="POST">
-                {% csrf_token %}
-                  <button class="btn btn-danger mx-3" onclick="this.closest('form').submit();return false">Logout</button>
-              </form>
-              <p class="mx-3 text-white mt-4">Welcome, {{request.user.username}}</p>
-              {% endif %}
-            </ul>
-            <i class="bi bi-list mobile-nav-toggle"></i>
-          </nav><!-- .navbar -->
+                {% endif %}
+              </ul>
+            </div>
+
+            <div class="navbar-btn d-none d-lg-inline-block">
+              <a class="menu-bar" href="#side-menu-left"><i class="lni lni-menu"></i></a>
+            </div>
+          </nav>
+          <!-- navbar -->
         </div>
       </div>
-
+      <!-- row -->
     </div>
-  </header><!-- End Header -->
+    <!-- container -->
+  </section>
 
-<body>
-
-    <br><br>
-
-    <!-- content start-->
-
-    {% block content %}
-
-    {% endblock content %}
-    <!-- content end-->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!--====== NAVBAR NINE PART ENDS ======-->
+    {% block content  %}
 
 
-    <!-- Vendor JS Files -->
-    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
-    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
-    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
-    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
-  
-    <!-- Template Main JS File -->
-    <script src="{% static 'assets/js/main.js' %}"></script>
-  
-  
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    {% endblock content  %}
+
+  <a href="#" class="scroll-top btn-hover">
+    <i class="lni lni-chevron-up"></i>
+  </a>
+
+  <!--====== js ======-->
+  <script src="{% static 'assets0/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets0/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets0/js/main.js' %}"></script>
+  <script src="{% static 'assets0/js/tiny-slider.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+
+  <script>
+
+    //===== close navbar-collapse when a  clicked
+    let navbarTogglerNine = document.querySelector(
+      ".navbar-nine .navbar-toggler"
+    );
+    navbarTogglerNine.addEventListener("click", function () {
+      navbarTogglerNine.classList.toggle("active");
+    });
+
+    // ==== left sidebar toggle
+    let sidebarLeft = document.querySelector(".sidebar-left");
+    let overlayLeft = document.querySelector(".overlay-left");
+    let sidebarClose = document.querySelector(".sidebar-close .close");
+
+    overlayLeft.addEventListener("click", function () {
+      sidebarLeft.classList.toggle("open");
+      overlayLeft.classList.toggle("open");
+    });
+    sidebarClose.addEventListener("click", function () {
+      sidebarLeft.classList.remove("open");
+      overlayLeft.classList.remove("open");
+    });
+
+    // ===== navbar nine sideMenu
+    let sideMenuLeftNine = document.querySelector(".navbar-nine .menu-bar");
+
+    sideMenuLeftNine.addEventListener("click", function () {
+      sidebarLeft.classList.add("open");
+      overlayLeft.classList.add("open");
+    });
+
+    //========= glightbox
+    GLightbox({
+      'href': 'https://www.youtube.com/watch?v=r44RKWyfcFw&fbclid=IwAR21beSJORalzmzokxDRcGfkZA1AtRTE__l5N4r09HcGS5Y6vOluyouM9EM',
+      'type': 'video',
+      'source': 'youtube', //vimeo, youtube or local
+      'width': 900,
+      'autoplayVideos': true,
+    });
+
+  </script>
+
+
+  <!-- new -->
+
+  <!--===============================================================================================-->	
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+		<script >
+			$('.js-tilt').tilt({
+				scale: 1.1
+			})
+		</script>
+	<!--===============================================================================================-->
+		<script src="{% static 'js/main2.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
 </body>
 
 </html>
-
-
 

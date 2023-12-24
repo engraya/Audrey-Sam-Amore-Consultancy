@@ -66,7 +66,7 @@
               <img src="{% static 'assets0/images/logo.png' %}" height="60px" width="60px" style="border-radius: 50%;" alt="Logo" />
         
             </a>
-            <a href="{% url 'home' %}"><h2 class="m-3" style="font-family: 'Brush Script MT', cursive; color:bisque">Audre Sam Amore Consult</h2></a>
+            <a href="/dating/client-dashboard"><h2 class="m-3" style="font-family: 'Brush Script MT', cursive; color:bisque">Audre Sam Amore Consult</h2></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNine"
               aria-controls="navbarNine" aria-expanded="false" aria-label="Toggle navigation">
               <span class="toggler-icon"></span>
@@ -77,19 +77,39 @@
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarNine">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a  href="{% url 'home' %}">Home</a>
+                  <a  href="/dating/client-dashboard">Dashboard</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{% url 'user_app:adminclick' %}">Admin</a>
+                  <a href="/dating/client-appointment">Appointments</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{% url 'user_app:clientclick' %}">Client</a>
+                  <a href="/dating/client-messages">Messages</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{% url 'dating_app:dating' %}">Dating</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% url 'chat_app:message_list' %}">Chats</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{% url 'user_app:my_profile' %}">Profile</a>
+                  </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <form action="{% url 'user_app:logout_user' %}" method="POST" class="justify-content-center align-content-center align-items-center d-flex mt-3">
+                    {% csrf_token %}
+                      <button class="btn btn-sm btn-danger justify-content-center align-content-center d-flex rounded-lg mx-3 mt-2" onclick="this.closest('form').submit();return false">Logout</button>
+                  </form>
+                </li>
+                <img
+                style="height: 50px; width:50px"
+                src="{{ user.profile.profile_pic.url }}"
+                class="rounded-circle mx-3 mt-3"
+                alt="Black and White Portrait of a Man"
+                loading="lazy"/>
+                <span class="mx-3 text-white mt-4">{{request.user.username}}</span>
+                {% endif %}
               </ul>
-            </div>
-
-            <div class="navbar-btn d-none d-lg-inline-block">
-              <a class="menu-bar" href="#side-menu-left"><i class="lni lni-menu"></i></a>
             </div>
           </nav>
           <!-- navbar -->
@@ -106,54 +126,6 @@
 
     {% endblock content  %}
 
-  <!-- Start Footer Area -->
-  <footer class="footer-area footer-eleven">
-    <!-- Start Footer Top -->
-    <div class="footer-top">
-      <div class="container">
-        <div class="inner-content">
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget f-about">
-                <div class="logo">
-                  <a href="{% url 'home' %}">
-                    <img style="height: auto; width:200px" src="{% static 'assets0/images/logo.png' %}" alt="#" class="img-fluid" />
-                  </a>
-                </div>
-                <p>
-                  Discover the perfect blend of dating expertise and professional consultation. Our dedicated team is committed to helping you navigate the exciting journey of relationships and personal growth.
-                </p>
-                <p class="copyright-text">
-					&copy; Copyright <strong>Audrey Sam Amore Consultancy</strong><br>All Rights Reserved
-                  <a href="javascript:void(0)" rel="nofollow"></a>
-                </p>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-            <div class="col-lg-6 col-md-12 col-12">
-              <!-- Single Widget -->
-              <div class="footer-widget newsletter">
-                <h5>Subscribe</h5>
-                <p>Subscribe to our newsletter for the latest updates</p>
-                <form action="#" method="get" target="_blank" class="newsletter-form">
-                  <input name="EMAIL" placeholder="Email address" required="required" type="email" />
-                  <div class="button">
-                    <button class="sub-btn">
-                      <i class="lni lni-envelope"></i>
-                    </button>
-                  </div>
-                </form>
-              </div>
-              <!-- End Single Widget -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--/ End Footer Top -->
-  </footer>
-  <!--/ End Footer Area -->
   <a href="#" class="scroll-top btn-hover">
     <i class="lni lni-chevron-up"></i>
   </a>

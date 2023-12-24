@@ -35,7 +35,7 @@ def admin_signup(request):
 	error_contex = []
 	if request.method == 'GET':
 		context = {'form': AdminRegistrationForm}
-		return render(request, 'admin_sign_up.html', context)
+		return render(request, 'admin/admin_sign_up.html', context)
 	else:
 		try:
 			user = User.objects.create_user(username = request.POST['username'], password=request.POST['password'])
@@ -118,7 +118,7 @@ def admin_login(request):
 	#Clear Message after Page Refresh
 	storage = messages.get_messages(request)
 	storage.used = True
-	return render(request, 'client/admin_sign_in.html', context)
+	return render(request, 'admin/admin_sign_in.html', context)
 
 
 def client_login(request):
@@ -160,7 +160,7 @@ def logout_user(request):
 
 
 @login_required
-def user_account(request):
+def my_profile(request):
 	appointmentCount = Appointment.objects.all().filter(client=request.user, status=True).count()
 	messageCount = Message.objects.all().filter(senderID=request.user.id, status=True).count()
 	pendingAppointments = Appointment.objects.all().filter(client=request.user, status=False).count()
@@ -175,7 +175,7 @@ def user_account(request):
 			if u_form.is_valid() &  p_form.is_valid():
 				u_form.save()
 				p_form.save()
-			return redirect('user_app:user_account') 
+			return redirect('user_app:my_profile') 
 		else:
 			u_form = UserUpdateForm(instance=request.user)
 			p_form = ProfileUpdateForm(instance=request.user.profile)
@@ -190,7 +190,7 @@ def user_account(request):
 			'pendingMesssages' : pendingMessages
 		}
 
-		return render(request, 'client/user_account.html', context)
+		return render(request, 'client/my_profile.html', context)
 	
 	return redirect('user_app:sign_up_step_three')
 
