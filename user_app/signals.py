@@ -8,7 +8,7 @@ from .models import Profile
 def create_profile(sender, instance, created, **kwargs):
     if created:
         clientGroup = Group.objects.get(name="CLIENT")
-        if clientGroup in instance.grroups.all():
+        if clientGroup in instance.groups.all():
             Profile.objects.create(user=instance)
   
 
