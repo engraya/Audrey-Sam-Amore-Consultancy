@@ -1,110 +1,120 @@
 {% extends "admin/admin_base.html" %}
 {% load static %}
 {% block content %}
-<br><br>
-
-<head>
-
-  <style type="text/css">
-    a:link {
-      text-decoration: none;
-    }
-
-    .menu {
-      top: 50px;
-    }
-
-    h6 {
-      color: white;
-    }
-
-    .order-card {
-      color: #fff;
-    }
-
-    .bg-c-green {
-      background: linear-gradient(45deg,#19947b,rgb(96, 170, 173));
-    }
 
 
-
-    .card {
-      border-radius: 5px;
-      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      border: none;
-      margin-bottom: 30px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card .card-block {
-      padding: 25px;
-    }
-
-    .order-card i {
-      font-size: 26px;
-    }
-
-    .f-left {
-      float: left;
-    }
-
-    .f-right {
-      float: right;
-    }
-  </style>
-</head>
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="justify-content-center align-items-center d-flex">
-  <a href="/dating/admin-dashboard"><button type="button" class="btn btn-outline-info">&larr;  Back to Dashboard</button></a>
-</div>
-<div class="container pt-2">
-  <div class="row">
-    <div class="col-md-3 col-xl-3">
-      <a href="/dating/admin-view-messages">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h6 class="m-b-20 text-center">View Messages (Inbox)</h6>
-          <br>
+  <!-- Start Pricing  Area -->
+  <section id="pricing" class="pricing-area pricing-fourteen">
+    <!--======  Start Section Title Five ======-->
+    <div class="section-title-five mt-4 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h2 class="fw-bold">Messages</h2>
+            </div>
+          </div>
         </div>
+        <!-- row -->
       </div>
-    </a>
+      <!-- container -->
     </div>
-    <div class="col-md-3 col-xl-3">
-      <a href="/dating/admin-read-messages">
-      <div class="card bg-c-green order-card">
-        <div class="card-block text-center">
-            <h6 class="m-b-20">Read & Reply Messages</h6>
-          <br>
+    <!--======  End Section Title Five ======-->
+    <div class="container">
+      <div class="row">
+        <div class="align-items-center justify-content-center flex-wrap d-flex">
+          <div class="col-lg-3 col-md-6 col-12">
+            <div class="pricing-style-fourteen middle">
+              <div class="table-head">
+                <h6 class="title">Inbox</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-view-messages" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-12">
+            <div class="pricing-style-fourteen">
+              <div class="table-head">
+                <h6 class="title">Read & Reply Messages</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-read-messages" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-12">
+            <div class="pricing-style-fourteen">
+              <div class="table-head">
+                <h6 class="title">Compose Message</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-send-messages" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-12">
+            <div class="pricing-style-fourteen">
+              <div class="table-head">
+                <h6 class="title">Outbox</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+                  <div class="price">
+                    <h2 class="amount">
+                    </h2>
+                  </div>
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-outbox" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </a>
-    </div>
 
-    <div class="col-md-3 col-xl-3">
-      <a href="/dating/admin-send-messages">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h6 class="m-b-20 text-center">Compose Message</h6>
-          <br>
-        </div>
       </div>
-    </a>
     </div>
-
-    <div class="col-md-3 col-xl-3">
-      <a href="/dating/admin-outbox">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h6 class="m-b-20 text-center">Outbox</h6>
-          <br>
-        </div>
-      </div>
-    </a>
-    </div>
-  </div>
-</div>
-
+  </section>
+  <!--/ End Pricing  Area -->
 {% endblock content %}

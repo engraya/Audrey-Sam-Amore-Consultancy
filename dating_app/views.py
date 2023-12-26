@@ -217,7 +217,7 @@ def read_messages(request, pk):
 
 @login_required(login_url='adminlogin')
 @user_passes_test(is_admin)
-def messageDetail(request, pk):
+def adminMessageDetail(request, pk):
 	pendingmessagescount = Message.objects.all().filter(status=False).count()
 	message = Message.objects.get(id=pk)
 	context = {'message' : message, 'messagesCount' : pendingmessagescount}

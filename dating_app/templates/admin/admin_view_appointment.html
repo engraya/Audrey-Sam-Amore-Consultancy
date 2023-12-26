@@ -14,10 +14,10 @@
     }
   </style>
 </head>
-<div class="justify-content-center align-items-center d-flex my-5">
-  <a href="/dating/admin-appointment"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+<div class="justify-content-center align-items-center d-flex m-3 pt-5 mt-5">
+  <a href="/dating/admin-dashboard"><button type="button" class="btn btn-sm btn-outline-info">&larr;</button></a>
 </div>
-<div class="container align-items-center justify-content-center p-3" style="background: linear-gradient(45deg,#19947b,rgb(96, 170, 173));">
+<div class="container align-items-center justify-content-center p-3">
     <div class="panel-heading">
       <h4 class="text-white text-center">Available Appointments</h4>
     </div>
@@ -26,7 +26,6 @@
         <tr>
           <th>Client Name</th>
           <th>Consultancy Category</th>
-          <th>Description</th>
           <th>Request Date</th>
           <th>Status</th>
         </tr>
@@ -34,8 +33,7 @@
       {% for appointment in appointments %}
       <tr>
         <td>{{appointment.client}}</td>
-        <td>{{appointment.category}}</td>
-        <td><a href="/dating/appointment/{{appointment.id}}">{{appointment.description}}</a></td>
+        <td><a href="/dating/appointment/{{appointment.id}}">{{appointment.category}}</a></td>
         <td>{{appointment.appointmentDateTime}}</td>
         {% if appointment.status %}
         <td> <span class="btn btn-sm btn-success">Approved</span></td>

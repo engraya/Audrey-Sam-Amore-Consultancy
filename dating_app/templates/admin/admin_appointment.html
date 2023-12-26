@@ -1,103 +1,61 @@
 {% extends "admin/admin_base.html" %}
 {% load static %}
 {% block content %}
-<br><br>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style type="text/css">
-    a:link {
-      text-decoration: none;
-    }
-
-    .menu {
-      top: 50px;
-    }
-
-    h6 {
-      color: white;
-    }
-
-    .order-card {
-      color: #fff;
-    }
-
-
-    .bg-c-green {
-      background: linear-gradient(45deg,#19947b,rgb(96, 170, 173));
-    }
-
-
-    .card {
-      border-radius: 5px;
-      -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      box-shadow: 0 1px 2.94px 0.06px rgba(4, 26, 55, 0.16);
-      border: none;
-      margin-bottom: 30px;
-      -webkit-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card .card-block {
-      padding: 25px;
-    }
-
-    .order-card i {
-      font-size: 26px;
-    }
-
-    .f-left {
-      float: left;
-    }
-
-    .f-right {
-      float: right;
-    }
-  </style>
-</head>
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="justify-content-center align-items-center d-flex">
-  <a href="/dating/admin-dashboard"><button type="button" class="btn btn-outline-info">&larr;  Back to Dashboard</button></a>
-
-</div>
-<div class="container pt-2">
-  <div class="row">
-    <div class="col-md-6 col-xl-6">
-      <a href="/dating/admin-view-appointment">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h6 class="m-b-20">View Available Appointments</h6>
-          <br>
-
-        </div>
-      </div>
-    </a>
+  <!-- Start Pricing  Area -->
+  <section id="pricing" class="pricing-area pricing-fourteen">
+    <div class="justify-content-center align-items-center d-flex m-3 pt-4">
+      <a href="/dating/admin-dashboard"><button type="button" class="btn btn-sm btn-outline-info">&larr;</button></a>
     </div>
-    <div class="col-md-6 col-xl-6">
-      <a href="/dating/admin-approve-appointment">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h6 class="m-b-20">Approve Appointments</h6>
-          <br>
-           </div>
-      </div>
-    </a>
-    </div>
-<!-- 
-    <div class="col-md-4 col-xl-4">
-      <div class="card bg-c-yellow order-card">
-        <div class="card-block">
-          <a href="/dating/admin-appointment-history">
-            <h6 class="m-b-20">Appointment History</h6>
-          </a>
-          <br>
-          <h2 class="text-right"><i class="fas fa-check-circle f-left"></i></h2>
+    <!--======  Start Section Title Five ======-->
+    <div class="section-title-five mt-4 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h2 class="fw-bold">Appointment Requests</h2>
+            </div>
+          </div>
         </div>
+        <!-- row -->
       </div>
-    </div> -->
-  </div>
-</div>
+      <!-- container -->
+    </div>
+    <!--======  End Section Title Five ======-->
+    <div class="container">
+      <div class="row">
+        <div class="align-items-center justify-content-center flex-wrap d-flex">
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="pricing-style-fourteen middle">
+              <div class="table-head">
+                <h6 class="title">View Available Appointments</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-view-appointment" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="pricing-style-fourteen middle">
+              <div class="table-head">
+                <h6 class="title">Approve Appointments</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-approve-appointment" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
+      </div>
+    </div>
+  </section>
+  <!--/ End Pricing  Area -->
 {% endblock content %}

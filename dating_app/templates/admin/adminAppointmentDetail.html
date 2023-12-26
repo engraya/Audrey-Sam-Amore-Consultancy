@@ -711,8 +711,8 @@
 }
 </style>
 
-<div class="container pt-4 mt-4">
-    <a class="btn btn-sm btn-secondary my-2" href="/dating/admin-view-appointment">&larr;Back</a>
+<div class="container pt-5 mt-5">
+    <a class="btn btn-sm btn-outline-info my-2" href="/dating/admin-view-appointment">&larr;</a>
     <div class="row inbox-wrapper">
         <div class="col-lg-12">
           <div class="card">
@@ -727,16 +727,16 @@
                       {% if appointment.status %}
                         <div class="aside-nav collapse">
                             <ul class="nav">
-                            <li class="active"><a href="#"><span class="icon"></span>Status<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></a></li>
-                            <li><a href=""><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Approved</a></li>
+                            <li class="active"><span class="icon">Status</span><span class="badge badge-success-muted text-white font-weight-bold float-right">{{messagescount}}</span></li>
+                            <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-inbox"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>Approved</li>
                             </ul>
                         </div>
                       {% else %}
                     <div class="aside-compose"><a class="btn btn-success btn-block" href="/dating/approve-appointment/{{appointment.id}}">Approve Appointment</a></div>
                     <div class="aside-nav collapse">
                         <ul class="nav">
-                          <li class="active"><a href="#"><span class="icon"></span>Status<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></a></li>
-                          <li><a href=""><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Pending</a></li>
+                          <li class="active"><span class="icon"></span>Status<span class="badge badge-danger-muted text-white font-weight-bold float-right">{{messagescount}}</span></li>
+                          <li><span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>Pending</li>
                         </ul>
                       </div>
                       {% endif %}

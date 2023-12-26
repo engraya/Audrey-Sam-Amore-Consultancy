@@ -2,65 +2,48 @@
 {% load static %}
 {% block content %}
 
-<style>
-  body{
-    margin-top:20px;
-    background:#FAFAFA;
-}
-.order-card {
-    color: #fff;
-}
 
-.bg-c-green {
-    background: linear-gradient(45deg,#19947b,rgb(96, 170, 173));
-}
-
-
-
-.card {
-    border-radius: 5px;
-    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(116, 136, 163, 0.16);
-    box-shadow: 0 1px 2.94px 0.06px rgba(97, 122, 124, 0.16);
-    border: none;
-    margin-bottom: 30px;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-}
-
-.card .card-block {
-    padding: 25px;
-}
-
-.order-card i {
-    font-size: 26px;
-}
-
-.f-left {
-    float: left;
-}
-
-.f-right {
-    float: right;
-}
-</style>
-
-<div class="container align-content-center mt-5">
-  <div class="justify-content-center align-items-center d-flex m-3">
-    <a href="/dating/admin-dashboard"><button type="button" class="btn btn-outline-info">&larr;  Back to Dashboard</button></a>
-  </div>
-  <div class="row">
-    <div class="col-md-12 col-lg-12">
-      <a href="/dating/admin-view-client">
-      <div class="card bg-c-green order-card">
-        <div class="card-block">
-            <h4 class="m-b-20 text-center text-light">Client Records</h4>
-          <br>
-         </div>
-      </div>
-    </a>
+  <!-- Start Pricing  Area -->
+  <section id="pricing" class="pricing-area pricing-fourteen">
+    <div class="justify-content-center align-items-center d-flex m-3 pt-4">
+      <a href="/dating/admin-dashboard"><button type="button" class="btn btn-sm btn-outline-info">&larr;</button></a>
     </div>
-  </div>
-</div>
+    <!--======  Start Section Title Five ======-->
+    <div class="section-title-five mt-4 pt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="content">
+              <h2 class="fw-bold">Active Clients</h2>
+            </div>
+          </div>
+        </div>
+        <!-- row -->
+      </div>
+      <!-- container -->
+    </div>
+    <!--======  End Section Title Five ======-->
+    <div class="container">
+      <div class="row">
+        <div class="align-items-center justify-content-center flex-wrap d-flex">
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="pricing-style-fourteen middle">
+              <div class="table-head">
+                <h6 class="title">Clients</h6>
+                  <!-- <p>Lorem Ipsum is simply dummy text of the printing and industry.</p> -->
+              </div>
+  
+              <div class="light-rounded-buttons">
+                <a href="/dating/admin-view-client" class="btn primary-btn">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
+      </div>
+    </div>
+  </section>
+  <!--/ End Pricing  Area -->
 {% endblock content %}
