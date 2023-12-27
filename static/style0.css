@@ -7,7 +7,7 @@
 @tailwind utilities;
 :root {
   --font-family: "Inter", sans-serif;
-  --primary:#15b2d5;
+  --primary:#52868d;
   --primary-dark:#15b2d5;
   --primary-light: #e2f1ff;
   --accent: #00d4d7;
@@ -66,7 +66,10 @@
 body {
   font-family: var(--font-family);
   color: var(--black);
+  background : var(--gray-3);
   font-size: 16px;
+  
+
 }
 @media (max-width: 991px) {
   body {
@@ -403,7 +406,7 @@ p {
 /*===== NAVBAR NINE =====*/
 .navbar-area.navbar-nine {
   background: var(--primary);
-  padding: 10px 0;
+  padding: 8px 0;
   position: absolute;
   left: 0;
   top: 0;

@@ -40,13 +40,13 @@
     font-weight: 300;
 }
 #card-header {
-    background-color: #27282c;
+    background-color:  var(--primary);
 }
 </style>
 
 
 <div class="container pt-5 mt-5">
-    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2 mt-5"><button type="button" class="btn btn-outline-info">&larr;</button></a>
   <div class="row">
       <div class="col-md-12">
           <div class="card">
@@ -120,7 +120,7 @@
                                           <td><span class="badge badge-pill text-white font-medium badge-warning mr-2">Pending</span></td>
                                           <td>
                                             <a href="/dating/read-messages/{{message.id}}">
-                                              <button class="btn btn-sm btn-circle btn-success text-white" href="javascript:void(0)">
+                                              <button class="btn btn-sm btn-circle btn-success text-white">
                                                   <i class="fa fa-check"></i>
                                               </button>
                                           </a>

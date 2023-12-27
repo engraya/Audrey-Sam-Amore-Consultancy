@@ -41,13 +41,13 @@
 }
 
 #card-header{
-    background-color: #27282c;
+    background-color: var(--primary);
 }
 </style>
 
 
 <div class="container pt-5 mt-5">
-    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2 mt-5"><button type="button" class="btn btn-outline-info">&larr;</button></a>
   <div class="row">
       <div class="col-md-12">
           <div class="card">
@@ -109,7 +109,7 @@
                                           <!-- Message -->
                                           <td>
                                               <a class="link" href="javascript: void(0)">
-                                                  <span class="text-dark"><a href="/dating/appointment/{{appointment.id}}">{{appointment.description}}</a></span>
+                                                  <span class="text-dark"><a href="/dating/clientAppointment/{{appointment.id}}">{{appointment.description}}</a></span>
                                               </a>
                                           </td>
                                                   <!-- Time -->

@@ -33,7 +33,7 @@ def dating(request):
 		# 	Q(id=request.user.id) | Q(groups__name='ADMIN')
 		# )
 		context = {'users' : users, 'searchQuery' : searchQuery}
-		return render(request, 'dating.html', context)
+		return render(request, 'users.html', context)
 	return redirect('user_app:sign_up_step_three')
 
 
@@ -367,7 +367,7 @@ def client_appointment_history(request):
 
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
-def clientAppointmentDetail(request, pk):
+def client_Appointment_Detail(request, pk):
 	pendingappointmentcount = Appointment.objects.all().filter(status=False).count()
 	appointment = Appointment.objects.get(id=pk)
 	context = {'appointment' : appointment, 'appointmentCount' : pendingappointmentcount}

@@ -148,9 +148,6 @@ def client_login(request):
 	return render(request, 'client/client_sign_in.html', context)
 
 
-		
-
-
 
 @login_required
 def logout_user(request):
