@@ -7,8 +7,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ALLOWED_HOSTS = ['.vercel.app', '.now.sh','127.0.0.1']
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
-
+ALLOWED_HOSTS = ['*']
+from dotenv import load_dotenv
+load_dotenv()
 
 
 dotenv_file = os.path.join(BASE_DIR, ".env")
@@ -119,7 +120,6 @@ LOCALE_PATHS = [BASE_DIR / "locale"]
 
 
 STATIC_URL = 'static/'
-
 
 
 
