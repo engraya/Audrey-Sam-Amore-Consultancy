@@ -7,7 +7,7 @@ from .models import Profile
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
     if created:
-        clientGroup = Group.objects.get_or_create(name="CLIENT")
+        clientGroup = Group.objects.get(name="CLIENT")
         if clientGroup in instance.groups.all():
             Profile.objects.create(user=instance)
   
