@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     # Apps
     'chat_app',
     'dating_app',
-    'user_app',
+    'user_app.apps.UserAppConfig',
     'crispy_forms',
     'widget_tweaks',
     'django_countries',
