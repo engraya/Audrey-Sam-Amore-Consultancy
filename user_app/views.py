@@ -194,8 +194,9 @@ def my_profile(request):
 
 @login_required
 def sign_up_step_one(request):
+	profile = Profile.objects.get(user_id=request.user.id)
 	if request.method == 'POST':
-		step_one_form = SignUpStepOneForm(request.POST,request.FILES,instance=request.user.profile)
+		step_one_form = SignUpStepOneForm(request.POST,request.FILES,instance=profile)
 		if step_one_form.is_valid():
 			step_one_form.save()
 			
