@@ -70,8 +70,9 @@ def client_signup(request):
 			messages.error(request, "Registration failed. Please Enter Valid Credentials and Try again!.")	
 	else:
 		form = ClientRegistrationForm()	
-		context = {'form': form}
-		return render(request, 'client/client_sign_up.html', context)	
+		
+	context = {'form': form}
+	return render(request, 'client/client_sign_up.html', context)	
 
 
 
