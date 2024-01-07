@@ -3,9 +3,9 @@
 
 
 <div class="justify-content-center align-items-center d-flex my-2 mt-5 pt-5">
-  <a href="/dating/client-messages"><button type="button" class="btn btn-outline-info">&larr;  Back</button></a>
+  <a href="/dating/client-messages"><button type="button" class="btn btn-sm btn-outline-info">&larr;</button></a>
 </div>
-<div class="container align-items-center justify-content-center p-3" style="background: linear-gradient(45deg,#6c7e4b,#73b4ff);">
+<div class="container align-items-center justify-content-center p-3">
   <div class="panel-heading">
     <h4 class="text-white text-center">Messages</h4>
   </div>
@@ -21,7 +21,7 @@
     {% for message in messages %}
     <tr>
       <td>{{message.sender}}</td>
-      <td>{{message.content}}</td>
+      <td><a href="/dating/clientmessages/{{message.id}}">{{message.content}}</a></td>
       <td>{{message.timestamp}}</td>
       {% if message.status %}
       <td> <span class="btn btn-sm btn-success">Read</span></td>

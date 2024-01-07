@@ -463,7 +463,7 @@ def client_delete_messages(request, pk):
 
 @login_required(login_url='client_login')
 @user_passes_test(is_client)
-def messageDetail(request, pk):
+def clientMessageDetail(request, pk):
 	pendingmessagescount = Message.objects.all().filter(status=False).count()
 	message = Message.objects.get(id=pk)
 	context = {'message' : message, 'messagesCount' : pendingmessagescount}

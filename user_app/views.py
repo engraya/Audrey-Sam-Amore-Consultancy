@@ -71,9 +71,6 @@ def client_signup(request):
 	else:
 		form = ClientRegistrationForm()	
 		context = {'form': form}
-		#Clear Message after Page Refresh
-		storage = messages.get_messages(request)
-		storage.used = True
 		return render(request, 'client/client_sign_up.html', context)	
 
 
@@ -195,14 +192,14 @@ def my_profile(request):
 @login_required
 def sign_up_step_one(request):
 	if request.method == 'POST':
-		step_one_form = SignUpStepOneForm(request.POST,request.FILES,instance=request.user.profile)
+		profile_instance, created = Profile.objects.get_or_create(user=request.user)
+		step_one_form = SignUpStepOneForm(request.POST,request.FILES,instance=profile_instance)
 		if step_one_form.is_valid():
 			step_one_form.save()
-			
+
 		return redirect('user_app:sign_up_step_two')
 	else:
 		step_one_form = SignUpStepOneForm()
-
 	context = {
 		'form': step_one_form,
 	}

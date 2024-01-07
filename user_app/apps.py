@@ -7,4 +7,4 @@ class UserAppConfig(AppConfig):
 
 
     def ready(self):
-        from user_app import signals
+        import user_app.signals

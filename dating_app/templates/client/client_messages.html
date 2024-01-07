@@ -45,30 +45,30 @@
 </style>
 
 
-<div class="container pt-5 mt-5">
-    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2 mt-5"><button type="button" class="btn btn-outline-info">&larr;</button></a>
+<div class="container pt-3 mt-3">
+    <a href="/dating/client-dashboard" class="align-items-center justify-content-center d-flex mb-2 mt-5"><button type="button" class="btn btn-sm btn-outline-info">&larr;</button></a>
   <div class="row">
       <div class="col-md-12">
           <div class="card">
               <div class="card-body text-white mailbox-widget pb-0" id="card-header">
-                  <h2 class="text-white pb-3 text-center">Your Mailbox</h2>
+                  <h6 class="text-white pb-3 text-center">Your Mailbox</h6>
                   <ul class="nav nav-tabs custom-tab border-bottom-0 mt-4" id="myTab" role="tablist">
                       <li class="nav-item">
                           <a class="nav-link active" id="inbox-tab" data-toggle="tab" aria-controls="inbox" href="#inbox" role="tab" aria-selected="true">
                               <span class="d-block d-md-none"><i class="ti-email"></i></span>
-                              <span class="d-none d-md-block"> INBOX</span>
+                              <span class="d-md-block"> INBOX</span>
                           </a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" id="sent-tab" data-toggle="tab" aria-controls="sent" href="#sent" role="tab" aria-selected="false">
                               <span class="d-block d-md-none"><i class="ti-export"></i></span>
-                              <span class="d-none d-md-block">SENT MESSAGES</span>
+                              <span class="d-md-block">SENT MESSAGES</span>
                           </a>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" id="spam-tab" data-toggle="tab" aria-controls="spam" href="#spam" role="tab" aria-selected="false">
                               <span class="d-block d-md-none"><i class="ti-panel"></i></span>
-                              <span class="d-none d-md-block">COMPOSE MESSAGE</span>
+                              <span class="d-md-block">COMPOSE MESSAGE</span>
                           </a>
                       </li>
                   </ul>
@@ -78,7 +78,7 @@
                       <div>
                           <div class="row p-4 no-gutters align-items-center">
                               <div class="col-sm-12 col-md-6">
-                                  <h3 class="font-light mb-0"><i class="ti-email mr-2"></i>{{pendingmessages}} Unread Messages</h3>
+                                  <h6 class="font-light mb-0"><i class="ti-email mr-2"></i>{{pendingmessages}} Unread Messages</h6>
                               </div>
                               <div class="col-sm-12 col-md-6">
                                   <ul class="list-inline dl mb-0 float-left float-md-right">
@@ -108,7 +108,7 @@
                                           <!-- Message -->
                                           <td>
                                               <a class="link" href="javascript: void(0)">
-                                                  <span class="text-dark"><a href="/dating/message/{{message.id}}">{{message.content}}</a></span>
+                                                  <span class="text-dark"><a href="/dating/clientmessages/{{message.id}}">{{message.content}}</a></span>
                                               </a>
                                           </td>
                                                   <!-- Time -->

@@ -60,15 +60,14 @@
   <!-- Content -->
   <div class="container flex-grow-1 container-p-y mt-5 pt-5">
     <div class="card-body">
-      <a class="btn btn-sm btn-danger" href="{% url 'dating_app:dating' %}">&larr;Back</a>
-      &nbsp;
+      <a class="btn btn-sm btn-danger" href="{% url 'dating_app:dating' %}">&larr;</a>
     </div>
     <!-- Header -->
     <div class="container-m-nx container-m-ny theme-bg-white mb-4">
       <div class="media col-md-10 col-lg-8 col-xl-7 py-5 mx-auto">
         <img src="{{ profile.profile_pic.url }}" alt="" class="d-block ui-w-100 rounded-circle">
         <div class="media-body ml-5">
-          <h4 class="font-weight-bold mb-4">{{ profile.first_name }} {{ profile.last_name }}</h4>
+          <h6 class="font-weight-bold mb-4">{{ profile.first_name }} {{ profile.last_name }}</h6>
 
           <div class="text-muted mb-4">
             {{ profile.about }}
