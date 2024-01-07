@@ -65,7 +65,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GenderOptions.choices, blank=True, null=True) 
     seeking = models.CharField(max_length=1, choices=GenderOptions.choices, blank=True, null=True) 
     about = models.TextField(null=True, blank=True)
-    country = CountryField(blank_label="Select Country", null=True, blank=True)
+    country = models.CharField(max_length=200, null=True, blank=True, choices=CountryField().choices + [('', 'Select Country')])
     state = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     online_status = models.BooleanField(null=True, blank=True, default=False)
