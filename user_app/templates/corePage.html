@@ -114,7 +114,7 @@
               Our mission is simple: to connect individuals searching for meaningful relationships and provide expert consultancy to guide them on their personal and professional journeys. We believe that everyone deserves companionship and deserves access to valuable insights that can shape their lives positively.
             </p>
             <div class="button">
-              <a href="javascript:void(0)" class="btn primary-btn">Get Started</a>
+              <a href="{% url 'user_app:clientclick' %}" class="btn primary-btn">Get Started</a>
             </div>
           </div>
         </div>
@@ -478,7 +478,7 @@
           </div>
         </div>
         <div class="col-xl-8">
-          <div class="contact-form-wrapper">
+          <div class="contact-form-wrapper mb-5">
             <div class="row">
               <div class="col-xl-10 col-lg-8 mx-auto">
                 <div class="section-title text-center">
@@ -506,7 +506,7 @@
                   <input type="text" name="phone" id="phone" placeholder="Phone" required />
                 </div>
                 <div class="col-md-6">
-                  <input type="text" name="subject" id="email" placeholder="Subject" required />
+                  <input type="text" name="subject" id="subject" placeholder="Subject" required />
                 </div>
               </div>
               <div class="row">
