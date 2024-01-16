@@ -7,7 +7,7 @@
 @tailwind utilities;
 :root {
   --font-family: "Inter", sans-serif;
-  --primary:#52868d;
+  --primary: #e010f3;
   --primary-dark:#15b2d5;
   --primary-light: #e2f1ff;
   --accent: #00d4d7;
@@ -20,7 +20,7 @@
   --secondary-dark: #6013c7;
   --secondary-light: #f4e5fa;
   --info: #15b2d5;
-  --info-dark: #0f8ca8;
+  --info-dark:#15b2d5;
   --info-light: #e0f5fa;
   --caution: #dbbb25;
   --caution-dark: #d58f15;
