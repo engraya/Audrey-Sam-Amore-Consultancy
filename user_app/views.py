@@ -254,3 +254,11 @@ def sign_up_step_three(request):
 
 
 
+# PAYMENT VIEWS
+
+def successPayment(request):
+	return render(request, 'payment/successPayment.html')
+
+
+
+

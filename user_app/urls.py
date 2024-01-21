@@ -25,6 +25,8 @@ urlpatterns = [
 
 	path('my_profile/', views.my_profile, name='my_profile'),
     
+	path('success', views.successPayment, name="success"),
+    
 
 
 ]
