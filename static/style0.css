@@ -1092,7 +1092,7 @@ p {
   color: var(--primary);
 }
 .about-five-content .about-five-tab nav button.active {
-  background-color: var(--primary);
+  background-color:  #0e4d55 ;
   color: var(--white);
 }
 .about-five-content .about-five-tab nav button:last-child {
