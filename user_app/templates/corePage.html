@@ -30,10 +30,10 @@
                   <a class="page-scroll active" href="#hero-area">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="page-scroll" href="#pricing">Pricing</a>
+                  <a  href="{% url 'products:pricing' %}">Pricing & Plans</a>
                 </li>
                 <li class="nav-item">
-                  <a class="page-scroll" href="#contact">Contact</a>
+                  <a href="{% url 'user_app:contact' %}">Contact</a>
                 </li>
                 <li class="nav-item">
                   <a href="{% url 'user_app:adminclick' %}">Admin</a>
@@ -66,7 +66,7 @@
     </div>
     <div class="sidebar-content">
       <div class="sidebar-logo">
-        <a href="#"><img src="{% static 'assets0/images/logo.png' %}" alt="Logo" /></a>
+        <a href="#"><img src="{% static 'assets0/images/logo2.png' %}" alt="Logo" /></a>
       </div>
       <!-- logo -->
       <div class="sidebar-menu">
@@ -74,6 +74,7 @@
         <ul>
           <li><a href="{% url 'user_app:adminclick' %}">Admin</a></li>
           <li><a href="{% url 'user_app:clientclick' %}">Client</a></li>
+          <li><a href="{% url 'products:pricing' %}">Pricing & Plans</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
       </div>

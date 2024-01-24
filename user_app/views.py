@@ -253,12 +253,7 @@ def sign_up_step_three(request):
 
 
 
-
-# PAYMENT VIEWS
-
-def successPayment(request):
-	return render(request, 'payment/successPayment.html')
-
-
+def contactUs(request):
+	return render(request, 'contactUs.html')
 
 

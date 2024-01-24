@@ -24,8 +24,8 @@ urlpatterns = [
 	path('signup/step_three/', views.sign_up_step_three, name='sign_up_step_three'),
 
 	path('my_profile/', views.my_profile, name='my_profile'),
-    
-	path('success', views.successPayment, name="success"),
+    	path('contact-us', views.contactUs, name="contact"),
+
     
 
 

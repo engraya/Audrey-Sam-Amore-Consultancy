@@ -1,13 +1,12 @@
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% extends "base/auth_base.html" %}
+{% load static %}
+{% block content %}
+
 <style>
     body {
         font-family: 'Varela Round', sans-serif;
+        height: 100vh;
+        background-size: 400%;
     }
 
     .modal-confirm {
@@ -62,8 +61,7 @@
         width: 95px;
         height: 95px;
         border-radius: 50%;
-        z-index: 9;
-        background: #82ce34;
+        background: #fdfdfd;
         padding: 15px;
         text-align: center;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
@@ -73,10 +71,11 @@
         font-size: 58px;
         position: relative;
         top: 3px;
+        color: #fff;
     }
 
     .modal-confirm.modal-dialog {
-        margin-top: 80px;
+        margin-top: 180px;
     }
 
     .modal-confirm .btn {
@@ -99,21 +98,45 @@
         display: inline-block;
         margin: 100px auto;
     }
+
+
+body {
+
+}
+
+#error-page {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    right: 25%;
+    bottom: 20%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+#error-page .content {
+    max-width: 600px;
+    text-align: center;
+}
+
+
 </style>
 
-
-<!-- Modal HTML -->
 <div class="container">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="icon-box">
-                    <i class="material-icons">&#xE876;</i>
+                    <i class="fa fa-close" style="font-size:48px;color:red"></i>
                 </div>
-                <h4 class="modal-title w-100">Awesome!</h4>
+                <h4 class="modal-title w-100">Error!</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
+                <p class="text-center">Your booking was not Successsful. Try again Later!!!.</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
@@ -121,3 +144,5 @@
         </div>
     </div>
 </div>
+
+{% endblock content %}
