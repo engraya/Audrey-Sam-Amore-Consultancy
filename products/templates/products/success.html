@@ -1,7 +1,8 @@
 {% extends "base/auth_base.html" %}
 {% load static %}
 {% block content %}
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <style>
     body {
         font-family: 'Varela Round', sans-serif;
@@ -61,7 +62,8 @@
         width: 95px;
         height: 95px;
         border-radius: 50%;
-        background: #fdfdfd;
+        z-index: 9;
+        background: #82ce34;
         padding: 15px;
         text-align: center;
         box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
@@ -71,11 +73,10 @@
         font-size: 58px;
         position: relative;
         top: 3px;
-        color: #fff;
     }
 
     .modal-confirm.modal-dialog {
-        margin-top: 180px;
+        margin-top: 200px;
     }
 
     .modal-confirm .btn {
@@ -100,9 +101,14 @@
     }
 
 
-body {
-
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 #error-page {
     position: absolute;
@@ -126,23 +132,25 @@ body {
 
 </style>
 
+
+<!-- Modal HTML -->
 <div class="container">
     <div class="modal-dialog modal-confirm">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="icon-box">
-                    <i class="fa fa-close" style="font-size:48px;color:red"></i>
+                    <i class="material-icons">&#xE876;</i>
                 </div>
-                <h4 class="modal-title w-100">Error!</h4>
+                <h4 class="modal-title w-100">Awesome!</h4>
             </div>
             <div class="modal-body">
-                <p class="text-center">Your booking was not Successsful. Try again Later!!!.</p>
+                <p class="text-center">Your booking has been confirmed. Check your email for detials.</p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-success btn-block" data-dismiss="modal">OK</button>
             </div>
-            <div class="alert alert-info" role="alert">
-                Forgot to add something to your cart?
+            <div class="alert alert-success" role="alert">
+                Thanks for purchasing our product
                 <a
                     href="{% url 'products:product-list' %}"
                     >Go to Products</a
@@ -152,4 +160,8 @@ body {
     </div>
 </div>
 
+
+
 {% endblock content %}
+
+

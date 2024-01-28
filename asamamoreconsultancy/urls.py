@@ -15,7 +15,7 @@ urlpatterns = [
             path('', views.home, name='home'),  
             path('', include('user_app.urls')), 
             path('chat/', include('chat_app.urls')),
-            path("", include('products.urls')),
+            path("products", include('products.urls')),
 
     ] + i18n_patterns(
     path('i18n/', include('django.conf.urls.i18n')),
