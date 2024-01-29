@@ -27,10 +27,7 @@
             <div class="collapse navbar-collapse sub-menu-bar" id="navbarNine">
               <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                  <a class="page-scroll active" href="#hero-area">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a  href="{% url 'products:pricing' %}">Pricing & Plans</a>
+                  <a class="page-scroll active" href="{% url 'home' %}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a  href="{% url 'products:product-list' %}">Services</a>
@@ -77,7 +74,6 @@
         <ul>
           <li><a href="{% url 'user_app:adminclick' %}">Admin</a></li>
           <li><a href="{% url 'user_app:clientclick' %}">Client</a></li>
-          <li><a href="{% url 'products:pricing' %}">Pricing & Plans</a></li>
           <li><a href="{% url 'products:product-list' %}">Services</a></li>
           <li><a href="#contact">Contact Us</a></li>
         </ul>
@@ -289,14 +285,15 @@
               <h4 class="title">Starter</h4>
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">&#8358; </span>0<span class="duration">/mo </span>
+                    <span class="currency">$</span>20<span class="duration"></span>
+                    <!-- <span class="currency">$</span>20<span class="duration">/mo </span> -->
                   </h2>
                 </div>
             </div>
 
             <div class="light-rounded-buttons">
-              <a href="javascript:void(0)" class="btn primary-btn-outline">
-                Start free trial
+              <a href="{% url 'products:product-list' %}" class="btn primary-btn-outline">
+                Explore
               </a>
             </div>
           </div>
@@ -307,14 +304,15 @@
               <h4 class="title">Exclusive</h4>
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">&#8358; </span>10,000<span class="duration">/mo </span>
+                    <span class="currency">$</span>50<span class="duration"></span>
+                    <!-- <span class="currency">$</span>50<span class="duration">/mo </span> -->
                   </h2>
                 </div>
             </div>
 
             <div class="light-rounded-buttons">
-              <a href="#" class="btn primary-btn">
-                Start free trial
+              <a href="{% url 'products:product-list' %}" class="btn primary-btn-outline">
+                Explore
               </a>
             </div>
           </div>
@@ -325,13 +323,14 @@
               <h4 class="title">Premium</h4>
                 <div class="price">
                   <h2 class="amount">
-                    <span class="currency">&#8358; </span>15,000<span class="duration">/mo </span>
+                    <span class="currency">$</span>100<span class="duration"></span>
+                    <!-- <span class="currency">$</span>100<span class="duration">/mo </span> -->
                   </h2>
                 </div>
             </div>
             <div class="light-rounded-buttons">
-              <a href="javascript:void(0)" class="btn primary-btn-outline">
-                Start free trial
+              <a href="{% url 'products:product-list' %}" class="btn primary-btn-outline">
+                Explore
               </a>
             </div>
           </div>
