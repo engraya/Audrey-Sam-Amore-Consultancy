@@ -9,6 +9,7 @@ from django.contrib.auth.models import Group
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from dating_app.models import Message, Appointment
+from django.views.generic import TemplateView
 
 
 def corePage(request):
@@ -257,3 +258,10 @@ def contactUs(request):
 	return render(request, 'contactUs.html')
 
 
+
+
+class SuccessView(TemplateView):
+    template_name = "products/success.html"
+
+class CancelView(TemplateView):
+    template_name = "products/cancel.html"

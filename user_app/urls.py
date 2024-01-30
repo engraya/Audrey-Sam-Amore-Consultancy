@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+from .views import CancelView, SuccessView
 
 app_name = 'user_app'
 
@@ -25,6 +25,8 @@ urlpatterns = [
 
 	path('my_profile/', views.my_profile, name='my_profile'),
     path('contact-us', views.contactUs, name="contact"),
+    path("success/", SuccessView.as_view(), name="success"),
+    path("cancel/", CancelView.as_view(), name="cancel"),
 
     
 
