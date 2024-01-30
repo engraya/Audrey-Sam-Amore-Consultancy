@@ -16,6 +16,10 @@ def corePage(request):
 	return render(request, 'corePage.html')
 
 
+
+def clientReadyPage(request):
+	return render(request, 'clientReady.html')
+
 #for showing signup/login button for admin(by sumit)
 def adminclick_view(request):
     if request.user.is_authenticated:

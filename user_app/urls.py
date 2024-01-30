@@ -7,6 +7,7 @@ app_name = 'user_app'
 urlpatterns = [
 
 	path('main/', views.corePage, name='main'),
+	path('client-ready/', views.clientReadyPage, name='client-ready'),
     path('client_signup/', views.client_signup, name='client_signup'),
     path('admin_signup/', views.admin_signup, name='admin_signup'),
     
